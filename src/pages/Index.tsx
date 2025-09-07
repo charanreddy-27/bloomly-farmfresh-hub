@@ -6,6 +6,7 @@ import WhyBloomly from "../components/WhyBloomly";
 import Solutions from "../components/Solutions";
 import CallToAction from "../components/CallToAction";
 import Footer from "../components/Footer";
+import InteractiveFeatures from "../components/InteractiveFeatures";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
         <CallToAction />
       </main>
       <Footer />
+      <InteractiveFeatures />
     </div>
   );
 };

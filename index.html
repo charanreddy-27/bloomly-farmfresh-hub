@@ -2,25 +2,104 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Bloomly-2.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bloomly - Fresh Produce B2B Supply Chain Platform</title>
-    <meta name="description" content="Direct farm-to-retailer fresh produce delivery. Reliable, convenient, and waste-free sourcing for businesses. Join 100+ retail partners." />
+    
+    <!-- Primary Meta Tags -->
+    <title>Bloomly - Fresh Produce Direct from Farm to Retail | B2B Supply Chain</title>
+    <meta name="title" content="Bloomly - Fresh Produce Direct from Farm to Retail | B2B Supply Chain" />
+    <meta name="description" content="Bloomly connects farms directly with retailers, delivering fresh fruits and vegetables with zero waste. 3x higher margins, predictable supply, 99% on-time delivery." />
+    <meta name="keywords" content="fresh produce, B2B, farm to retail, fruits, vegetables, supply chain, produce distribution, wholesale produce, fresh produce supplier, agricultural supply chain" />
     <meta name="author" content="Bloomly" />
-    <meta name="keywords" content="fresh produce, B2B supply chain, farm to retailer, produce distribution, supply chain management" />
-
-    <meta property="og:title" content="Bloomly - Fresh Produce B2B Supply Chain Platform" />
-    <meta property="og:description" content="Direct farm-to-retailer fresh produce delivery. Reliable, convenient, and waste-free sourcing for businesses." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/Bloomly-2.svg" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@bloomly" />
-    <meta name="twitter:image" content="/Bloomly-2.svg" />
+    <meta property="og:url" content="https://bloomly.co.in/" />
+    <meta property="og:title" content="Bloomly - Fresh Produce Direct from Farm to Retail" />
+    <meta property="og:description" content="Revolutionizing fresh produce supply chain with direct farm-to-retail connections. Zero waste, predictable supply, premium quality." />
+    <meta property="og:image" content="https://bloomly.co.in/og-image.jpg" />
+    <meta property="og:site_name" content="Bloomly" />
+    <meta property="og:locale" content="en_IN" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://bloomly.co.in/" />
+    <meta property="twitter:title" content="Bloomly - Fresh Produce Direct from Farm to Retail" />
+    <meta property="twitter:description" content="Revolutionizing fresh produce supply chain with direct farm-to-retail connections. Zero waste, predictable supply, premium quality." />
+    <meta property="twitter:image" content="https://bloomly.co.in/og-image.jpg" />
+    <meta property="twitter:site" content="@bloomly" />
+    <meta property="twitter:creator" content="@bloomly" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#2E7D32" />
+    <meta name="msapplication-TileColor" content="#2E7D32" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Bloomly" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://bloomly.co.in/" />
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bloomly",
+      "description": "Fresh produce supply chain platform connecting farms directly to retailers",
+      "url": "https://bloomly.co.in",
+      "logo": "https://bloomly.co.in/Bloomly-2.svg",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91-98765-43210",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bangalore",
+        "addressRegion": "Karnataka",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/bloomly",
+        "https://twitter.com/bloomly"
+      ]
+    }
+    </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Performance optimization: Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    
+    <!-- Web Vitals tracking (optional) -->
+    <script>
+      // Simple performance tracking
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          // Track page load time
+          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+          console.log('Page load time:', loadTime + 'ms');
+        });
+      }
+    </script>
   </body>
 </html>
