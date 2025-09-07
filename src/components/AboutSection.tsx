@@ -135,36 +135,6 @@ const AboutSection = () => {
             </p>
           </div>
         </div>
-
-        {/* Our Values */}
-        <div className="mb-20">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-foreground mb-6">Our Values</h3>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The principles that guide everything we do
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
-              return (
-                <div 
-                  key={index}
-                  className="bg-white rounded-xl p-8 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="mb-6 flex justify-center">
-                    <IconComponent className="w-12 h-12 text-primary" />
-                  </div>
-                  <h4 className="text-xl font-bold text-foreground mb-4">{value.title}</h4>
-                  <p className="text-muted-foreground">{value.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Our Journey Timeline */}
         <div className="mb-20">
           <div className="text-center mb-16">
@@ -197,51 +167,9 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* Team Section */}
-        <div>
-          <div className="text-center mb-16">
-            <h3 className="text-3xl font-bold text-foreground mb-6">Leadership Team</h3>
-            <p className="text-xl text-muted-foreground">
-              The visionaries driving Bloomly's mission forward
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-              <div className="w-24 h-24 bg-gradient-to-br from-primary to-primary-hover rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Users className="w-12 h-12 text-primary-foreground" />
-              </div>
-              <h4 className="text-xl font-bold text-foreground mb-2">Founder & CEO</h4>
-              <p className="text-primary font-semibold mb-4">Leadership</p>
-              <p className="text-muted-foreground">
-                Passionate about transforming agriculture through technology and sustainable practices.
-              </p>
+       
             </div>
-            
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ animationDelay: '0.1s' }}>
-              <div className="w-24 h-24 bg-gradient-to-br from-secondary to-secondary/80 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Lightbulb className="w-12 h-12 text-secondary-foreground" />
-              </div>
-              <h4 className="text-xl font-bold text-foreground mb-2">Head of Technology</h4>
-              <p className="text-secondary font-semibold mb-4">Innovation</p>
-              <p className="text-muted-foreground">
-                Leading our tech initiatives to create seamless supply chain solutions.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-8 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1" style={{ animationDelay: '0.2s' }}>
-              <div className="w-24 h-24 bg-gradient-to-br from-accent to-accent/80 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <TrendingUp className="w-12 h-12 text-accent-foreground" />
-              </div>
-              <h4 className="text-xl font-bold text-foreground mb-2">Head of Operations</h4>
-              <p className="text-accent font-semibold mb-4">Execution</p>
-              <p className="text-muted-foreground">
-                Ensuring smooth operations and exceptional service delivery across all partnerships.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </section>
   );
 };

@@ -33,14 +33,17 @@ const Hero = () => {
 
   return (
     <section className="relative pt-16 pb-12 md:pt-20 md:pb-16 min-h-[90vh] flex items-center overflow-hidden">
-      {/* Green Gradient Background */}
+      {/* Background Image */}
       <div 
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          background: 'linear-gradient(135deg, #F1F8E9 0%, #E8F5E9 50%, #C8E6C9 100%)',
+          backgroundImage: 'url(/gemini_generated_image_6bhcgz6bhcgz6bhc-Yanq8xlZjkhx8B9D.avif)',
           transform: `translateY(${scrollY * 0.3}px)`,
         }}
       />
+      
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40" />
       
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -62,16 +65,14 @@ const Hero = () => {
             
             {/* Hero Headline with Green Gradient Text */}
             <h1 className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <span className="block text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-2xl">
                 Fresh. Convenient.
               </span>
               <span className="block text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 <span 
-                  className="bg-gradient-to-r from-green-600 via-green-500 to-green-700 bg-clip-text text-transparent"
+                  className="text-green-400 drop-shadow-2xl font-extrabold"
                   style={{
-                    background: 'linear-gradient(90deg, #2E7D32 0%, #4CAF50 50%, #2E7D32 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(34, 197, 94, 0.3)'
                   }}
                 >
                   Reliable.
@@ -80,9 +81,14 @@ const Hero = () => {
             </h1>
             
             {/* Hero Subheadline */}
-            <p className="mb-8 text-lg md:text-xl text-gray-700 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <p className="mb-8 text-lg md:text-xl text-white leading-relaxed animate-fade-in-up font-medium" style={{ 
+              animationDelay: '0.4s',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
+            }}>
               Delivering premium fruits directly to your business—on time, every time.
-              <span className="block mt-2 text-green-600 font-semibold text-base">
+              <span className="block mt-2 text-green-300 font-semibold text-base" style={{
+                textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
+              }}>
                 Direct farm connections • Predictable supply • Quality guaranteed
               </span>
             </p>
@@ -92,9 +98,9 @@ const Hero = () => {
               {benefits.map((benefit, index) => {
                 const IconComponent = benefit.icon;
                 return (
-                  <div key={index} className="flex items-center gap-2 bg-white/70 px-3 py-2 rounded-full border border-green-200">
+                  <div key={index} className="flex items-center gap-2 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-full border border-green-300 shadow-xl hover:shadow-2xl transition-all duration-300">
                     <IconComponent className="w-4 h-4 text-green-600" />
-                    <span className="text-sm font-medium text-green-700">{benefit.text}</span>
+                    <span className="text-sm font-semibold text-green-800">{benefit.text}</span>
                   </div>
                 );
               })}
@@ -105,7 +111,7 @@ const Hero = () => {
 
           {/* Right Content - Visual/Stats */}
           <div className="animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-green-200">
+            <div className="bg-white/97 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">Trusted by Businesses</h3>
               
               {/* Trust Indicators */}
@@ -116,7 +122,7 @@ const Hero = () => {
                     suffix="+" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-600 mt-1">Retail Partners</div>
+                  <div className="text-sm text-gray-700 mt-1 font-medium">Retail Partners</div>
                 </div>
                 <div className="text-center">
                   <Counter 
@@ -124,7 +130,7 @@ const Hero = () => {
                     suffix="+" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-600 mt-1">Farm Partners</div>
+                  <div className="text-sm text-gray-700 mt-1 font-medium">Farm Partners</div>
                 </div>
                 <div className="text-center">
                   <Counter 
@@ -132,23 +138,23 @@ const Hero = () => {
                     suffix="%" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-600 mt-1">On-Time Delivery</div>
+                  <div className="text-sm text-gray-700 mt-1 font-medium">On-Time Delivery</div>
                 </div>
               </div>
 
               {/* Quick Benefits */}
               <div className="space-y-3">
-                <div className="flex items-center gap-3 text-green-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-sm">Direct farm-to-retail supply chain</span>
+                <div className="flex items-center gap-3 text-green-800">
+                  <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
+                  <span className="text-sm font-medium">Direct farm-to-retail supply chain</span>
                 </div>
-                <div className="flex items-center gap-3 text-green-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-sm">Temperature-controlled logistics</span>
+                <div className="flex items-center gap-3 text-green-800">
+                  <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
+                  <span className="text-sm font-medium">Temperature-controlled logistics</span>
                 </div>
-                <div className="flex items-center gap-3 text-green-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full" />
-                  <span className="text-sm">AI-powered demand forecasting</span>
+                <div className="flex items-center gap-3 text-green-800">
+                  <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
+                  <span className="text-sm font-medium">AI-powered demand forecasting</span>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TrendingUp, Clock, Users, Truck } from 'lucide-react';
+import { TrendingUp, Users, Truck, Network, Weight, CheckCircle2 } from 'lucide-react';
 
 const Counter = ({ end, duration = 2000, prefix = '', suffix = '' }: {
   end: number;
@@ -35,36 +35,28 @@ const Counter = ({ end, duration = 2000, prefix = '', suffix = '' }: {
 const Metrics = () => {
   const metrics = [
     {
-      icon: Users,
-      value: 500,
+      icon: Network,
+      value: 75,
       suffix: '+',
-      label: "Active Retailers",
-      description: "Growing network of satisfied customers",
+      label: "Farm Connects",
+      description: "Direct partnerships with local farms",
       color: "from-green-500 to-green-600"
     },
     {
-      icon: Truck,
-      value: 50000,
+      icon: Weight,
+      value: 2500,
       suffix: '+',
-      label: "Deliveries Made",
+      label: "Tonnes Delivered",
       description: "Fresh produce delivered nationwide",
       color: "from-emerald-500 to-emerald-600"
     },
     {
-      icon: TrendingUp,
-      value: 25,
+      icon: CheckCircle2,
+      value: 98,
       suffix: '%',
-      label: "Cost Savings",
-      description: "Average savings for our customers",
+      label: "Order Fulfillment Rate",
+      description: "Consistent delivery performance",
       color: "from-lime-500 to-lime-600"
-    },
-    {
-      icon: Clock,
-      value: 24,
-      suffix: 'h',
-      label: "Farm to Store",
-      description: "Average delivery time guaranteed",
-      color: "from-green-600 to-green-700"
     }
   ];
 
@@ -113,7 +105,7 @@ const Metrics = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
             return (
