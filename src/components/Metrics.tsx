@@ -1,45 +1,176 @@
+import { useEffect, useState } from 'react';
+import { TrendingUp, Clock, Users, Truck } from 'lucide-react';
+
+const Counter = ({ end, duration = 2000, prefix = '', suffix = '' }: {
+  end: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number;
+    let animationId: number;
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = (currentTime - startTime) / duration;
+
+      if (progress < 1) {
+        setCount(Math.floor(end * progress));
+        animationId = requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+      }
+    };
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, [end, duration]);
+
+  return <span>{prefix}{count.toLocaleString()}{suffix}</span>;
+};
+
 const Metrics = () => {
   const metrics = [
     {
-      value: "₹12L+",
-      label: "Monthly Revenue",
-      color: "text-primary"
+      icon: Users,
+      value: 500,
+      suffix: '+',
+      label: "Active Retailers",
+      description: "Growing network of satisfied customers",
+      color: "from-green-500 to-green-600"
     },
     {
-      value: "18%",
-      label: "MoM Growth",
-      color: "text-secondary"
+      icon: Truck,
+      value: 50000,
+      suffix: '+',
+      label: "Deliveries Made",
+      description: "Fresh produce delivered nationwide",
+      color: "from-emerald-500 to-emerald-600"
     },
     {
-      value: "100+",
-      label: "Retail Partners",
-      color: "text-accent"
+      icon: TrendingUp,
+      value: 25,
+      suffix: '%',
+      label: "Cost Savings",
+      description: "Average savings for our customers",
+      color: "from-lime-500 to-lime-600"
     },
     {
-      value: "3x",
-      label: "Higher Margins on Key SKUs",
-      color: "text-primary"
+      icon: Clock,
+      value: 24,
+      suffix: 'h',
+      label: "Farm to Store",
+      description: "Average delivery time guaranteed",
+      color: "from-green-600 to-green-700"
     }
   ];
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="section-padding bg-background">
-      <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {metrics.map((metric, index) => (
-            <div 
-              key={index} 
-              className="text-center scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`text-4xl md:text-5xl font-bold mb-2 ${metric.color}`}>
-                {metric.value}
+    <section id="metrics" className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-16 right-20 w-32 h-32 bg-green-300 rounded-full blur-3xl" />
+        <div className="absolute bottom-16 left-20 w-40 h-40 bg-green-400 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container relative z-10">
+        <div className="text-center mb-12 animate-on-scroll">
+          <h2 className="text-foreground mb-4">
+            Trusted by <span 
+              className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
+              style={{
+                background: 'linear-gradient(90deg, #2E7D32 0%, #4CAF50 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >Hundreds</span> of Retailers
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Our growing network of partners proves that direct sourcing works for businesses of all sizes
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {metrics.map((metric, index) => {
+            const IconComponent = metric.icon;
+            return (
+              <div 
+                key={index}
+                className="animate-on-scroll group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                  {/* Icon with gradient background */}
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <IconComponent className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  {/* Metric value */}
+                  <div className="text-3xl font-bold text-green-800 mb-2">
+                    <Counter 
+                      end={metric.value} 
+                      suffix={metric.suffix}
+                      duration={2000 + index * 200}
+                    />
+                  </div>
+                  
+                  {/* Label */}
+                  <h3 className="text-lg font-semibold text-green-700 mb-2">
+                    {metric.label}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {metric.description}
+                  </p>
+                </div>
               </div>
-              <div className="text-muted-foreground font-medium">
-                {metric.label}
-              </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* Trust Indicators */}
+        <div className="mt-12 grid md:grid-cols-3 gap-6 animate-on-scroll">
+          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
+            <div className="text-2xl font-bold text-green-800 mb-2">99.5%</div>
+            <div className="text-green-700 font-semibold mb-1">On-Time Delivery</div>
+            <div className="text-sm text-green-600">Reliability you can count on</div>
+          </div>
+          
+          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
+            <div className="text-2xl font-bold text-green-800 mb-2">4.9/5</div>
+            <div className="text-green-700 font-semibold mb-1">Customer Rating</div>
+            <div className="text-sm text-green-600">Exceptional service quality</div>
+          </div>
+          
+          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
+            <div className="text-2xl font-bold text-green-800 mb-2">24/7</div>
+            <div className="text-green-700 font-semibold mb-1">Support</div>
+            <div className="text-sm text-green-600">Always here when you need us</div>
+          </div>
         </div>
       </div>
     </section>

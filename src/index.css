@@ -14,43 +14,58 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 210 24% 16%;
     
-    /* Bloomly Brand Colors */
-    --primary: 150 55% 28%; /* Forest Green #2D5F3F */
+    /* Bloomly Logo Exact Colors */
+    --primary: 123 50% 20%; /* Dark forest green #2E7D32 */
     --primary-foreground: 0 0% 98%;
-    --primary-hover: 150 55% 24%;
-    --primary-light: 150 45% 85%;
+    --primary-hover: 123 50% 16%;
+    --primary-light: 105 60% 85%;
     
-    --secondary: 122 39% 49%; /* Fresh Green #4CAF50 */
+    --secondary: 102 37% 53%; /* Light fresh green #8BC34A */
     --secondary-foreground: 0 0% 98%;
-    --secondary-light: 122 39% 90%;
+    --secondary-light: 102 37% 90%;
     
-    --accent: 15 86% 60%; /* Coral Orange #FF6B35 */
+    --accent: 88 50% 53%; /* Medium green #4CAF50 */
     --accent-foreground: 0 0% 98%;
-    --accent-hover: 15 86% 55%;
+    --accent-hover: 88 50% 45%;
     
-    /* Status Colors */
-    --destructive: 0 70% 60%; /* Red for errors/warnings */
+    /* Supporting Colors */
+    --success: 88 50% 53%; /* Green for success */
+    --warning: 36 100% 50%; /* Orange #FF9800 for CTAs */
+    --destructive: 4 90% 58%; /* Red for errors */
     --destructive-foreground: 0 0% 98%;
-    --warning: 35 91% 60%; /* Orange for warnings */
     --warning-foreground: 0 0% 98%;
     
-    /* Neutral Colors */
-    --muted: 210 40% 96%;
-    --muted-foreground: 210 10% 60%;
-    --subtle: 210 20% 98%;
+    /* Text Colors */
+    --text-primary: 125 100% 11%; /* Very dark green #1B5E20 */
+    --text-secondary: 210 11% 15%; /* Dark gray #424242 */
+    --text-light: 0 0% 46%; /* Light gray #757575 */
+    
+    /* Background Colors */
+    --bg-primary: 0 0% 100%; /* Pure white */
+    --bg-secondary: 0 0% 98%; /* Very light gray #FAFAFA */
+    --bg-accent: 104 45% 96%; /* Very light green tint #F1F8E9 */
     
     /* UI Colors */
+    --muted: 104 45% 96%; /* Light green tint */
+    --muted-foreground: 0 0% 46%;
+    --subtle: 0 0% 98%;
+    
     --card: 0 0% 100%;
     --card-foreground: 210 24% 16%;
-    --border: 214 31% 91%;
-    --input: 214 31% 91%;
-    --ring: 150 55% 28%;
+    --border: 104 30% 91%; /* Light green border #E8F5E9 */
+    --input: 104 30% 91%;
+    --ring: 123 50% 20%;
     --radius: 0.75rem;
     
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(210 40% 0% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(210 40% 0% / 0.1), 0 2px 4px -1px hsl(210 40% 0% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(210 40% 0% / 0.1), 0 4px 6px -2px hsl(210 40% 0% / 0.05);
+    /* Shadows with green tint */
+    --shadow-sm: 0 1px 2px 0 hsl(123 50% 20% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(123 50% 20% / 0.1), 0 2px 4px -1px hsl(123 50% 20% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(123 50% 20% / 0.1), 0 4px 6px -2px hsl(123 50% 20% / 0.05);
+    
+    /* Green Gradients */
+    --gradient-primary: linear-gradient(135deg, #8BC34A 0%, #2E7D32 100%);
+    --gradient-hero: linear-gradient(120deg, #E8F5E9 0%, #C8E6C9 50%, #A5D6A7 100%);
+    --gradient-cards: linear-gradient(145deg, #ffffff 0%, #F1F8E9 100%);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,23 +187,23 @@ All colors MUST be HSL.
     background: rgba(255, 255, 255, 0.1);
   }
   
-  /* Sections */
+  /* Sections with reduced padding */
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-16; /* Reduced from py-16 md:py-24 */
   }
   
   .section-alt {
-    @apply bg-subtle;
+    @apply bg-muted;
   }
   
-  /* Gradient Section Background */
+  /* Gradient Section Background with green theme */
   .section-gradient {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #8BC34A 0%, #2E7D32 100%);
     position: relative;
   }
   
   .section-gradient-alt {
-    background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    background: linear-gradient(120deg, #E8F5E9 0%, #C8E6C9 100%);
     position: relative;
   }
   
@@ -423,7 +438,7 @@ All colors MUST be HSL.
 
 /* Gradient Text Effect */
 .gradient-text {
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(90deg, #2E7D32 0%, #4CAF50 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
