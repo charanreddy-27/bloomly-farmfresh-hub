@@ -58,7 +58,7 @@ const Header = () => {
             <img 
               src="/Bloomly-2.svg" 
               alt="Bloomly Logo"
-              className="h-12 w-18 object-contain hover:scale-105 transition-transform duration-300"
+              className="h-11 w-17 object-contain hover:scale-105 transition-transform duration-300"
             />
           </div>
 
