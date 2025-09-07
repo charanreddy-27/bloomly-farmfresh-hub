@@ -9,10 +9,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary-foreground/20 rounded-lg">
-                <Leaf className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="text-2xl font-bold">Bloomly</span>
+              <img 
+                src="/Bloomly-2.png" 
+                alt="Bloomly Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-primary-foreground/80">
               Connecting farms directly with retailers for fresh, reliable produce delivery.

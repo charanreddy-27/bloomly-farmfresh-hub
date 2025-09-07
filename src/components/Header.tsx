@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,13 +9,14 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="container">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24 md:h-28">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-              <Leaf className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="text-2xl font-bold text-foreground">Bloomly</span>
+          <div className="flex items-center">
+            <img 
+              src="/Bloomly-2.png" 
+              alt="Bloomly Logo" 
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain max-w-none hover:scale-110 transition-transform duration-300"
+            />
           </div>
 
           {/* Desktop Navigation */}
