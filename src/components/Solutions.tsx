@@ -132,42 +132,7 @@ const Solutions = () => {
           })}
         </div>
 
-        {/* Additional Content Section - Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-8 animate-on-scroll">
-          {/* Why Choose Us */}
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-green-100">
-            <h3 className="text-2xl font-bold text-green-800 mb-4">Why Choose Bloomly?</h3>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-1">Direct Farm Partnerships</h4>
-                  <p className="text-sm text-gray-600">Skip intermediaries and get the best prices directly from verified farms</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-1">Technology-Driven</h4>
-                  <p className="text-sm text-gray-600">AI-powered demand forecasting and inventory optimization</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-1">Sustainability Focus</h4>
-                  <p className="text-sm text-gray-600">Zero waste commitment with sustainable packaging solutions</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
