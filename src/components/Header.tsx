@@ -13,7 +13,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/Bloomly-2.png" 
+              src="/Bloomly-2.svg" 
               alt="Bloomly Logo" 
               className="h-16 md:h-20 lg:h-24 w-auto object-contain max-w-none hover:scale-110 transition-transform duration-300"
             />
