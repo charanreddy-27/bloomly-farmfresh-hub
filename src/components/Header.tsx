@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Logo from './ui/Logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +55,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center cursor-pointer" onClick={() => navigate('/')}>
-            <Logo size="lg" className="hover:scale-105 transition-transform duration-300" />
+            <img 
+              src="/Bloomly-2.svg" 
+              alt="Bloomly Logo"
+              className="h-12 w-18 object-contain hover:scale-105 transition-transform duration-300"
+            />
           </div>
 
           {/* Desktop Navigation */}
