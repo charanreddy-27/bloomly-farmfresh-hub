@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <section className="pt-28 pb-16 md:pt-36 lg:pt-40 md:pb-24 bg-background">
+    <section className="pt-20 pb-16 md:pt-28 lg:pt-32 md:pb-24 bg-background">
       <div className="container">
         <div className="max-w-4xl mx-auto text-center">
           {/* Hero Headline */}

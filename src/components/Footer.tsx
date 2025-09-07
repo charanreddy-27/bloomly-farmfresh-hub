@@ -12,7 +12,7 @@ const Footer = () => {
               <img 
                 src="/Bloomly-2.svg" 
                 alt="Bloomly Logo" 
-                className="h-12 w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </div>
             <p className="text-primary-foreground/80">
