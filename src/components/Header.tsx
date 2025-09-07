@@ -68,7 +68,7 @@ const Header = () => {
               onClick={() => handleNavClick('solutions', 'solutions')}
               className="text-foreground hover:text-primary transition-colors font-medium text-sm lg:text-base relative group"
             >
-              Solutions
+              Home
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button 
@@ -107,7 +107,7 @@ const Header = () => {
                 onClick={() => handleNavClick('solutions')}
                 className="text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium px-4 py-3 rounded-lg text-left"
               >
-                Solutions
+                Home
               </button>
               <button 
                 onClick={() => handleNavClick('about', 'about')}

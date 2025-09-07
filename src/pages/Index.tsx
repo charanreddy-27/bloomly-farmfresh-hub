@@ -3,7 +3,7 @@ import Hero from "../components/Hero";
 import ProblemSolution from "../components/ProblemSolution";
 import Metrics from "../components/Metrics";
 import TrustedPartners from "../components/TrustedPartners";
-import Solutions from "../components/Solutions";
+//import Solutions from "../components/Solutions";
 import AboutSection from "../components/AboutSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
@@ -18,7 +18,7 @@ const Index = () => {
         <ProblemSolution />
         <Metrics />
         <TrustedPartners />
-        <Solutions />
+        
         <AboutSection />
         <ContactSection />
       </main>

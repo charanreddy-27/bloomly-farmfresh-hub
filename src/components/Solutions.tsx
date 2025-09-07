@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+/*import { useEffect } from 'react';
 import { ShoppingBasket, Truck, Network, ArrowRight, CheckCircle } from 'lucide-react';
 
 const Solutions = () => {
@@ -54,7 +54,7 @@ const Solutions = () => {
 
   return (
     <section id="solutions" className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
-      {/* Background Pattern */}
+     
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-32 h-32 bg-green-300 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-40 h-40 bg-green-400 rounded-full blur-3xl" />
@@ -89,17 +89,17 @@ const Solutions = () => {
                   boxShadow: `0 4px 20px ${solution.shadowColor}`
                 }}
               >
-                {/* Hover effect overlay */}
+             
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                {/* Icon */}
+               
                 <div className="relative mb-4">
                   <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-4 bg-white shadow-md group-hover:scale-110 transition-transform duration-300 ${solution.iconColor}`}>
                     <IconComponent className="w-8 h-8" />
                   </div>
                 </div>
                 
-                {/* Content */}
+              
                 <div className="relative">
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-green-700 transition-colors duration-300">
                     {solution.title}
@@ -108,7 +108,7 @@ const Solutions = () => {
                     {solution.description}
                   </p>
                   
-                  {/* Features list */}
+                
                   <ul className="space-y-2 mb-4">
                     {solution.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center text-sm text-muted-foreground">
@@ -118,14 +118,14 @@ const Solutions = () => {
                     ))}
                   </ul>
                   
-                  {/* Learn more button */}
+           
                   <button className="flex items-center gap-2 text-green-600 font-semibold text-sm group-hover:gap-3 transition-all duration-300">
                     Learn More
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
                 </div>
 
-                {/* Decorative corner */}
+               
                 <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-white/30 to-transparent rounded-bl-full opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             );
@@ -138,4 +138,4 @@ const Solutions = () => {
   );
 };
 
-export default Solutions;
+export default Solutions; */
