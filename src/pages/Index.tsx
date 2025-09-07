@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import ProblemSolution from "../components/ProblemSolution";
 import Metrics from "../components/Metrics";
+import TrustedPartners from "../components/TrustedPartners";
 import WhyBloomly from "../components/WhyBloomly";
 import Solutions from "../components/Solutions";
 import CallToAction from "../components/CallToAction";
@@ -16,6 +17,7 @@ const Index = () => {
         <Hero />
         <ProblemSolution />
         <Metrics />
+        <TrustedPartners />
         <WhyBloomly />
         <Solutions />
         <CallToAction />
