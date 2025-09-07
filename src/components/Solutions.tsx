@@ -167,23 +167,6 @@ const Solutions = () => {
               </div>
             </div>
           </div>
-
-          {/* Call to Action */}
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
-            <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Supply Chain?</h3>
-            <p className="mb-6 opacity-95">
-              Join hundreds of retailers who have already revolutionized their fresh produce sourcing with Bloomly's innovative platform.
-            </p>
-            <div className="space-y-3">
-              <button className="w-full bg-white text-green-600 font-semibold py-3 px-6 rounded-lg hover:bg-green-50 transition-colors duration-300 flex items-center justify-center gap-2">
-                Get Started Today
-                <ArrowRight className="w-5 h-5" />
-              </button>
-              <button className="w-full border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-white/10 transition-colors duration-300">
-                Schedule a Demo
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>

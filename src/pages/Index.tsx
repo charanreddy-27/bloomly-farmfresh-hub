@@ -3,9 +3,9 @@ import Hero from "../components/Hero";
 import ProblemSolution from "../components/ProblemSolution";
 import Metrics from "../components/Metrics";
 import TrustedPartners from "../components/TrustedPartners";
-import WhyBloomly from "../components/WhyBloomly";
 import Solutions from "../components/Solutions";
-import CallToAction from "../components/CallToAction";
+import AboutSection from "../components/AboutSection";
+import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import InteractiveFeatures from "../components/InteractiveFeatures";
 
@@ -18,9 +18,9 @@ const Index = () => {
         <ProblemSolution />
         <Metrics />
         <TrustedPartners />
-        <WhyBloomly />
         <Solutions />
-        <CallToAction />
+        <AboutSection />
+        <ContactSection />
       </main>
       <Footer />
       <InteractiveFeatures />

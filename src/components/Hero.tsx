@@ -100,24 +100,7 @@ const Hero = () => {
               })}
             </div>
             
-            {/* Hero CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-              <button 
-                onClick={handlePartnerClick}
-                className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <span>PARTNER WITH US</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button 
-                onClick={handleLearnMoreClick}
-                className="group px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-green-600 text-green-700 hover:bg-green-600 hover:text-white font-semibold text-lg rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
-              >
-                <Play className="w-5 h-5" />
-                <span>LEARN MORE</span>
-              </button>
-            </div>
+    
           </div>
 
           {/* Right Content - Visual/Stats */}

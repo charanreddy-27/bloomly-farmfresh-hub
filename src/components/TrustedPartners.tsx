@@ -110,42 +110,6 @@ const TrustedPartners = () => {
             </div>
           ))}
         </div>
-
-        {/* Trust Indicators */}
-        <div className="mt-12 text-center animate-on-scroll">
-          <div className="bg-white rounded-xl p-6 shadow-lg border border-green-200 max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
-                <div className="text-green-700 font-semibold">Happy Retailers</div>
-                <div className="text-sm text-green-600">Across India</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">99.5%</div>
-                <div className="text-green-700 font-semibold">On-Time Delivery</div>
-                <div className="text-sm text-green-600">Guaranteed Fresh</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">25%</div>
-                <div className="text-green-700 font-semibold">Cost Savings</div>
-                <div className="text-sm text-green-600">Direct Sourcing</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="mt-12 text-center animate-on-scroll">
-          <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-8 text-white max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Ready to Join Them?</h3>
-            <p className="mb-6 opacity-95">
-              Experience the same success as these leading retailers with our proven fresh produce solutions.
-            </p>
-            <button className="bg-white text-green-600 font-semibold py-3 px-8 rounded-lg hover:bg-green-50 transition-colors duration-300">
-              Become a Partner
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );

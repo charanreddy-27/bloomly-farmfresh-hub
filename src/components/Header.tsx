@@ -72,31 +72,20 @@ const Header = () => {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button 
-              onClick={() => handleNavClick('/about')}
+              onClick={() => handleNavClick('about', 'about')}
               className="text-foreground hover:text-primary transition-colors font-medium text-sm lg:text-base relative group"
             >
               About
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
             <button 
-              onClick={() => handleNavClick('/contact')}
+              onClick={() => handleNavClick('contact', 'contact')}
               className="text-foreground hover:text-primary transition-colors font-medium text-sm lg:text-base relative group"
             >
               Contact
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </button>
           </nav>
-
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <button 
-              onClick={handleGetStarted}
-              className="btn-primary text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3"
-            >
-              Get Started
-            </button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
@@ -121,13 +110,13 @@ const Header = () => {
                 Solutions
               </button>
               <button 
-                onClick={() => handleNavClick('about')}
+                onClick={() => handleNavClick('about', 'about')}
                 className="text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium px-4 py-3 rounded-lg text-left"
               >
                 About
               </button>
               <button 
-                onClick={() => handleNavClick('contact')}
+                onClick={() => handleNavClick('contact', 'contact')}
                 className="text-foreground hover:text-primary hover:bg-muted transition-all duration-200 font-medium px-4 py-3 rounded-lg text-left"
               >
                 Contact
@@ -137,7 +126,7 @@ const Header = () => {
                   onClick={handleGetStarted}
                   className="btn-primary w-full text-sm py-3"
                 >
-                  Get Started
+
                 </button>
               </div>
             </nav>

@@ -99,22 +99,6 @@ const WhyBloomly = () => {
             );
           })}
         </div>
-
-        {/* Additional Trust Section */}
-        <div className="mt-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-8 text-white text-center">
-          <h3 className="text-2xl font-bold mb-4">Join 500+ Successful Retailers</h3>
-          <p className="mb-6 opacity-95 text-lg">
-            Experience the difference that direct sourcing and technology-driven solutions can make for your business.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-green-600 font-semibold py-3 px-8 rounded-lg hover:bg-green-50 transition-colors duration-300">
-              Get Started Today
-            </button>
-            <button className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white/10 transition-colors duration-300">
-              Schedule Demo
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
