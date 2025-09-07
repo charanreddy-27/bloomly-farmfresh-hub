@@ -12,10 +12,10 @@ const Logo: React.FC<LogoProps> = ({
   size = 'md' 
 }) => {
   const sizeClasses = {
-    sm: 'h-8',
-    md: 'h-12',
-    lg: 'h-16',
-    xl: 'h-20'
+    sm: 'h-8 w-12',
+    md: 'h-12 w-18',
+    lg: 'h-16 w-24',
+    xl: 'h-20 w-30'
   };
 
   const textSizeClasses = {
@@ -31,7 +31,7 @@ const Logo: React.FC<LogoProps> = ({
       <img 
         src="/Bloomly-2.svg" 
         alt="Bloomly Logo"
-        className={`${sizeClasses[size]} w-auto`}
+        className={`${sizeClasses[size]} object-contain`}
       />
       
       {/* Logo Text with Split Coloring */}
