@@ -53,9 +53,9 @@ const Metrics = () => {
    
     {
       icon: CheckCircle2,
-      value: 98,
+      value: 95,
       suffix: '%',
-      label: "Order Fulfillment Rate",
+      label: "Customer Repeat Orders",
   
       color: "from-lime-500 to-lime-600"
     }
