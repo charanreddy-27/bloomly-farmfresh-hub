@@ -61,6 +61,19 @@ const Header = () => {
     }
   };
 
+  const handleHomeClick = () => {
+    setIsMenuOpen(false);
+    
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className={`fixed top-0 left-0 right-0 border-b z-50 shadow-sm transition-all duration-300 ${
       isScrolled 
@@ -87,7 +100,7 @@ const Header = () => {
           {/* Desktop Navigation - improved spacing and typography */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-12">
             <button 
-              onClick={() => handleNavClick('solutions', 'solutions')}
+              onClick={handleHomeClick}
               className={`transition-colors font-medium 
                          text-responsive-base relative group min-h-[2.75rem] px-3 py-2
                          inline-flex items-center justify-center rounded-md
@@ -166,7 +179,7 @@ const Header = () => {
                           animation-slide-down">
             <nav className="py-4 space-y-2">
               <button 
-                onClick={() => handleNavClick('solutions')}
+                onClick={handleHomeClick}
                 className="text-foreground hover:text-primary hover:bg-muted 
                           transition-all duration-200 font-medium 
                           text-responsive-base w-full text-left
