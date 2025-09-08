@@ -114,8 +114,8 @@ const Metrics = () => {
           </p>
         </div>
 
-        {/* Metrics Grid - mobile-first responsive */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Metrics Grid - mobile-first responsive with reduced sizes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
             return (
@@ -124,18 +124,18 @@ const Metrics = () => {
                 className="animate-on-scroll group w-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-xl shadow-lg border border-green-100 
-                                hover:shadow-xl transition-all duration-300 hover:-translate-y-1
-                                p-6 lg:p-8 text-center h-full flex flex-col justify-between">
-                  {/* Icon with gradient background */}
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${metric.color} 
+                <div className="bg-white rounded-lg shadow-md border border-green-100 
+                                hover:shadow-lg transition-all duration-300 hover:-translate-y-1
+                                p-4 md:p-5 text-center h-full flex flex-col justify-between">
+                  {/* Icon with gradient background - reduced size */}
+                  <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${metric.color} 
                                   flex items-center justify-center group-hover:scale-110 
                                   transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                    <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   
-                  {/* Metric value - responsive typography */}
-                  <div className="text-3xl lg:text-4xl font-bold text-green-800 mb-2">
+                  {/* Metric value - reduced typography */}
+                  <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">
                     <Counter 
                       end={metric.value} 
                       suffix={metric.suffix}
@@ -143,8 +143,8 @@ const Metrics = () => {
                     />
                   </div>
                   
-                  {/* Label - responsive typography */}
-                  <h3 className="text-lg lg:text-xl font-semibold text-green-700 mb-2">
+                  {/* Label - reduced typography */}
+                  <h3 className="text-base md:text-lg font-semibold text-green-700 mb-1">
                     {metric.label}
                   </h3>
                 </div>
