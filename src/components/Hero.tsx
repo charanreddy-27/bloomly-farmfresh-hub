@@ -115,7 +115,7 @@ const Hero = () => {
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           {/* Left Content - improved mobile typography */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
+          <div className="text-center lg:text-left">
             
             {/* Hero Headline with responsive Green Gradient Text */}
             <h1 className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
@@ -153,9 +153,76 @@ const Hero = () => {
                 Direct farm connections • Predictable supply • Quality guaranteed
               </p>
             </div>
+
+            {/* Trusted by Businesses Card - Mobile Only */}
+            <div className="lg:hidden mb-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <div className="bg-white/97 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/30 
+                              hover:shadow-3xl transition-all duration-300
+                              p-6 sm:p-8">
+                <h3 className="text-2xl sm:text-3xl font-bold text-green-800 mb-6 text-center">
+                  Trusted by Businesses
+                </h3>
+                
+                {/* Trust Indicators - responsive grid */}
+                <div className="grid grid-cols-3 gap-4 sm:gap-6 mb-6">
+                  <div className="text-center">
+                    <Counter 
+                      end={500} 
+                      suffix="+" 
+                      className="text-2xl sm:text-3xl font-bold text-green-600"
+                    />
+                    <div className="text-sm sm:text-base text-gray-700 mt-1 font-medium">
+                      Retail Partners
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <Counter 
+                      end={50} 
+                      suffix="+" 
+                      className="text-2xl sm:text-3xl font-bold text-green-600"
+                    />
+                    <div className="text-sm sm:text-base text-gray-700 mt-1 font-medium">
+                      Farm Partners
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <Counter 
+                      end={99} 
+                      suffix="%" 
+                      className="text-2xl sm:text-3xl font-bold text-green-600"
+                    />
+                    <div className="text-sm sm:text-base text-gray-700 mt-1 font-medium">
+                      On-Time Delivery
+                    </div>
+                  </div>
+                </div>
+
+                {/* Quick Benefits - improved mobile spacing */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 text-green-800">
+                    <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-medium">
+                      Direct farm-to-retail supply chain
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-green-800">
+                    <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-medium">
+                      Temperature-controlled logistics
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-green-800">
+                    <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm flex-shrink-0" />
+                    <span className="text-sm sm:text-base font-medium">
+                      AI-powered demand forecasting
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             {/* Benefits List - improved mobile layout */}
-            <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+            <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center lg:justify-start">
                 {benefits.map((benefit, index) => {
                   const IconComponent = benefit.icon;
@@ -177,8 +244,8 @@ const Hero = () => {
     
           </div>
 
-          {/* Right Content - improved mobile layout and responsiveness */}
-          <div className="animate-fade-in-up order-1 lg:order-2" style={{ animationDelay: '0.8s' }}>
+          {/* Right Content - Desktop Only */}
+          <div className="hidden lg:block animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             <div className="bg-white/97 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/30 
                             hover:shadow-3xl transition-all duration-300
                             p-6 sm:p-8 lg:p-6 xl:p-8">
