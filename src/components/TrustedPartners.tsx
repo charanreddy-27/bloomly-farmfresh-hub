@@ -147,26 +147,6 @@ const TrustedPartners = () => {
               ))}
             </div>
           </div>
-
-          {/* Mobile-friendly grid fallback for very small screens */}
-          <div className="block sm:hidden mt-8">
-            <div className="grid grid-cols-2 gap-4">
-              {partners.slice(0, 6).map((partner, index) => (
-                <div
-                  key={`mobile-${partner.name}-${index}`}
-                  className="bg-white rounded-lg shadow-md border border-green-100 
-                            p-4 h-16 flex items-center justify-center"
-                >
-                  <img 
-                    src={partner.logo}
-                    alt={partner.alt}
-                    className="max-w-full max-h-10 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </>
