@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="space-y-4 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2">
               <img 
-                src="/Bloomly-2.svg" 
+                src="/bloomlyfooter.png" 
                 alt="Bloomly Logo" 
                 className="h-8 md:h-10 w-auto object-contain"
               />
