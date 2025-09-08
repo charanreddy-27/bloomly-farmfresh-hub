@@ -36,7 +36,7 @@ const Metrics = () => {
   const metrics = [
     {
       icon: Network,
-      value: 75,
+      value: 250,
       suffix: '+',
       label: "Farm Connects",
       description: "Direct partnerships with local farms",
@@ -44,8 +44,8 @@ const Metrics = () => {
     },
     {
       icon: Weight,
-      value: 2500,
-      suffix: '+',
+      value: 1800,
+      suffix: 'MT+',
       label: "Tonnes Delivered",
       description: "Fresh produce delivered nationwide",
       color: "from-emerald-500 to-emerald-600"
