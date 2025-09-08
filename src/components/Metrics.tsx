@@ -156,33 +156,6 @@ const Metrics = () => {
             );
           })}
         </div>
-
-        {/* Trust Indicators - improved mobile layout */}
-        <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 animate-on-scroll">
-          <div className="bg-green-50 rounded-lg border border-green-200 
-                          hover:shadow-md transition-shadow duration-300
-                          p-4 md:p-6 text-center">
-            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">99.5%</div>
-            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">On-Time Delivery</div>
-            <div className="text-xs md:text-sm text-green-600">Reliability you can count on</div>
-          </div>
-          
-          <div className="bg-green-50 rounded-lg border border-green-200 
-                          hover:shadow-md transition-shadow duration-300
-                          p-4 md:p-6 text-center">
-            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">4.9/5</div>
-            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">Customer Rating</div>
-            <div className="text-xs md:text-sm text-green-600">Exceptional service quality</div>
-          </div>
-          
-          <div className="bg-green-50 rounded-lg border border-green-200 
-                          hover:shadow-md transition-shadow duration-300
-                          p-4 md:p-6 text-center sm:col-span-1">
-            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">24/7</div>
-            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">Support</div>
-            <div className="text-xs md:text-sm text-green-600">Always here when you need us</div>
-          </div>
-        </div>
       </div>
     </section>
   );
