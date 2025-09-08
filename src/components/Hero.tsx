@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Play, Sparkles, CheckCircle, TrendingUp, Leaf } from 'lucide-react';
+import { CheckCircle, TrendingUp, Leaf } from 'lucide-react';
 import Counter from './ui/Counter';
 
 const Hero = () => {
@@ -11,20 +11,6 @@ const Hero = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handlePartnerClick = () => {
-    const signupSection = document.getElementById('signup-section');
-    if (signupSection) {
-      signupSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleLearnMoreClick = () => {
-    const solutionsSection = document.getElementById('solutions');
-    if (solutionsSection) {
-      solutionsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const benefits = [
     { icon: TrendingUp, text: "3x Higher Margins" },
     { icon: Leaf, text: "Zero Waste Guarantee" },
@@ -32,6 +18,56 @@ const Hero = () => {
   ];
 
   return (
+    <>
+      <style>
+        {`
+          @keyframes fade-in-up {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+          }
+
+          @keyframes float-medium {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-3deg); }
+          }
+
+          @keyframes float-fast {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+          }
+
+          .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+            opacity: 0;
+          }
+
+          .animate-float-slow {
+            animation: float-slow 6s ease-in-out infinite;
+          }
+
+          .animate-float-medium {
+            animation: float-medium 4s ease-in-out infinite;
+            animation-delay: -2s;
+          }
+
+          .animate-float-fast {
+            animation: float-fast 3s ease-in-out infinite;
+            animation-delay: -1s;
+          }
+        `}
+      </style>
+    
     <section className="relative pt-16 pb-12 md:pt-20 md:pb-16 min-h-[90vh] flex items-center overflow-hidden">
       {/* Background Image */}
       <div 
@@ -43,7 +79,8 @@ const Hero = () => {
       />
       
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/50" />
       
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -105,7 +142,6 @@ const Hero = () => {
                 );
               })}
             </div>
-            
     
           </div>
 
@@ -161,14 +197,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-green-600/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-green-600/60 rounded-full mt-2 animate-pulse" />
-        </div>
-      </div>
     </section>
+    </>
   );
 };
 
