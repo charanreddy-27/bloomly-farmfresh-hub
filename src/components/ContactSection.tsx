@@ -75,7 +75,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-green-50/30 to-background relative">
+    <section id="contact" className="py-8 md:py-12 bg-gradient-to-b from-green-50/30 to-background relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-16 left-16 w-24 h-24 bg-green-300 rounded-full blur-2xl" />
@@ -84,8 +84,8 @@ const ContactSection = () => {
 
       <div className="container relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             Get in <span 
               className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
               style={{
@@ -95,36 +95,34 @@ const ContactSection = () => {
               }}
             >Touch</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
             Ready to transform your fresh produce supply chain? Let's talk.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="fade-in">
-            <h3 className="text-3xl font-bold text-foreground mb-8">Let's Connect</h3>
-            <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              Whether you're a retailer looking for reliable fresh produce supply, 
-              a farmer wanting to connect directly with buyers, or an investor 
-              interested in our growth story - we'd love to hear from you.
+            <h3 className="text-lg font-bold text-foreground mb-3">Let's Connect</h3>
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+              Whether you're a retailer, farmer, or investor - we'd love to hear from you.
             </p>
             
-            <div className="space-y-8">
+            <div className="space-y-3">
               {contactInfo.map((info, index) => {
                 const IconComponent = info.icon;
                 return (
                   <div 
                     key={index}
-                    className="flex items-start gap-4 bg-white rounded-xl p-6 shadow-lg border border-green-100"
+                    className="flex items-start gap-2 bg-white rounded-md p-3 shadow-sm border border-green-100"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className={`${info.color} mt-1`}>
-                      <IconComponent className="w-6 h-6" />
+                    <div className={`${info.color} mt-0.5`}>
+                      <IconComponent className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-foreground mb-1">{info.title}</h4>
-                      <p className="text-muted-foreground">{info.content}</p>
+                      <h4 className="font-semibold text-foreground mb-0.5 text-sm">{info.title}</h4>
+                      <p className="text-muted-foreground text-xs">{info.content}</p>
                     </div>
                   </div>
                 );
@@ -132,9 +130,9 @@ const ContactSection = () => {
             </div>
 
             {/* Business Hours */}
-            <div className="mt-12 p-6 bg-white rounded-xl shadow-lg border border-green-100">
-              <h4 className="font-semibold text-foreground mb-3">Business Hours</h4>
-              <div className="space-y-2 text-muted-foreground">
+            <div className="mt-4 p-3 bg-white rounded-md shadow-sm border border-green-100">
+              <h4 className="font-semibold text-foreground mb-1 text-sm">Business Hours</h4>
+              <div className="space-y-0.5 text-muted-foreground text-xs">
                 <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
                 <p>Saturday: 9:00 AM - 5:00 PM</p>
                 <p>Sunday: Closed</p>
@@ -144,13 +142,13 @@ const ContactSection = () => {
 
           {/* Contact Form */}
           <div className="slide-up">
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-green-100">
-              <h3 className="text-2xl font-bold text-foreground mb-8">Send us a Message</h3>
+            <div className="bg-white rounded-lg p-6 shadow-md border border-green-100">
+              <h3 className="text-xl font-bold text-foreground mb-6">Send us a Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-1">
                       Full Name *
                     </label>
                     <input
@@ -160,13 +158,13 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
                       placeholder="Your full name"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
                       Email Address *
                     </label>
                     <input
@@ -176,15 +174,15 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
                       placeholder="your@email.com"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-3">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-1">
                       Phone Number *
                     </label>
                     <input
@@ -194,13 +192,13 @@ const ContactSection = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
                       placeholder="+91 98765 43210"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="type" className="block text-sm font-medium text-foreground mb-2">
+                    <label htmlFor="type" className="block text-sm font-medium text-foreground mb-1">
                       I am a... *
                     </label>
                     <select
@@ -209,7 +207,7 @@ const ContactSection = () => {
                       value={formData.type}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
+                      className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
                     >
                       <option value="">Select your role</option>
                       <option value="retailer">Retailer</option>
@@ -221,7 +219,7 @@ const ContactSection = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="company" className="block text-sm font-medium text-foreground mb-1">
                     Company Name
                   </label>
                   <input
@@ -230,13 +228,13 @@ const ContactSection = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
                     placeholder="Your company name (optional)"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-1">
                     Message *
                   </label>
                   <textarea
@@ -245,8 +243,8 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground resize-none"
+                    rows={4}
+                    className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground resize-none"
                     placeholder="Tell us about your requirements or any questions you have..."
                   />
                 </div>
@@ -254,16 +252,16 @@ const ContactSection = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary w-full flex items-center justify-center gap-2 text-sm py-2.5 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin" />
                       Sending Message...
                     </>
                   ) : (
                     <>
-                      <Send className="w-5 h-5" />
+                      <Send className="w-4 h-4" />
                       Send Message
                     </>
                   )}
