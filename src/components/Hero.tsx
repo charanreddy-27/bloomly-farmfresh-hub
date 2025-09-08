@@ -149,25 +149,22 @@ const Hero = () => {
             <div className="text-center w-full max-w-5xl mx-auto animate-fade-in-up" 
                  style={{ animationDelay: '0.2s' }}>
               
-              {/* Main Headline - Optimized Size and Alignment */}
+              {/* Main Headline - Decreased Size and Two-Line Layout */}
               <div className="mb-12 lg:mb-16">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
-                             font-bold text-white leading-[1.2] tracking-tight
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                             font-bold text-white leading-[1.3] tracking-tight
                              drop-shadow-2xl text-center">
-                  <span className="block mb-4 lg:mb-6">
-                    <span className="inline">Transforming how</span>
-                  </span>
-                  <span className="block mb-4 lg:mb-6">
+                  <span className="block mb-3 lg:mb-4">
+                    <span className="inline">Transforming how </span>
                     <span className="font-bold bg-gradient-to-r from-green-400 to-green-500 
                                    bg-clip-text text-transparent
                                    drop-shadow-[0_0_30px_rgba(127,193,65,0.6)]
                                    filter brightness-110">
                       farmers sell
                     </span>
-                    <span className="text-white/95 mx-3 lg:mx-4">and</span>
                   </span>
                   <span className="block">
-                    <span className="inline">how </span>
+                    <span className="inline">and how </span>
                     <span className="font-bold bg-gradient-to-r from-green-400 to-green-500 
                                    bg-clip-text text-transparent
                                    drop-shadow-[0_0_30px_rgba(127,193,65,0.6)]
@@ -178,22 +175,22 @@ const Hero = () => {
                 </h1>
               </div>
 
-              {/* Supporting Description - Properly Sized */}
+              {/* Supporting Description - Two Lines Only */}
               <div className="mb-12 lg:mb-16 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                 <div className="max-w-3xl mx-auto">
-                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl
                                font-light leading-relaxed tracking-wide text-white/95
                                drop-shadow-xl text-center">
                     <span className="block mb-2">
                       — Bloomly is building a
+                      <span className="font-semibold bg-gradient-to-r from-green-300 to-green-400 
+                                     bg-clip-text text-transparent
+                                     drop-shadow-[0_0_25px_rgba(110,190,67,0.6)]
+                                     filter brightness-110 ml-2">
+                        supportive ecosystem
+                      </span>
                     </span>
-                    <span className="font-semibold bg-gradient-to-r from-green-300 to-green-400 
-                                   bg-clip-text text-transparent
-                                   drop-shadow-[0_0_25px_rgba(110,190,67,0.6)]
-                                   filter brightness-110">
-                      supportive ecosystem
-                    </span>
-                    <span className="block mt-2">for both</span>
+                    <span className="block">for both</span>
                   </p>
                 </div>
               </div>
