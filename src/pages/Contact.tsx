@@ -71,7 +71,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: "+91 98765 43210",
+      content: "+91 72595 36656",
       color: "text-accent"
     }
   ];
@@ -200,7 +200,7 @@ const Contact = () => {
                           onChange={handleChange}
                           required
                           className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
-                          placeholder="+91 98765 43210"
+                          placeholder="+91 72595 36656"
                         />
                       </div>
                       

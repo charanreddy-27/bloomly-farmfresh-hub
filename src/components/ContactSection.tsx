@@ -69,7 +69,7 @@ const ContactSection = () => {
     {
       icon: Phone,
       title: "Phone",
-      content: "+91 98765 43210",
+      content: "+91 72595 36656",
       color: "text-accent"
     }
   ];
@@ -193,7 +193,7 @@ const ContactSection = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-3 py-2 text-sm border border-border rounded-md focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-background text-foreground"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 72595 36656"
                     />
                   </div>
                   
