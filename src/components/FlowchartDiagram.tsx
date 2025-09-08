@@ -29,23 +29,29 @@ const FlowchartDiagram = () => {
           {/* Simplified Flowchart */}
           <div className="space-y-8">
             
-            {/* Stage 1: Inputs to DC */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            {/* Stage 1: Inputs to DC - Side by side with different arrows */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
               
-              {/* Input Sources */}
-              <div className="flex flex-col gap-3">
+              {/* Input Sources - Both on same side */}
+              <div className="flex flex-col gap-4">
                 <div className="bg-white rounded-lg shadow-sm border p-4 text-center min-w-[140px]">
                   <h3 className="font-semibold text-green-700 text-sm">Farmgate</h3>
+                  <p className="text-xs text-green-600 mt-1">Bloomly Purchases</p>
                 </div>
                 <div className="bg-white rounded-lg shadow-sm border p-4 text-center min-w-[140px]">
                   <h3 className="font-semibold text-orange-700 text-sm">Farmer Direct</h3>
+                  <p className="text-xs text-orange-600 mt-1">Direct Delivery</p>
                 </div>
               </div>
 
-              {/* Arrow to DC */}
-              <div className="flex items-center">
-                <ArrowRight className="text-green-600 flow-arrow hidden md:block" size={24} />
-                <ArrowDown className="text-green-600 flow-arrow md:hidden" size={24} />
+              {/* Two different arrows to DC */}
+              <div className="flex flex-col items-center justify-center gap-6">
+                <ArrowRight className="text-green-600 flow-arrow hidden md:block" size={20} />
+                <ArrowRight className="text-orange-600 flow-arrow hidden md:block" size={20} />
+                <div className="md:hidden flex flex-col gap-2">
+                  <ArrowDown className="text-green-600 flow-arrow" size={20} />
+                  <ArrowDown className="text-orange-600 flow-arrow" size={20} />
+                </div>
               </div>
 
               {/* Distribution Center */}
@@ -55,9 +61,13 @@ const FlowchartDiagram = () => {
               </div>
             </div>
 
-            {/* Vertical Arrow */}
+            {/* Three separate arrows from DC */}
             <div className="flex justify-center">
-              <ArrowDown className="text-green-600 flow-arrow" size={24} />
+              <div className="flex items-center gap-4">
+                <ArrowDown className="text-purple-600 flow-arrow" size={20} />
+                <ArrowDown className="text-red-600 flow-arrow" size={24} />
+                <ArrowDown className="text-green-600 flow-arrow" size={20} />
+              </div>
             </div>
 
             {/* Stage 2: DC to Retail Channels */}
