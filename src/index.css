@@ -1,9 +1,9 @@
+/* Import fonts first */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
 
 /* Bloomly Design System - Fresh Produce B2B Platform
 All colors MUST be HSL.
@@ -76,83 +76,293 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
   
   body {
     @apply bg-background text-foreground;
     font-family: 'Nunito', 'Quicksand', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
   }
   
+  /* Mobile-first typography using relative units */
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
     font-family: 'Quicksand', 'Nunito', system-ui, sans-serif;
     line-height: 1.2;
+    /* Improve text rendering */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
   
+  /* Mobile-first heading sizes with rem units */
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    font-size: 2rem; /* 32px base */
     font-weight: 800;
   }
   
   h2 {
-    @apply text-3xl md:text-4xl;
+    font-size: 1.75rem; /* 28px base */
     font-weight: 700;
   }
   
   h3 {
-    @apply text-2xl md:text-3xl;
+    font-size: 1.5rem; /* 24px base */
     font-weight: 600;
   }
   
+  h4 {
+    font-size: 1.25rem; /* 20px base */
+    font-weight: 600;
+  }
+  
+  h5 {
+    font-size: 1.125rem; /* 18px base */
+    font-weight: 600;
+  }
+  
+  h6 {
+    font-size: 1rem; /* 16px base */
+    font-weight: 600;
+  }
+  
+  /* Tablet and up (768px+) */
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3rem; /* 48px */
+    }
+    
+    h2 {
+      font-size: 2.5rem; /* 40px */
+    }
+    
+    h3 {
+      font-size: 2rem; /* 32px */
+    }
+    
+    h4 {
+      font-size: 1.5rem; /* 24px */
+    }
+  }
+  
+  /* Desktop and up (1024px+) */
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 3.75rem; /* 60px */
+    }
+    
+    h2 {
+      font-size: 3rem; /* 48px */
+    }
+    
+    h3 {
+      font-size: 2.25rem; /* 36px */
+    }
+  }
+  
+  /* Responsive container with mobile-first approach */
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto;
+    width: 100%;
+    padding-left: 1rem; /* 16px mobile */
+    padding-right: 1rem;
     max-width: 1200px;
   }
   
-  /* Improved responsive text sizing */
+  /* Small mobile (320px+) */
+  @media (min-width: 320px) {
+    .container {
+      padding-left: 1.25rem; /* 20px */
+      padding-right: 1.25rem;
+    }
+  }
+  
+  /* Large mobile/tablet (768px+) */
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 2rem; /* 32px */
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Desktop (1024px+) */
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2.5rem; /* 40px */
+      padding-right: 2.5rem;
+    }
+  }
+  
+  /* Responsive text utility classes using rem */
+  .text-responsive-sm {
+    font-size: 0.875rem; /* 14px */
+  }
+  
+  .text-responsive-base {
+    font-size: 1rem; /* 16px */
+  }
+  
   .text-responsive-lg {
-    @apply text-lg sm:text-xl md:text-2xl;
+    font-size: 1.125rem; /* 18px */
   }
   
   .text-responsive-xl {
-    @apply text-xl sm:text-2xl md:text-3xl;
+    font-size: 1.25rem; /* 20px */
+  }
+  
+  /* Tablet responsive text */
+  @media (min-width: 768px) {
+    .text-responsive-sm {
+      font-size: 1rem; /* 16px */
+    }
+    
+    .text-responsive-base {
+      font-size: 1.125rem; /* 18px */
+    }
+    
+    .text-responsive-lg {
+      font-size: 1.25rem; /* 20px */
+    }
+    
+    .text-responsive-xl {
+      font-size: 1.5rem; /* 24px */
+    }
+  }
+  
+  /* Desktop responsive text */
+  @media (min-width: 1024px) {
+    .text-responsive-lg {
+      font-size: 1.5rem; /* 24px */
+    }
+    
+    .text-responsive-xl {
+      font-size: 1.75rem; /* 28px */
+    }
+  }
+  
+  /* Responsive images by default */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Responsive video embeds */
+  iframe, 
+  embed, 
+  object, 
+  video {
+    max-width: 100%;
+    height: auto;
   }
 }
 
 @layer components {
-  /* Button Variants */
+  /* Mobile-first button variants with touch-friendly sizes (minimum 44px) */
   .btn-primary {
     @apply bg-primary text-primary-foreground hover:bg-primary/90 
-           px-6 py-3 rounded-lg font-semibold transition-all duration-300 
-           shadow-md hover:shadow-lg transform hover:scale-105;
+           font-semibold transition-all duration-300 
+           shadow-md hover:shadow-lg transform hover:scale-105
+           rounded-lg border-0 cursor-pointer
+           inline-flex items-center justify-center
+           text-center no-underline;
+    /* Mobile: 44px minimum touch target */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    min-height: 2.75rem; /* 44px */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25;
   }
   
   .btn-secondary {
     @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 
-           px-6 py-3 rounded-lg font-semibold transition-all duration-300 
-           shadow-md hover:shadow-lg transform hover:scale-105;
+           font-semibold transition-all duration-300 
+           shadow-md hover:shadow-lg transform hover:scale-105
+           rounded-lg border-0 cursor-pointer
+           inline-flex items-center justify-center
+           text-center no-underline;
+    /* Mobile: 44px minimum touch target */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    min-height: 2.75rem; /* 44px */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25;
   }
   
   .btn-accent {
     @apply bg-accent text-accent-foreground hover:bg-accent/90 
-           px-6 py-3 rounded-lg font-semibold transition-all duration-300 
-           shadow-md hover:shadow-lg transform hover:scale-105;
+           font-semibold transition-all duration-300 
+           shadow-md hover:shadow-lg transform hover:scale-105
+           rounded-lg border-0 cursor-pointer
+           inline-flex items-center justify-center
+           text-center no-underline;
+    /* Mobile: 44px minimum touch target */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    min-height: 2.75rem; /* 44px */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25;
   }
   
   .btn-outline {
     @apply border-2 border-primary text-primary bg-transparent 
            hover:bg-primary hover:text-primary-foreground 
-           px-6 py-3 rounded-lg font-semibold transition-all duration-300 
-           transform hover:scale-105;
+           font-semibold transition-all duration-300 
+           transform hover:scale-105 cursor-pointer
+           rounded-lg inline-flex items-center justify-center
+           text-center no-underline;
+    /* Mobile: 44px minimum touch target */
+    padding: 0.75rem 1.5rem; /* 12px 24px */
+    min-height: 2.75rem; /* 44px */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25;
   }
   
-  /* Enhanced Cards with Premium Effects */
+  /* Tablet button sizes (768px+) */
+  @media (min-width: 768px) {
+    .btn-primary,
+    .btn-secondary, 
+    .btn-accent,
+    .btn-outline {
+      padding: 0.875rem 2rem; /* 14px 32px */
+      min-height: 3rem; /* 48px */
+      font-size: 1rem; /* 16px */
+    }
+  }
+  
+  /* Desktop button sizes (1024px+) */
+  @media (min-width: 1024px) {
+    .btn-primary,
+    .btn-secondary, 
+    .btn-accent,
+    .btn-outline {
+      padding: 1rem 2.5rem; /* 16px 40px */
+      min-height: 3.25rem; /* 52px */
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+
+  /* Enhanced Cards with mobile-first responsive design */
   .card-elevated {
     @apply bg-card rounded-xl shadow-lg hover:shadow-xl 
            transition-all duration-500 border border-border
            transform hover:scale-[1.02] hover:-translate-y-2
            relative overflow-hidden;
+    /* Mobile-first padding */
+    padding: 1rem; /* 16px */
+  }
+  
+  /* Tablet card padding */
+  @media (min-width: 768px) {
+    .card-elevated {
+      padding: 1.5rem; /* 24px */
+    }
+  }
+  
+  /* Desktop card padding */
+  @media (min-width: 1024px) {
+    .card-elevated {
+      padding: 2rem; /* 32px */
+    }
   }
   
   .card-elevated::before {
@@ -177,25 +387,126 @@ All colors MUST be HSL.
     @apply bg-card rounded-lg shadow-sm hover:shadow-md 
            transition-all duration-300 border border-border
            hover:border-primary/20;
+    /* Mobile-first padding */
+    padding: 1rem; /* 16px */
   }
   
+  /* Tablet card padding */
+  @media (min-width: 768px) {
+    .card-subtle {
+      padding: 1.25rem; /* 20px */
+    }
+  }
+  
+  /* Desktop card padding */
+  @media (min-width: 1024px) {
+    .card-subtle {
+      padding: 1.5rem; /* 24px */
+    }
+  }
+
   /* Premium Glassmorphism Cards */
   .card-glass {
     @apply backdrop-blur-sm border border-white/20
            transition-all duration-300 rounded-xl
            hover:border-white/40 hover:backdrop-blur-md;
     background: rgba(255, 255, 255, 0.1);
+    padding: 1rem; /* 16px mobile */
   }
   
-  /* Sections with reduced padding */
+  @media (min-width: 768px) {
+    .card-glass {
+      padding: 1.5rem; /* 24px tablet */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card-glass {
+      padding: 2rem; /* 32px desktop */
+    }
+  }
+
+  /* Responsive section padding */
   .section-padding {
-    @apply py-12 md:py-16; /* Reduced from py-16 md:py-24 */
+    /* Mobile: reduced padding for smaller screens */
+    padding-top: 2rem; /* 32px */
+    padding-bottom: 2rem; /* 32px */
+  }
+  
+  /* Tablet section padding */
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 3rem; /* 48px */
+      padding-bottom: 3rem; /* 48px */
+    }
+  }
+  
+  /* Desktop section padding */
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-top: 4rem; /* 64px */
+      padding-bottom: 4rem; /* 64px */
+    }
   }
   
   .section-alt {
     @apply bg-muted;
   }
   
+  /* Mobile-friendly grid layouts */
+  .grid-responsive-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-responsive-2 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  .grid-responsive-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-responsive-3 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-responsive-3 {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+  
+  .grid-responsive-4 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-responsive-4 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-responsive-4 {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+  }
+
   /* Gradient Section Background with green theme */
   .section-gradient {
     background: linear-gradient(135deg, #8BC34A 0%, #2E7D32 100%);
@@ -207,34 +518,79 @@ All colors MUST be HSL.
     position: relative;
   }
   
-  /* Animations */
-  .fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+  /* Mobile-friendly flex utilities */
+  .flex-mobile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  .slide-up {
-    animation: slideUp 0.6s ease-out forwards;
+  @media (min-width: 768px) {
+    .flex-mobile-column {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
   }
   
-  .scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
+  /* Mobile menu animation */
+  .animation-slide-down {
+    animation: slideDown 0.3s ease-out;
   }
   
-  /* Reveal Animation for Scroll */
-  .reveal-animation {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: revealOnScroll 0.6s ease-out forwards;
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
-  /* Hover Effects */
-  .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Animations with reduced motion support */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .slide-up {
+      animation: slideUp 0.6s ease-out forwards;
+    }
+    
+    .scale-in {
+      animation: scaleIn 0.4s ease-out forwards;
+    }
+    
+    /* Reveal Animation for Scroll */
+    .reveal-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealOnScroll 0.6s ease-out forwards;
+    }
+    
+    /* Hover Effects */
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
   }
   
-  .hover-lift:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  /* Reduce animations for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .slide-up,
+    .scale-in,
+    .reveal-animation,
+    .hover-lift {
+      animation: none;
+      transition: none;
+      transform: none;
+    }
   }
   
   /* Interactive Button Effects */

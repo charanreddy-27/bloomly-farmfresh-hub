@@ -75,7 +75,7 @@ const TrustedPartners = () => {
 
           .scroller-inner {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             animation: slide 30s linear infinite;
             width: fit-content;
           }
@@ -83,37 +83,85 @@ const TrustedPartners = () => {
           .scroller-inner:hover {
             animation-play-state: paused;
           }
+
+          /* Mobile responsive gap */
+          @media (min-width: 768px) {
+            .scroller-inner {
+              gap: 2rem;
+            }
+          }
+
+          /* Disable animation for reduced motion preference */
+          @media (prefers-reduced-motion: reduce) {
+            .scroller-inner {
+              animation: none;
+            }
+          }
         `}
       </style>
 
       <section className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
         <div className="container relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
-              Trusted by Leading <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">Retailers</span>
+          {/* Section Header - mobile-first responsive */}
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-foreground mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+              Trusted by Leading{' '}
+              <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
+                Retailers
+              </span>
             </h2>
             
-            <div className="flex justify-center mt-4 mb-8">
-              <div className="w-32 h-1 rounded-full bg-gradient-to-r from-green-500 to-blue-500" />
+            {/* Decorative line */}
+            <div className="flex justify-center mt-4 mb-6 md:mb-8">
+              <div className="w-24 h-1 md:w-32 rounded-full bg-gradient-to-r from-green-500 to-blue-500" />
             </div>
             
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-responsive-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed
+                          px-4 sm:px-6 md:px-0">
               Join the growing network of successful retailers who trust Bloomly for their fresh produce needs
             </p>
           </div>
 
-          {/* Infinite Scrolling Carousel */}
+          {/* Infinite Scrolling Carousel - mobile responsive */}
           <div className="scroller" ref={scrollerRef}>
             <div className="scroller-inner">
               {duplicatedPartners.map((partner, index) => (
                 <div
                   key={`${partner.name}-${index}`}
-                  className="bg-white rounded-xl p-8 shadow-lg border border-green-100 min-w-[280px] h-32 flex items-center justify-center hover:shadow-xl transition-shadow duration-300"
+                  className="bg-white rounded-xl shadow-lg border border-green-100 
+                            hover:shadow-xl transition-shadow duration-300
+                            flex items-center justify-center
+                            min-w-[200px] h-20 p-4
+                            sm:min-w-[240px] sm:h-24 sm:p-6
+                            md:min-w-[280px] md:h-32 md:p-8"
                 >
                   <img 
                     src={partner.logo}
                     alt={partner.alt}
-                    className="max-h-20 max-w-[220px] object-contain"
+                    className="h-auto object-contain
+                              max-h-12 sm:max-h-16 md:max-h-20
+                              max-w-[160px] sm:max-w-[200px] md:max-w-[220px]"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile-friendly grid fallback for very small screens */}
+          <div className="block sm:hidden mt-8">
+            <div className="grid grid-cols-2 gap-4">
+              {partners.slice(0, 6).map((partner, index) => (
+                <div
+                  key={`mobile-${partner.name}-${index}`}
+                  className="bg-white rounded-lg shadow-md border border-green-100 
+                            p-4 h-16 flex items-center justify-center"
+                >
+                  <img 
+                    src={partner.logo}
+                    alt={partner.alt}
+                    className="max-w-full max-h-10 object-contain"
+                    loading="lazy"
                   />
                 </div>
               ))}

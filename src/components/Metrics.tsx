@@ -82,46 +82,59 @@ const Metrics = () => {
 
   return (
     <section id="metrics" className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-16 right-20 w-32 h-32 bg-green-300 rounded-full blur-3xl" />
-        <div className="absolute bottom-16 left-20 w-40 h-40 bg-green-400 rounded-full blur-3xl" />
+      {/* Background Pattern - responsive positioning */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none">
+        <div className="absolute top-8 right-5 w-16 h-16 md:top-16 md:right-20 md:w-32 md:h-32 
+                        bg-green-300 rounded-full blur-3xl" />
+        <div className="absolute bottom-8 left-5 w-20 h-20 md:bottom-16 md:left-20 md:w-40 md:h-40 
+                        bg-green-400 rounded-full blur-3xl" />
       </div>
 
       <div className="container relative z-10">
-        <div className="text-center mb-12 animate-on-scroll">
-          <h2 className="text-foreground mb-4">
-            Trusted by <span 
+        {/* Section Header - improved mobile typography */}
+        <div className="text-center mb-8 md:mb-12 animate-on-scroll">
+          <h2 className="text-foreground mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            Trusted by{' '}
+            <span 
               className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
               style={{
                 background: 'linear-gradient(90deg, #2E7D32 0%, #4CAF50 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
               }}
-            >Hundreds</span> of Retailers
+            >
+              Hundreds
+            </span>{' '}
+            of Retailers
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-responsive-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed
+                        px-4 sm:px-6 md:px-0">
             Our growing network of partners proves that direct sourcing works for businesses of all sizes
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Metrics Grid - mobile-first responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
             return (
               <div 
                 key={index}
-                className="animate-on-scroll group"
+                className="animate-on-scroll group w-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white rounded-xl p-6 text-center shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="bg-white rounded-xl shadow-lg border border-green-100 
+                                hover:shadow-xl transition-all duration-300 hover:-translate-y-1
+                                p-6 lg:p-8 text-center h-full flex flex-col justify-between">
                   {/* Icon with gradient background */}
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${metric.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br ${metric.color} 
+                                  flex items-center justify-center group-hover:scale-110 
+                                  transition-transform duration-300`}>
                     <IconComponent className="w-8 h-8 text-white" />
                   </div>
                   
-                  {/* Metric value */}
-                  <div className="text-3xl font-bold text-green-800 mb-2">
+                  {/* Metric value - responsive typography */}
+                  <div className="text-3xl lg:text-4xl font-bold text-green-800 mb-2">
                     <Counter 
                       end={metric.value} 
                       suffix={metric.suffix}
@@ -129,13 +142,13 @@ const Metrics = () => {
                     />
                   </div>
                   
-                  {/* Label */}
-                  <h3 className="text-lg font-semibold text-green-700 mb-2">
+                  {/* Label - responsive typography */}
+                  <h3 className="text-lg lg:text-xl font-semibold text-green-700 mb-2">
                     {metric.label}
                   </h3>
                   
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  {/* Description - responsive typography */}
+                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
                     {metric.description}
                   </p>
                 </div>
@@ -144,24 +157,30 @@ const Metrics = () => {
           })}
         </div>
 
-        {/* Trust Indicators */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6 animate-on-scroll">
-          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
-            <div className="text-2xl font-bold text-green-800 mb-2">99.5%</div>
-            <div className="text-green-700 font-semibold mb-1">On-Time Delivery</div>
-            <div className="text-sm text-green-600">Reliability you can count on</div>
+        {/* Trust Indicators - improved mobile layout */}
+        <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 animate-on-scroll">
+          <div className="bg-green-50 rounded-lg border border-green-200 
+                          hover:shadow-md transition-shadow duration-300
+                          p-4 md:p-6 text-center">
+            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">99.5%</div>
+            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">On-Time Delivery</div>
+            <div className="text-xs md:text-sm text-green-600">Reliability you can count on</div>
           </div>
           
-          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
-            <div className="text-2xl font-bold text-green-800 mb-2">4.9/5</div>
-            <div className="text-green-700 font-semibold mb-1">Customer Rating</div>
-            <div className="text-sm text-green-600">Exceptional service quality</div>
+          <div className="bg-green-50 rounded-lg border border-green-200 
+                          hover:shadow-md transition-shadow duration-300
+                          p-4 md:p-6 text-center">
+            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">4.9/5</div>
+            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">Customer Rating</div>
+            <div className="text-xs md:text-sm text-green-600">Exceptional service quality</div>
           </div>
           
-          <div className="bg-green-50 rounded-lg p-6 text-center border border-green-200">
-            <div className="text-2xl font-bold text-green-800 mb-2">24/7</div>
-            <div className="text-green-700 font-semibold mb-1">Support</div>
-            <div className="text-sm text-green-600">Always here when you need us</div>
+          <div className="bg-green-50 rounded-lg border border-green-200 
+                          hover:shadow-md transition-shadow duration-300
+                          p-4 md:p-6 text-center sm:col-span-1">
+            <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">24/7</div>
+            <div className="text-green-700 font-semibold mb-1 text-sm md:text-base">Support</div>
+            <div className="text-xs md:text-sm text-green-600">Always here when you need us</div>
           </div>
         </div>
       </div>

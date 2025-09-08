@@ -12,6 +12,15 @@ export default {
         "2xl": "1400px",
       },
     },
+    screens: {
+      // Mobile-first breakpoints
+      'xs': '320px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -84,6 +93,23 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      // Add responsive spacing
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '100': '25rem',
+        '112': '28rem',
+        '128': '32rem',
+      },
+      // Add responsive font sizes
+      fontSize: {
+        'xxs': ['0.625rem', { lineHeight: '0.75rem' }],
+        '2.5xl': ['1.75rem', { lineHeight: '2rem' }],
+        '3.5xl': ['2rem', { lineHeight: '2.25rem' }],
+        '4.5xl': ['2.5rem', { lineHeight: '2.75rem' }],
+        '5.5xl': ['3.5rem', { lineHeight: '3.75rem' }],
+        '6.5xl': ['4rem', { lineHeight: '4.25rem' }],
       },
     },
   },
