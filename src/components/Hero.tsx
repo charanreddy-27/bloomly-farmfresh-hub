@@ -102,14 +102,15 @@ const Hero = () => {
             
             {/* Hero Headline with Green Gradient Text */}
             <h1 className="mb-6 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white drop-shadow-2xl">
+              <span className="block text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white drop-shadow-2xl">
                 Fresh. Convenient.
               </span>
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <span className="block text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
                 <span 
-                  className="text-green-400 drop-shadow-2xl font-extrabold"
+                  className="drop-shadow-2xl font-extrabold"
                   style={{
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(34, 197, 94, 0.3)'
+                    color: '#7FC141',
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 20px rgba(127, 193, 65, 0.3)'
                   }}
                 >
                   Reliable.
@@ -118,12 +119,13 @@ const Hero = () => {
             </h1>
             
             {/* Hero Subheadline */}
-            <p className="mb-8 text-lg md:text-xl text-white leading-relaxed animate-fade-in-up font-medium" style={{ 
+            <p className="mb-8 text-xl md:text-2xl text-white leading-relaxed animate-fade-in-up font-medium" style={{ 
               animationDelay: '0.4s',
               textShadow: '1px 1px 3px rgba(0,0,0,0.8)'
             }}>
               Delivering premium fruits directly to your business—on time, every time.
-              <span className="block mt-2 text-green-300 font-semibold text-base" style={{
+              <span className="block mt-2 font-semibold text-lg" style={{
+                color: '#7FC141',
                 textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
               }}>
                 Direct farm connections • Predictable supply • Quality guaranteed
@@ -148,7 +150,7 @@ const Hero = () => {
           {/* Right Content - Visual/Stats */}
           <div className="animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             <div className="bg-white/97 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/30 hover:shadow-3xl transition-all duration-300">
-              <h3 className="text-2xl font-bold text-green-800 mb-6 text-center">Trusted by Businesses</h3>
+              <h3 className="text-3xl font-bold text-green-800 mb-6 text-center">Trusted by Businesses</h3>
               
               {/* Trust Indicators */}
               <div className="grid grid-cols-3 gap-6 mb-6">
@@ -158,7 +160,7 @@ const Hero = () => {
                     suffix="+" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-700 mt-1 font-medium">Retail Partners</div>
+                  <div className="text-base text-gray-700 mt-1 font-medium">Retail Partners</div>
                 </div>
                 <div className="text-center">
                   <Counter 
@@ -166,7 +168,7 @@ const Hero = () => {
                     suffix="+" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-700 mt-1 font-medium">Farm Partners</div>
+                  <div className="text-base text-gray-700 mt-1 font-medium">Farm Partners</div>
                 </div>
                 <div className="text-center">
                   <Counter 
@@ -174,7 +176,7 @@ const Hero = () => {
                     suffix="%" 
                     className="text-3xl font-bold text-green-600"
                   />
-                  <div className="text-sm text-gray-700 mt-1 font-medium">On-Time Delivery</div>
+                  <div className="text-base text-gray-700 mt-1 font-medium">On-Time Delivery</div>
                 </div>
               </div>
 
@@ -182,15 +184,15 @@ const Hero = () => {
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-green-800">
                   <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
-                  <span className="text-sm font-medium">Direct farm-to-retail supply chain</span>
+                  <span className="text-base font-medium">Direct farm-to-retail supply chain</span>
                 </div>
                 <div className="flex items-center gap-3 text-green-800">
                   <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
-                  <span className="text-sm font-medium">Temperature-controlled logistics</span>
+                  <span className="text-base font-medium">Temperature-controlled logistics</span>
                 </div>
                 <div className="flex items-center gap-3 text-green-800">
                   <div className="w-2 h-2 bg-green-500 rounded-full shadow-sm" />
-                  <span className="text-sm font-medium">AI-powered demand forecasting</span>
+                  <span className="text-base font-medium">AI-powered demand forecasting</span>
                 </div>
               </div>
             </div>
