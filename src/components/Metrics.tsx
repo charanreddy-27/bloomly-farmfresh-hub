@@ -34,28 +34,29 @@ const Counter = ({ end, duration = 2000, prefix = '', suffix = '' }: {
 
 const Metrics = () => {
   const metrics = [
-    {
-      icon: Network,
-      value: 250,
-      suffix: '+',
-      label: "Farm Connects",
-      description: "Direct partnerships with local farms",
-      color: "from-green-500 to-green-600"
-    },
-    {
+     {
       icon: Weight,
       value: 1800,
       suffix: 'MT+',
       label: "Tonnes Delivered",
-      description: "Fresh produce delivered nationwide",
+ 
       color: "from-emerald-500 to-emerald-600"
     },
+    {
+      icon: Network,
+      value: 2400,
+      suffix: '+',
+      label: "Farmers Connects",
+
+      color: "from-green-500 to-green-600"
+    },
+   
     {
       icon: CheckCircle2,
       value: 98,
       suffix: '%',
       label: "Order Fulfillment Rate",
-      description: "Consistent delivery performance",
+  
       color: "from-lime-500 to-lime-600"
     }
   ];
@@ -146,11 +147,6 @@ const Metrics = () => {
                   <h3 className="text-lg lg:text-xl font-semibold text-green-700 mb-2">
                     {metric.label}
                   </h3>
-                  
-                  {/* Description - responsive typography */}
-                  <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    {metric.description}
-                  </p>
                 </div>
               </div>
             );

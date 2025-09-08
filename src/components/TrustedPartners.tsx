@@ -33,6 +33,11 @@ const TrustedPartners = () => {
       alt: "KPN Logo"
     },
     {
+      name: "Gourmet Garden",
+      logo: "/gourmet garden.avif",
+      alt: "Gourmet Garden Logo"
+    },
+    {
       name: "Superplum",
       logo: "/big-logo.png",
       alt: "Superplum Logo"
