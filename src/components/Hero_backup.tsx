@@ -193,75 +193,97 @@ const Hero = () => {
         `}
       </style>
     
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Enhanced Background Image with parallax */}
+    <section className="relative min-h-screen flex items-center overflow-hidden
+                        pt-16 pb-8 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16">
+      {/* Background Image with improved mobile performance */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform scale-110"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{
           backgroundImage: 'url(/gemini_generated_image_6bhcgz6bhcgz6bhc-Yanq8xlZjkhx8B9D.avif)',
-          transform: `translateY(${scrollY * 0.2}px)`,
+          transform: `translateY(${scrollY * 0.3}px)`,
         }}
       />
       
-      {/* Enhanced Dark Overlay for Better Text Readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/75 to-black/85" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-green-900/30 via-transparent to-green-900/30" />
+      {/* Multi-layer overlay for enhanced text readability and modern look */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-green-900/20 via-transparent to-green-900/20" />
       
-      {/* Subtle Pattern Overlay for Texture */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.1)_0%,_transparent_70%)]" />
-      
-      {/* Floating Decorative Elements */}
+      {/* Enhanced Decorative Elements - Modern Design */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-8 md:right-16 text-green-300/20 
-                        text-3xl md:text-6xl lg:text-7xl transform rotate-12 animate-float-gentle">🍃</div>
-        <div className="absolute bottom-1/4 left-8 md:left-16 text-green-200/25 
-                        text-2xl md:text-4xl lg:text-5xl transform -rotate-12 animate-float-gentle" 
-                        style={{ animationDelay: '1s' }}>🌿</div>
-        <div className="absolute top-1/3 left-1/3 text-green-400/15 
-                        text-xl md:text-3xl lg:text-4xl transform rotate-45 animate-float-gentle" 
-                        style={{ animationDelay: '2s' }}>🌱</div>
+        {/* Enhanced nature elements with better positioning */}
+        <div className="absolute top-1/4 right-8 md:right-16 text-green-300/30 hover:text-green-300/50
+                        text-4xl md:text-7xl lg:text-8xl transform rotate-12 animate-float-medium
+                        transition-colors duration-300">🍃</div>
+        <div className="absolute bottom-1/4 left-12 md:left-20 text-green-200/40 hover:text-green-200/60
+                        text-3xl md:text-5xl lg:text-6xl transform -rotate-12 animate-float-fast
+                        transition-colors duration-300">🌿</div>
+        <div className="absolute top-1/3 left-1/3 text-green-400/20 hover:text-green-400/40
+                        text-2xl md:text-4xl lg:text-5xl transform rotate-45 animate-float-slow
+                        transition-colors duration-300" style={{ animationDelay: '-2s' }}>�</div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="relative z-10 w-full">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
-          <div className="flex flex-col items-center justify-center min-h-[80vh] text-center">
+      {/* Main Content - Perfectly Centered Layout */}
+      <div className="absolute inset-0 flex items-center justify-center z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center min-h-screen">
             
-            {/* Hero Title with Enhanced Typography */}
-            <div className="mb-8 md:mb-12 lg:mb-16 animate-fade-in-up" 
+            {/* Hero Text Layout - Properly Centered and Sized */}
+            <div className="text-center w-full max-w-5xl mx-auto animate-fade-in-up" 
                  style={{ animationDelay: '0.2s' }}>
-              <h1 className="hero-title font-bold text-white leading-tight tracking-tight mb-4 md:mb-6">
-                <span className="block mb-2 md:mb-3">
-                  <span className="font-semibold">Transforming how </span>
-                  <span className="text-gradient-green animate-gradient font-bold">
-                    farmers sell
-                  </span>
-                </span>
-                <span className="block mb-2 md:mb-3">
-                  <span className="font-semibold">and how </span>
-                  <span className="text-gradient-green animate-gradient font-bold">
-                    businesses buy
-                  </span>
-                </span>
-              </h1>
               
-              <div className="hero-subtitle font-medium text-white/90 leading-relaxed max-w-4xl mx-auto">
-                <span className="block">
-                  Bloomly is building a{' '}
-                  <span className="text-gradient-green-light animate-gradient font-semibold">
-                    supportive ecosystem
-                  </span>
-                  {' '}for both
-                </span>
+              {/* Complete Sentence Design - Unified Message */}
+              <div className="mb-12 lg:mb-16">
+                <div className="max-w-5xl mx-auto">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+                               font-light text-white leading-[1.3] tracking-wide
+                               drop-shadow-2xl text-center">
+                    
+                    {/* First part - Main action */}
+                    <span className="block mb-2 lg:mb-3">
+                      <span className="font-medium">Transforming how </span>
+                      <span className="font-bold bg-gradient-to-r from-green-400 to-green-500 
+                                     bg-clip-text text-transparent
+                                     drop-shadow-[0_0_30px_rgba(127,193,65,0.7)]
+                                     filter brightness-110">
+                        farmers sell
+                      </span>
+                      <span className="font-medium"> and how </span>
+                      <span className="font-bold bg-gradient-to-r from-green-400 to-green-500 
+                                     bg-clip-text text-transparent
+                                     drop-shadow-[0_0_30px_rgba(127,193,65,0.7)]
+                                     filter brightness-110">
+                        businesses buy
+                      </span>
+                    </span>
+                    
+                    {/* Subtle connecting element - reduced size and spacing */}
+                    <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl 
+                                   font-extralight text-green-300/60 mb-1 lg:mb-2
+                                   drop-shadow-lg">
+                      ·
+                    </span>
+                    
+                    {/* Supporting statement - closer spacing */}
+                    <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl
+                                   font-light leading-relaxed">
+                      <span className="text-white/90">Bloomly is building a </span>
+                      <span className="font-semibold bg-gradient-to-r from-green-300 to-green-400 
+                                     bg-clip-text text-transparent
+                                     drop-shadow-[0_0_25px_rgba(110,190,67,0.6)]
+                                     filter brightness-110">
+                        supportive ecosystem
+                      </span>
+                      <span className="text-white/90"> for both</span>
+                    </span>
+                  </h1>
+                </div>
               </div>
+
+              {/* Removed separate description section since it's now integrated */}
+
+             
             </div>
-
-              
-
-           
-              
-          
           </div>
         </div>
       </div>
