@@ -4,47 +4,44 @@ const Footer = () => {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container">
-        {/* Main Footer Content - responsive grid */}
-        <div className="py-8 md:py-12 lg:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {/* Main Footer Content - compact responsive grid */}
+        <div className="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {/* Company Info */}
-          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
+          <div className="space-y-3 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2">
               <img 
                 src="/bloomlyfooter.png" 
                 alt="Bloomly Logo" 
-                className="h-8 md:h-10 w-auto object-contain"
+                className="h-6 md:h-8 w-auto object-contain"
               />
             </div>
-            <p className="text-primary-foreground/80 text-sm md:text-base leading-relaxed">
+            <p className="text-primary-foreground/80 text-xs md:text-sm leading-relaxed">
               Connecting farms directly with retailers for fresh, reliable produce delivery.
             </p>
           </div>
 
           {/* Solutions */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-base md:text-lg">Solutions</h4>
-            <ul className="space-y-2 text-primary-foreground/80">
+          <div className="space-y-3">
+            <h4 className="font-semibold text-sm md:text-base">Solutions</h4>
+            <ul className="space-y-1 text-primary-foreground/80">
               <li>
                 <a href="#" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   Fresh Produce
                 </a>
               </li>
               <li>
                 <a href="#" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   Distribution
                 </a>
               </li>
               <li>
                 <a href="#" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   Supply Chain
                 </a>
               </li>
@@ -52,30 +49,27 @@ const Footer = () => {
           </div>
 
           {/* Company */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-base md:text-lg">Company</h4>
-            <ul className="space-y-2 text-primary-foreground/80">
+          <div className="space-y-3">
+            <h4 className="font-semibold text-sm md:text-base">Company</h4>
+            <ul className="space-y-1 text-primary-foreground/80">
               <li>
                 <a href="#about" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   About
                 </a>
               </li>
               <li>
                 <a href="#" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   Careers
                 </a>
               </li>
               <li>
                 <a href="#contact" 
                    className="hover:text-primary-foreground transition-colors 
-                             text-sm md:text-base inline-flex items-center
-                             min-h-[2.75rem] py-1">
+                             text-xs md:text-sm inline-flex items-center py-1">
                   Contact
                 </a>
               </li>
@@ -83,40 +77,40 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="space-y-4 sm:col-span-2 lg:col-span-1">
-            <h4 className="font-semibold text-base md:text-lg">Connect</h4>
-            <div className="space-y-3 text-primary-foreground/80">
-              <div className="flex items-center space-x-3 min-h-[2.75rem]">
-                <Mail className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-                <span className="text-sm md:text-base break-all">hello@bloomly.co.in</span>
+          <div className="space-y-3 sm:col-span-2 lg:col-span-1">
+            <h4 className="font-semibold text-sm md:text-base">Connect</h4>
+            <div className="space-y-2 text-primary-foreground/80">
+              <div className="flex items-center space-x-2">
+                <Mail className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
+                <span className="text-xs md:text-sm break-all">hello@bloomly.co.in</span>
               </div>
-              <div className="flex items-center space-x-3 min-h-[2.75rem]">
-                <Phone className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-                <span className="text-sm md:text-base">+91 72595 36656</span>
+              <div className="flex items-center space-x-2">
+                <Phone className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
+                <span className="text-xs md:text-sm">+91 72595 36656</span>
               </div>
-              <div className="flex items-center space-x-3 min-h-[2.75rem]">
-                <MapPin className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-                <span className="text-sm md:text-base">Mumbai, India</span>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-3 h-3 md:w-4 md:h-4 flex-shrink-0" />
+                <span className="text-xs md:text-sm">Mumbai, India</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Footer - responsive layout */}
-        <div className="py-4 md:py-6 border-t border-primary-foreground/20">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-primary-foreground/80 text-sm text-center sm:text-left">
+        {/* Bottom Footer - compact layout */}
+        <div className="py-3 md:py-4 border-t border-primary-foreground/20">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-primary-foreground/80 text-xs text-center sm:text-left">
               © 2024 Bloomly. All rights reserved.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6">
+            <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4">
               <a href="#" 
-                 className="text-primary-foreground/80 hover:text-primary-foreground text-sm 
-                           transition-colors text-center min-h-[2.75rem] inline-flex items-center justify-center">
+                 className="text-primary-foreground/80 hover:text-primary-foreground text-xs 
+                           transition-colors text-center inline-flex items-center justify-center">
                 Privacy Policy
               </a>
               <a href="#" 
-                 className="text-primary-foreground/80 hover:text-primary-foreground text-sm 
-                           transition-colors text-center min-h-[2.75rem] inline-flex items-center justify-center">
+                 className="text-primary-foreground/80 hover:text-primary-foreground text-xs 
+                           transition-colors text-center inline-flex items-center justify-center">
                 Terms of Service
               </a>
             </div>
