@@ -21,13 +21,13 @@ const FlowchartDiagram = () => {
           {/* Simple Header */}
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-              Hybrid Purchase <span className="text-green-600">Model</span>
+              Hybrid Purchase Model for<span className="text-green-600"> Fruits</span>
             </h2>
             <div className="w-12 h-1 bg-green-500 mx-auto rounded-full"></div>
           </div>
 
-          {/* Flowchart with exact L-shaped arrows as drawn */}
-          <div className="relative space-y-8">
+          {/* Flowchart with properly connected arrows */}
+          <div className="relative space-y-4">
             
             {/* Top Row: Two procurement modes */}
             <div className="relative">
@@ -46,31 +46,31 @@ const FlowchartDiagram = () => {
                 </div>
               </div>
 
-              {/* Exact L-shaped arrows from your drawing */}
-              <div className="absolute top-full left-0 w-full h-20 pointer-events-none">
-                {/* Left L-arrow: down → right → down */}
+              {/* Arrows connecting to center box */}
+              <div className="absolute top-full left-0 w-full h-12 pointer-events-none">
+                {/* Left arrow: from left box to center */}
                 <div className="absolute left-[15%] top-0">
-                  <svg className="w-48 h-20" viewBox="0 0 192 80">
+                  <svg className="w-48 h-12" viewBox="0 0 192 48">
                     {/* Vertical line down from left box */}
-                    <path d="M 35 0 L 35 30" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
+                    <path d="M 35 0 L 35 15" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
                     {/* Horizontal line across to center */}
-                    <path d="M 35 30 L 96 30" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
+                    <path d="M 35 15 L 96 15" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
                     {/* Vertical line down to DC */}
-                    <path d="M 96 30 L 96 75" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
-                    <polygon points="96,78 92,74 100,74" fill="#059669" className="flow-arrow"/>
+                    <path d="M 96 15 L 96 48" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
+                    <polygon points="96,48 92,42 100,42" fill="#059669" className="flow-arrow"/>
                   </svg>
                 </div>
                 
-                {/* Right L-arrow: down → left → down */}
+                {/* Right arrow: from right box to center */}
                 <div className="absolute right-[15%] top-0">
-                  <svg className="w-48 h-20" viewBox="0 0 192 80">
+                  <svg className="w-48 h-12" viewBox="0 0 192 48">
                     {/* Vertical line down from right box */}
-                    <path d="M 157 0 L 157 30" stroke="#ea580c" strokeWidth="2" fill="none" className="flow-arrow"/>
+                    <path d="M 157 0 L 157 15" stroke="#ea580c" strokeWidth="3" fill="none" className="flow-arrow"/>
                     {/* Horizontal line across to center */}
-                    <path d="M 157 30 L 96 30" stroke="#ea580c" strokeWidth="2" fill="none" className="flow-arrow"/>
+                    <path d="M 157 15 L 96 15" stroke="#ea580c" strokeWidth="3" fill="none" className="flow-arrow"/>
                     {/* Vertical line down to DC */}
-                    <path d="M 96 30 L 96 75" stroke="#ea580c" strokeWidth="2" fill="none" className="flow-arrow"/>
-                    <polygon points="96,78 92,74 100,74" fill="#ea580c" className="flow-arrow"/>
+                    <path d="M 96 15 L 96 48" stroke="#ea580c" strokeWidth="3" fill="none" className="flow-arrow"/>
+                    <polygon points="96,48 92,42 100,42" fill="#ea580c" className="flow-arrow"/>
                   </svg>
                 </div>
               </div>
@@ -84,39 +84,39 @@ const FlowchartDiagram = () => {
               </div>
             </div>
 
-            {/* L-shaped arrows from DC to destinations - exactly as drawn */}
-            <div className="relative h-20">
-              {/* Left L-arrow: down → left → down to Modern Trade */}
+            {/* Arrows from DC to destinations */}
+            <div className="relative h-12">
+              {/* Left arrow: from center to Modern Trade */}
               <div className="absolute left-[15%] top-0">
-                <svg className="w-48 h-20" viewBox="0 0 192 80">
+                <svg className="w-48 h-12" viewBox="0 0 192 48">
                   {/* Vertical line down from DC */}
-                  <path d="M 96 5 L 96 30" stroke="#7c3aed" strokeWidth="2" fill="none" className="flow-arrow"/>
+                  <path d="M 96 0 L 96 15" stroke="#7c3aed" strokeWidth="3" fill="none" className="flow-arrow"/>
                   {/* Horizontal line to left */}
-                  <path d="M 96 30 L 35 30" stroke="#7c3aed" strokeWidth="2" fill="none" className="flow-arrow"/>
+                  <path d="M 96 15 L 35 15" stroke="#7c3aed" strokeWidth="3" fill="none" className="flow-arrow"/>
                   {/* Vertical line down to destination */}
-                  <path d="M 35 30 L 35 75" stroke="#7c3aed" strokeWidth="2" fill="none" className="flow-arrow"/>
-                  <polygon points="35,78 31,74 39,74" fill="#7c3aed" className="flow-arrow"/>
+                  <path d="M 35 15 L 35 48" stroke="#7c3aed" strokeWidth="3" fill="none" className="flow-arrow"/>
+                  <polygon points="35,48 31,42 39,42" fill="#7c3aed" className="flow-arrow"/>
                 </svg>
               </div>
 
               {/* Center straight arrow to Wholesale */}
               <div className="absolute left-1/2 transform -translate-x-1/2 top-0">
-                <svg className="w-8 h-20" viewBox="0 0 32 80">
-                  <path d="M 16 5 L 16 75" stroke="#dc2626" strokeWidth="2" fill="none" className="flow-arrow"/>
-                  <polygon points="16,78 12,74 20,74" fill="#dc2626" className="flow-arrow"/>
+                <svg className="w-8 h-12" viewBox="0 0 32 48">
+                  <path d="M 16 0 L 16 48" stroke="#dc2626" strokeWidth="3" fill="none" className="flow-arrow"/>
+                  <polygon points="16,48 12,42 20,42" fill="#dc2626" className="flow-arrow"/>
                 </svg>
               </div>
 
-              {/* Right L-arrow: down → right → down to Retailers */}
+              {/* Right arrow: from center to Retailers */}
               <div className="absolute right-[15%] top-0">
-                <svg className="w-48 h-20" viewBox="0 0 192 80">
+                <svg className="w-48 h-12" viewBox="0 0 192 48">
                   {/* Vertical line down from DC */}
-                  <path d="M 96 5 L 96 30" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
+                  <path d="M 96 0 L 96 15" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
                   {/* Horizontal line to right */}
-                  <path d="M 96 30 L 157 30" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
+                  <path d="M 96 15 L 157 15" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
                   {/* Vertical line down to destination */}
-                  <path d="M 157 30 L 157 75" stroke="#059669" strokeWidth="2" fill="none" className="flow-arrow"/>
-                  <polygon points="157,78 153,74 161,74" fill="#059669" className="flow-arrow"/>
+                  <path d="M 157 15 L 157 48" stroke="#059669" strokeWidth="3" fill="none" className="flow-arrow"/>
+                  <polygon points="157,48 153,42 161,42" fill="#059669" className="flow-arrow"/>
                 </svg>
               </div>
             </div>

@@ -235,7 +235,7 @@ const Hero = () => {
                 <span className="block mb-2 md:mb-3">
                   <span className="font-semibold">Transforming how </span>
                   <span className="text-gradient-green animate-gradient font-bold">
-                    farmers sell
+                    farmers sell Fruits
                   </span>
                 </span>
                 <span className="block mb-2 md:mb-3">
