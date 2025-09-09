@@ -10,19 +10,7 @@ const AboutSection = () => {
       </div>
 
       <div className="container relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
-            About <span 
-              className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
-              style={{
-                background: 'linear-gradient(90deg, #2E7D32 0%, #4CAF50 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >Us</span>
-          </h2>
-        </div>
+       
 
         {/* Mission Statement */}
         <div className="max-w-5xl mx-auto text-center mb-20">
@@ -94,53 +82,6 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* How It Works */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="text-center mb-16">
-            <h4 className="text-2xl md:text-3xl font-bold text-foreground mb-6 fade-in">
-              How Our Hybrid Model Works
-            </h4>
-            <p className="text-xl text-muted-foreground slide-up max-w-3xl mx-auto">
-              Two convenient options designed to serve farmers and ensure quality for businesses
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-green-100 text-center scale-in">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <HandHeart className="w-8 h-8 text-white" />
-              </div>
-              <h5 className="text-xl font-bold text-foreground mb-4">Farm Gate Purchase</h5>
-              <p className="text-muted-foreground leading-relaxed">
-                Farmers can sell directly to us at the farm gate, providing convenience and fair market access with transparent pricing.
-              </p>
-            </div>
-            
-            <div className="bg-white rounded-xl p-8 shadow-lg border border-green-100 text-center scale-in" style={{ animationDelay: '0.1s' }}>
-              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <Truck className="w-8 h-8 text-white" />
-              </div>
-              <h5 className="text-xl font-bold text-foreground mb-4">Distribution Centers</h5>
-              <p className="text-muted-foreground leading-relaxed">
-                Farmers can bring their harvest to the nearest Bloomly distribution center for flexible and efficient processing.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Final Impact Statement */}
-        <div className="max-w-5xl mx-auto text-center">
-          <div className="bg-white rounded-xl p-12 shadow-lg border border-green-100 fade-in">
-            <Users className="w-16 h-16 text-primary mb-8 mx-auto" />
-            <h4 className="text-2xl md:text-3xl font-bold text-foreground mb-8 leading-tight">
-              Strengthening India's Fruit Supply Chain
-            </h4>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              By strengthening the supply backbone, we enable businesses to focus on customers while we take care of sourcing with trust and efficiency.
-            </p>
           </div>
         </div>
       </div>

@@ -65,7 +65,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email", 
-      content: "hello@bloomly.co.in",
+      content: "suppley@bloomly.co.in",
       color: "text-secondary"
     },
     {
