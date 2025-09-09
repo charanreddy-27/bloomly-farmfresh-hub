@@ -95,7 +95,7 @@ const Metrics = () => {
         {/* Section Header - improved mobile typography */}
         <div className="text-center mb-8 md:mb-12 animate-on-scroll">
           <h2 className="text-foreground mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-            Trusted by{' '}
+            Bloomly's{' '}
             <span 
               className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
               style={{
@@ -104,9 +104,8 @@ const Metrics = () => {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Hundreds
-            </span>{' '}
-            of Retailers
+              Journey
+            </span>
           </h2>
           <p className="text-responsive-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed
                         px-4 sm:px-6 md:px-0">
