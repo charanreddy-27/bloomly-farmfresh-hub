@@ -38,7 +38,7 @@ const Metrics = () => {
       icon: Weight,
       value: 1800,
       suffix: '+',
-      label: "Metric Tonnes Delivered",
+      label: "Metric tonnes delivered",
  
       color: "from-emerald-500 to-emerald-600"
     },
@@ -46,7 +46,7 @@ const Metrics = () => {
       icon: Network,
       value: 2400,
       suffix: '+',
-      label: "Farmer Connects",
+      label: "Farmer connects",
 
       color: "from-green-500 to-green-600"
     },
@@ -55,7 +55,7 @@ const Metrics = () => {
       icon: CheckCircle2,
       value: 95,
       suffix: '%',
-      label: "Customers Repeat Orders",
+      label: "Customers repeat orders",
   
       color: "from-lime-500 to-lime-600"
     }
