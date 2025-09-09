@@ -16,10 +16,9 @@ const Index = () => {
       <main>
         <Hero />
         <Metrics />
-        <TrustedPartners />
-        <FlowchartDiagram />
-        
         <AboutSection />
+        <FlowchartDiagram />
+        <TrustedPartners />
         <ContactSection />
       </main>
       <Footer />
