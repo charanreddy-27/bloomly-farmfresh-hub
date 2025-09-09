@@ -3,7 +3,6 @@ import Hero from "../components/Hero";
 import Metrics from "../components/Metrics";
 import TrustedPartners from "../components/TrustedPartners";
 import FlowchartDiagram from "../components/FlowchartDiagram";
-//import Solutions from "../components/Solutions";
 import AboutSection from "../components/AboutSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
