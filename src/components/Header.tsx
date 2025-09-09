@@ -46,6 +46,10 @@ const Header = () => {
     
     if (path.startsWith('/')) {
       navigate(path);
+      // Scroll to top after navigation for route-based pages
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } else if (sectionId) {
       if (location.pathname !== '/') {
         navigate('/');
