@@ -19,6 +19,9 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Always show solid background on non-home pages
+  const shouldShowSolidBackground = isScrolled || location.pathname !== '/';
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleGetStarted = () => {
@@ -76,7 +79,7 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 border-b z-50 shadow-sm transition-all duration-300 ${
-      isScrolled 
+      shouldShowSolidBackground 
         ? 'bg-white/95 backdrop-blur-sm border-border' 
         : 'bg-transparent border-transparent'
     }`}>
@@ -92,7 +95,7 @@ const Header = () => {
               src="/Bloomly-2.svg" 
               alt="Bloomly Logo"
               className={`h-8 w-auto md:h-11 object-contain hover:scale-105 transition-all duration-300 ${
-                isScrolled ? 'filter-none' : 'brightness-0 invert'
+                shouldShowSolidBackground ? 'filter-none' : 'brightness-0 invert'
               }`}
             />
           </div>
@@ -105,7 +108,7 @@ const Header = () => {
                          text-responsive-base relative group min-h-[2.75rem] px-3 py-2
                          inline-flex items-center justify-center rounded-md
                          hover:bg-muted/50 ${
-                           isScrolled 
+                           shouldShowSolidBackground 
                              ? 'text-foreground hover:text-primary' 
                              : 'text-white hover:text-green-300'
                          }`}
@@ -113,7 +116,7 @@ const Header = () => {
               Home
               <span className={`absolute bottom-1 left-3 right-3 h-0.5 
                              scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                               isScrolled ? 'bg-primary' : 'bg-green-300'
+                               shouldShowSolidBackground ? 'bg-primary' : 'bg-green-300'
                              }`}></span>
             </button>
             <button 
@@ -122,7 +125,7 @@ const Header = () => {
                          text-responsive-base relative group min-h-[2.75rem] px-3 py-2
                          inline-flex items-center justify-center rounded-md
                          hover:bg-muted/50 ${
-                           isScrolled 
+                           shouldShowSolidBackground 
                              ? 'text-foreground hover:text-primary' 
                              : 'text-white hover:text-green-300'
                          }`}
@@ -130,7 +133,7 @@ const Header = () => {
               About
               <span className={`absolute bottom-1 left-3 right-3 h-0.5 
                              scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                               isScrolled ? 'bg-primary' : 'bg-green-300'
+                               shouldShowSolidBackground ? 'bg-primary' : 'bg-green-300'
                              }`}></span>
             </button>
             <button 
@@ -139,7 +142,7 @@ const Header = () => {
                          text-responsive-base relative group min-h-[2.75rem] px-3 py-2
                          inline-flex items-center justify-center rounded-md
                          hover:bg-muted/50 ${
-                           isScrolled 
+                           shouldShowSolidBackground 
                              ? 'text-foreground hover:text-primary' 
                              : 'text-white hover:text-green-300'
                          }`}
@@ -147,7 +150,24 @@ const Header = () => {
               Contact
               <span className={`absolute bottom-1 left-3 right-3 h-0.5 
                              scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
-                               isScrolled ? 'bg-primary' : 'bg-green-300'
+                               shouldShowSolidBackground ? 'bg-primary' : 'bg-green-300'
+                             }`}></span>
+            </button>
+            <button 
+              onClick={() => handleNavClick('/careers')}
+              className={`transition-colors font-medium 
+                         text-responsive-base relative group min-h-[2.75rem] px-3 py-2
+                         inline-flex items-center justify-center rounded-md
+                         hover:bg-muted/50 ${
+                           shouldShowSolidBackground 
+                             ? 'text-foreground hover:text-primary' 
+                             : 'text-white hover:text-green-300'
+                         }`}
+            >
+              Careers
+              <span className={`absolute bottom-1 left-3 right-3 h-0.5 
+                             scale-x-0 transition-transform duration-300 group-hover:scale-x-100 ${
+                               shouldShowSolidBackground ? 'bg-primary' : 'bg-green-300'
                              }`}></span>
             </button>
           </nav>
@@ -158,7 +178,7 @@ const Header = () => {
             className={`md:hidden rounded-lg transition-colors
                        min-h-[2.75rem] min-w-[2.75rem] inline-flex items-center justify-center
                        border border-transparent hover:border-border ${
-                         isScrolled 
+                         shouldShowSolidBackground 
                            ? 'hover:bg-muted text-foreground' 
                            : 'hover:bg-white/10 text-white'
                        }`}
@@ -207,6 +227,16 @@ const Header = () => {
                           inline-flex items-center"
               >
                 Contact
+              </button>
+              <button 
+                onClick={() => handleNavClick('/careers')}
+                className="text-foreground hover:text-primary hover:bg-muted 
+                          transition-all duration-200 font-medium 
+                          text-responsive-base w-full text-left
+                          min-h-[2.75rem] px-4 py-3 rounded-lg
+                          inline-flex items-center"
+              >
+                Careers
               </button>
               
               {/* CTA Button for mobile - properly sized and spaced */}
