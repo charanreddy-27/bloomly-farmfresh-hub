@@ -27,11 +27,11 @@ const FlowchartDiagram = () => {
           </div>
 
           {/* Compact Flowchart with proper arrows */}
-          <div className="relative space-y-6">
+          <div className="relative space-y-4">
             
             {/* Top Row: Two procurement modes */}
-            <div className="relative">
-              <div className="flex justify-center items-start gap-16 max-w-3xl mx-auto">
+            <div className="relative pb-8">
+              <div className="flex justify-center items-start gap-12 max-w-3xl mx-auto">
                 
                 {/* Left: Farm-Gate Purchase */}
                 <div className="bg-white rounded-xl shadow-sm border-2 border-green-200 p-4 text-center w-[180px]">
@@ -41,8 +41,8 @@ const FlowchartDiagram = () => {
 
                 {/* Right: Farmer brings to DC */}
                 <div className="bg-white rounded-xl shadow-sm border-2 border-orange-200 p-4 text-center w-[180px]">
-                  <h3 className="font-semibold text-orange-700 text-sm">Farmer harvest</h3>
-                  <h3 className="font-semibold text-orange-700 text-sm">& bring to DC</h3>
+                  <h3 className="font-semibold text-orange-700 text-sm">Farmer harvests</h3>
+                  <h3 className="font-semibold text-orange-700 text-sm">& brings to DC</h3>
                 </div>
               </div>
 
@@ -74,10 +74,13 @@ const FlowchartDiagram = () => {
               </div>
             </div>
 
+            {/* Spacer between arrows and DC */}
+            <div aria-hidden className="h-4 md:h-6"></div>
+
             {/* Middle: Distribution Center */}
-            <div className="flex justify-center mt-32 mb-8">
+            <div className="flex justify-center mt-20 mb-4">
               <div className="bg-blue-50 rounded-xl shadow-sm border-2 border-blue-200 p-5 text-center w-[220px]">
-                <h3 className="font-bold text-blue-800 text-base">Bloomly Dispatch</h3>
+                <h3 className="font-bold text-blue-800 text-base">Bloomly's Dispatch</h3>
                 <h3 className="font-bold text-blue-800 text-base">Center</h3>
               </div>
             </div>
@@ -120,7 +123,7 @@ const FlowchartDiagram = () => {
             </div>
 
             {/* Bottom Row: Three retail channels */}
-            <div className="flex justify-center items-start gap-20 max-w-5xl mx-auto mt-2">
+            <div className="flex justify-center items-start gap-20 max-w-5xl mx-auto mt-1">
               
               <div className="bg-white rounded-xl shadow-sm border p-4 text-center w-[180px]">
                 <h3 className="font-semibold text-purple-700 text-sm">Modern Trade</h3>
