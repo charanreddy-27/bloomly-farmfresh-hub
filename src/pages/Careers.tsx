@@ -49,7 +49,7 @@ const Careers = () => {
     try {
       // TODO: Replace with your actual Formspree endpoint for careers
       // Get your form endpoint from https://formspree.io/
-      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_CAREERS_FORM_ID';
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mvgblvpr';
       
       // Create FormData for file upload
       const submitData = new FormData();
