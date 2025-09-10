@@ -135,17 +135,21 @@ const Header = () => {
           {/* Mobile Menu Button - improved touch target */}
           <button
             onClick={toggleMenu}
-            className="md:hidden rounded-lg transition-colors
+            className="md:hidden rounded-lg transition-transform duration-150
                        min-h-[2.25rem] min-w-[2.25rem] inline-flex items-center justify-center
-                       border border-transparent hover:border-border hover:bg-green-100/50 text-foreground"
+                       border border-transparent hover:border-border hover:bg-green-100/50 text-foreground
+                       will-change-transform"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
+            style={{ transform: 'translateZ(0)' }} // Force hardware acceleration
           >
-            {isMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            <div className={`transition-transform duration-200 will-change-transform ${isMenuOpen ? 'rotate-90' : ''}`}>
+              {isMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </div>
           </button>
         </div>
 
@@ -157,53 +161,63 @@ const Header = () => {
               <button 
                 onClick={handleHomeClick}
                 className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-200 font-medium 
+                          transition-all duration-150 font-medium 
                           text-responsive-base w-full text-left
                           min-h-[2.25rem] px-4 py-2 rounded-lg
-                          inline-flex items-center"
+                          inline-flex items-center will-change-transform
+                          hover:translate-x-1"
+                style={{ 
+                  animationDelay: '0.05s',
+                  transform: 'translateZ(0)' // Force hardware acceleration
+                }}
               >
                 Home
               </button>
               <button 
                 onClick={() => handleNavClick('about', 'about')}
                 className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-200 font-medium 
+                          transition-all duration-150 font-medium 
                           text-responsive-base w-full text-left
                           min-h-[2.25rem] px-4 py-2 rounded-lg
-                          inline-flex items-center"
+                          inline-flex items-center will-change-transform
+                          hover:translate-x-1"
+                style={{ 
+                  animationDelay: '0.1s',
+                  transform: 'translateZ(0)' // Force hardware acceleration
+                }}
               >
                 About
               </button>
               <button 
                 onClick={() => handleNavClick('contact', 'contact')}
                 className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-200 font-medium 
+                          transition-all duration-150 font-medium 
                           text-responsive-base w-full text-left
                           min-h-[2.25rem] px-4 py-2 rounded-lg
-                          inline-flex items-center"
+                          inline-flex items-center will-change-transform
+                          hover:translate-x-1"
+                style={{ 
+                  animationDelay: '0.15s',
+                  transform: 'translateZ(0)' // Force hardware acceleration
+                }}
               >
                 Contact
               </button>
               <button 
                 onClick={() => handleNavClick('/careers')}
                 className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-200 font-medium 
+                          transition-all duration-150 font-medium 
                           text-responsive-base w-full text-left
                           min-h-[2.25rem] px-4 py-2 rounded-lg
-                          inline-flex items-center"
+                          inline-flex items-center will-change-transform
+                          hover:translate-x-1"
+                style={{ 
+                  animationDelay: '0.2s',
+                  transform: 'translateZ(0)' // Force hardware acceleration
+                }}
               >
                 Careers
               </button>
-              
-              {/* CTA Button for mobile - properly sized and spaced */}
-              <div className="pt-3 px-4">
-                <button 
-                  onClick={handleGetStarted}
-                  className="btn-primary w-full min-h-[2.25rem] text-responsive-base"
-                >
-                  Get Started
-                </button>
-              </div>
             </nav>
           </div>
         )}
