@@ -104,7 +104,7 @@ const TrustedPartners = () => {
         <div className="container relative z-10">
           {/* Section Header - mobile-first responsive */}
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-foreground mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+            <h2 className="text-foreground mb-4">
               Trusted by Leading{' '}
               <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
                 Retailers

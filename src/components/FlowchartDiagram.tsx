@@ -16,11 +16,11 @@ const FlowchartDiagram = () => {
         `}
       </style>
 
-      <section className="py-8 md:py-12 bg-gray-50">
-        <div className="container max-w-3xl mx-auto px-4">
+      <section className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
+        <div className="container mx-auto px-4 max-w-3xl">
           {/* Simple Header */}
-          <div className="text-center mb-6">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
+          <div className="text-center mb-4 md:mb-6">
+            <h2 className="text-gray-800 mb-2">
               Hybrid Purchase Model for<span className="text-green-600"> Fruits</span>
             </h2>
             <div className="w-12 h-1 bg-green-500 mx-auto rounded-full"></div>
