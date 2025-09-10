@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-primary text-primary-foreground">
       <div className="container">
         {/* Main Footer Content - compact responsive grid */}
-        <div className="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="py-6 md:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {/* Company Info */}
           <div className="space-y-3 sm:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2">
@@ -19,34 +19,6 @@ const Footer = () => {
             <p className="text-primary-foreground/80 text-xs md:text-sm leading-relaxed">
               Connecting farms directly with retailers for fresh, reliable produce delivery.
             </p>
-          </div>
-
-          {/* Solutions */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm md:text-base">Solutions</h4>
-            <ul className="space-y-1 text-primary-foreground/80">
-              <li>
-                <a href="#" 
-                   className="hover:text-primary-foreground transition-colors 
-                             text-xs md:text-sm inline-flex items-center py-1">
-                  Fresh Produce
-                </a>
-              </li>
-              <li>
-                <a href="#" 
-                   className="hover:text-primary-foreground transition-colors 
-                             text-xs md:text-sm inline-flex items-center py-1">
-                  Distribution
-                </a>
-              </li>
-              <li>
-                <a href="#" 
-                   className="hover:text-primary-foreground transition-colors 
-                             text-xs md:text-sm inline-flex items-center py-1">
-                  Supply Chain
-                </a>
-              </li>
-            </ul>
           </div>
 
           {/* Company */}
@@ -109,11 +81,7 @@ const Footer = () => {
                            transition-colors text-center inline-flex items-center justify-center">
                 Privacy Policy
               </Link>
-              <a href="#" 
-                 className="text-primary-foreground/80 hover:text-primary-foreground text-xs 
-                           transition-colors text-center inline-flex items-center justify-center">
-                Terms of Service
-              </a>
+              
             </div>
           </div>
         </div>
