@@ -120,7 +120,7 @@ const PrivacyPolicy = () => {
               <div className="mt-8">
                 <h2 className="text-2xl font-semibold mb-4 text-green-700">Policy Towards Children:</h2>
                 <p className="mb-4">
-                  The Platform is intended for a general audience and not for use by anyone younger than the age of 18. The Company does not knowingly Process Personal Information of children younger than the age of 18 without the consent of a parent or legal guardian; if the Company learns that it has done so, the Company will promptly remove the information from all active databases. If you are a parent or legal guardian who believes that the Company has Processed their child's Personal Information, please contact the Company at contact@bloomly-farmfresh-hub.com.
+                  The Platform is intended for a general audience and not for use by anyone younger than the age of 18. The Company does not knowingly Process Personal Information of children younger than the age of 18 without the consent of a parent or legal guardian; if the Company learns that it has done so, the Company will promptly remove the information from all active databases. If you are a parent or legal guardian who believes that the Company has Processed their child's Personal Information, please contact the Company at operations@bloomly.co.in.
                 </p>
               </div>
 
@@ -129,7 +129,7 @@ const PrivacyPolicy = () => {
                 
                 <h3 className="text-xl font-semibold mb-3 text-green-600">Withdrawal of consent:</h3>
                 <p className="mb-4">
-                  You may choose to withdraw Your consent provided hereunder at any point in time. Such withdrawal of the consent must be sent in writing to contact@bloomly-farmfresh-hub.com. In case You do not provide Your consent or later withdraw Your consent, We request you not to access the Platform and/or use the Platform Services and We also reserve the right to not provide You access to the Platform.
+                  You may choose to withdraw Your consent provided hereunder at any point in time. Such withdrawal of the consent must be sent in writing to Operations@bloomly.co.in. In case You do not provide Your consent or later withdraw Your consent, We request you not to access the Platform and/or use the Platform Services and We also reserve the right to not provide You access to the Platform.
                 </p>
 
                 <h3 className="text-xl font-semibold mb-3 text-green-600">Changes To Our Privacy Policy:</h3>
@@ -142,8 +142,8 @@ const PrivacyPolicy = () => {
                 <h2 className="text-2xl font-semibold mb-4 text-green-700">Questions:</h2>
                 <p className="mb-4">
                   Please feel free to contact us at{" "}
-                  <a href="mailto:contact@bloomly-farmfresh-hub.com" className="text-green-600 hover:underline">
-                    contact@bloomly-farmfresh-hub.com
+                  <a href="mailto:Operations@bloomly.co.in" className="text-green-600 hover:underline">
+                    Operations@bloomly.co.in
                   </a>{" "}
                   regarding any questions on the Privacy Policy.
                 </p>

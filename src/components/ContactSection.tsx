@@ -63,7 +63,7 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email", 
-      content: "suppley@bloomly.co.in",
+      content: "operations@bloomly.co.in",
       color: "text-secondary"
     },
     {
