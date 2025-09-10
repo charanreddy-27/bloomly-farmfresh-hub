@@ -75,10 +75,10 @@ const AboutSection = () => {
               </h4>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  Bloomly set out to solve this. Through our hybrid purchase model, farmers can sell directly to us at the farm gate or bring their harvest to the nearest Bloomly distribution center. This gives farmers fair market access, transparent pricing, and reliable payments.
+                  Bloomly set out to solve this. Through our hybrid purchase model, we source quality produce and ensure efficient distribution. This gives farmers fair market access, transparent pricing, and reliable payments.
                 </p>
                 <p>
-                  For businesses, Bloomly bridges the sourcing gap ensuring general trade, and both online and offline retailers receive fresh, reliable, and dependable fruits, consistently. By strengthening the supply backbone, we enable businesses to focus on customers while we take care of sourcing with trust and efficiency.
+                  For businesses, Bloomly bridges the sourcing gap ensuring general trade, and both online and offline businesses receive fresh, reliable, and dependable fruits, consistently. By strengthening the supply backbone, we enable businesses to focus on customers while we take care of sourcing with trust and efficiency.
                 </p>
               </div>
             </div>

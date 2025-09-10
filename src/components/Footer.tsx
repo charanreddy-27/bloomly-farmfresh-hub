@@ -70,7 +70,7 @@ const Footer = () => {
         <div className="py-3 md:py-4 border-t border-primary-foreground/20">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
             <p className="text-primary-foreground/80 text-xs text-center sm:text-left">
-              © 2024 Bloomly. All rights reserved.
+              © 2025 Bloomly. All rights reserved.
             </p>
             <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4">
               <Link to="/privacy-policy" 

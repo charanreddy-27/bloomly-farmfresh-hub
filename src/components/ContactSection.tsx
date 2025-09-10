@@ -106,7 +106,7 @@ const ContactSection = () => {
           <div className="fade-in">
             <h3 className="text-2xl font-bold text-foreground mb-4">Let's Connect</h3>
             <p className="text-base text-muted-foreground mb-6 leading-relaxed">
-              Whether you're a retailer, farmer, or investor - we'd love to hear from you.
+              Whether you're a business owner or investor - we'd love to hear from you.
             </p>
             
             <div className="space-y-3">

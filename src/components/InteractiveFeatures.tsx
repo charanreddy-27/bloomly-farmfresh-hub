@@ -51,7 +51,7 @@ const InteractiveFeatures = () => {
 
       {/* WhatsApp Floating Widget */}
       {showWhatsApp && (
-        <div className="fixed bottom-6 left-6 z-50 animate-fade-in-up">
+        <div className="fixed bottom-20 left-6 z-50 animate-fade-in-up">
           <div className="relative">
             {/* Close button */}
             <button
