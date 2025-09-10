@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload, CheckCircle, Users, Briefcase, TrendingUp } from 'lucide-react';
+import { Upload, CheckCircle, Users, Briefcase, TrendingUp, X } from 'lucide-react';
 
 const Careers = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +39,15 @@ const Careers = () => {
       } else {
         alert('Please upload a PDF or Word document');
       }
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setCvFile(null);
+    // Reset the file input
+    const fileInput = document.getElementById('cv') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
     }
   };
 
@@ -255,35 +264,49 @@ const Careers = () => {
                     <div>
                       <Label htmlFor="cv">Upload CV/Resume *</Label>
                       <div className="mt-1">
-                        <div className="flex items-center justify-center w-full">
-                          <label
-                            htmlFor="cv"
-                            className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
-                          >
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                              <Upload className="w-8 h-8 mb-4 text-gray-500" />
-                              <p className="mb-2 text-sm text-gray-500">
-                                {cvFile ? (
-                                  <span className="font-semibold text-green-600">{cvFile.name}</span>
-                                ) : (
-                                  <>
-                                    <span className="font-semibold">Click to upload</span> or drag and drop
-                                  </>
-                                )}
-                              </p>
-                              <p className="text-xs text-gray-500">PDF, DOC, or DOCX (MAX. 10MB)</p>
+                        {cvFile ? (
+                          // Show uploaded file with remove option
+                          <div className="flex items-center justify-between p-4 border-2 border-green-300 bg-green-50 rounded-lg">
+                            <div className="flex items-center">
+                              <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+                              <span className="text-sm font-medium text-green-800">{cvFile.name}</span>
                             </div>
-                            <input
-                              id="cv"
-                              name="cv"
-                              type="file"
-                              className="hidden"
-                              onChange={handleFileChange}
-                              accept=".pdf,.doc,.docx"
-                              required
-                            />
-                          </label>
-                        </div>
+                            <button
+                              type="button"
+                              onClick={handleRemoveFile}
+                              className="flex items-center text-red-600 hover:text-red-800 transition-colors"
+                              title="Remove file"
+                            >
+                              <X className="w-4 h-4 mr-1" />
+                              <span className="text-sm">Remove</span>
+                            </button>
+                          </div>
+                        ) : (
+                          // Show upload area
+                          <div className="flex items-center justify-center w-full">
+                            <label
+                              htmlFor="cv"
+                              className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+                            >
+                              <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                <Upload className="w-8 h-8 mb-4 text-gray-500" />
+                                <p className="mb-2 text-sm text-gray-500">
+                                  <span className="font-semibold">Click to upload</span> or drag and drop
+                                </p>
+                                <p className="text-xs text-gray-500">PDF, DOC, or DOCX (MAX. 10MB)</p>
+                              </div>
+                              <input
+                                id="cv"
+                                name="cv"
+                                type="file"
+                                className="hidden"
+                                onChange={handleFileChange}
+                                accept=".pdf,.doc,.docx"
+                                required
+                              />
+                            </label>
+                          </div>
+                        )}
                       </div>
                     </div>
 
