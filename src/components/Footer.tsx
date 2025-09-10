@@ -1,4 +1,5 @@
 import { Leaf, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -103,11 +104,11 @@ const Footer = () => {
               © 2024 Bloomly. All rights reserved.
             </p>
             <div className="flex flex-col sm:flex-row space-y-1 sm:space-y-0 sm:space-x-4">
-              <a href="#" 
+              <Link to="/privacy-policy" 
                  className="text-primary-foreground/80 hover:text-primary-foreground text-xs 
                            transition-colors text-center inline-flex items-center justify-center">
                 Privacy Policy
-              </a>
+              </Link>
               <a href="#" 
                  className="text-primary-foreground/80 hover:text-primary-foreground text-xs 
                            transition-colors text-center inline-flex items-center justify-center">
