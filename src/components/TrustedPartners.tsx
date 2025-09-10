@@ -36,7 +36,12 @@ const TrustedPartners = () => {
       name: "Superplum",
       logo: "/big-logo.png",
       alt: "Superplum Logo"
-    }
+    },
+{
+      name: "More",
+      logo: "/more.webp",
+      alt: "More Logo"
+    },
   ];
 
   const scrollerRef = useRef<HTMLDivElement>(null);

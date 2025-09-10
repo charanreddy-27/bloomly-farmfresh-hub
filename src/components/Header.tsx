@@ -88,47 +88,43 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
             <button 
               onClick={handleHomeClick}
-              className="transition-all duration-300 font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
-                         inline-flex items-center justify-center
-                         text-foreground hover:text-primary"
+              className="font-sans font-medium text-base relative px-2 py-1
+                         text-foreground hover:text-primary transition-colors duration-200
+                         after:content-[''] after:absolute after:bottom-0 after:left-0 
+                         after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                         hover:after:w-full focus:outline-none"
             >
               Home
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
-                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('about', 'about')}
-              className="transition-all duration-300 font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
-                         inline-flex items-center justify-center
-                         text-foreground hover:text-primary"
+              className="font-sans font-medium text-base relative px-2 py-1
+                         text-foreground hover:text-primary transition-colors duration-200
+                         after:content-[''] after:absolute after:bottom-0 after:left-0 
+                         after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                         hover:after:w-full focus:outline-none"
             >
               About
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
-                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('contact', 'contact')}
-              className="transition-all duration-300 font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
-                         inline-flex items-center justify-center
-                         text-foreground hover:text-primary"
+              className="font-sans font-medium text-base relative px-2 py-1
+                         text-foreground hover:text-primary transition-colors duration-200
+                         after:content-[''] after:absolute after:bottom-0 after:left-0 
+                         after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                         hover:after:w-full focus:outline-none"
             >
               Contact
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
-                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('/careers')}
-              className="transition-all duration-300 font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
-                         inline-flex items-center justify-center
-                         text-foreground hover:text-primary"
+              className="font-sans font-medium text-base relative px-2 py-1
+                         text-foreground hover:text-primary transition-colors duration-200
+                         after:content-[''] after:absolute after:bottom-0 after:left-0 
+                         after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                         hover:after:w-full focus:outline-none"
             >
               Careers
-              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
-                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
           </nav>
 
@@ -160,71 +156,43 @@ const Header = () => {
             <nav className="py-3 space-y-1">
               <button 
                 onClick={handleHomeClick}
-                className="text-foreground hover:text-primary 
-                          transition-all duration-300 font-medium 
-                          text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 
-                          inline-flex items-center will-change-transform
-                          hover:pl-6 relative group"
-                style={{ 
-                  animationDelay: '0.05s',
-                  transform: 'translateZ(0)' // Force hardware acceleration
-                }}
+                className="font-sans font-medium text-base w-full text-left px-4 py-3
+                           text-foreground hover:text-primary transition-colors duration-200
+                           relative after:content-[''] after:absolute after:bottom-2 after:left-4 
+                           after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                           hover:after:w-8 focus:outline-none"
               >
                 Home
-                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
-                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('about', 'about')}
-                className="text-foreground hover:text-primary 
-                          transition-all duration-300 font-medium 
-                          text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 
-                          inline-flex items-center will-change-transform
-                          hover:pl-6 relative group"
-                style={{ 
-                  animationDelay: '0.1s',
-                  transform: 'translateZ(0)' // Force hardware acceleration
-                }}
+                className="font-sans font-medium text-base w-full text-left px-4 py-3
+                           text-foreground hover:text-primary transition-colors duration-200
+                           relative after:content-[''] after:absolute after:bottom-2 after:left-4 
+                           after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                           hover:after:w-8 focus:outline-none"
               >
                 About
-                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
-                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('contact', 'contact')}
-                className="text-foreground hover:text-primary 
-                          transition-all duration-300 font-medium 
-                          text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 
-                          inline-flex items-center will-change-transform
-                          hover:pl-6 relative group"
-                style={{ 
-                  animationDelay: '0.15s',
-                  transform: 'translateZ(0)' // Force hardware acceleration
-                }}
+                className="font-sans font-medium text-base w-full text-left px-4 py-3
+                           text-foreground hover:text-primary transition-colors duration-200
+                           relative after:content-[''] after:absolute after:bottom-2 after:left-4 
+                           after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                           hover:after:w-8 focus:outline-none"
               >
                 Contact
-                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
-                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('/careers')}
-                className="text-foreground hover:text-primary 
-                          transition-all duration-300 font-medium 
-                          text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 
-                          inline-flex items-center will-change-transform
-                          hover:pl-6 relative group"
-                style={{ 
-                  animationDelay: '0.2s',
-                  transform: 'translateZ(0)' // Force hardware acceleration
-                }}
+                className="font-sans font-medium text-base w-full text-left px-4 py-3
+                           text-foreground hover:text-primary transition-colors duration-200
+                           relative after:content-[''] after:absolute after:bottom-2 after:left-4 
+                           after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300
+                           hover:after:w-8 focus:outline-none"
               >
                 Careers
-                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
-                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
             </nav>
           </div>
