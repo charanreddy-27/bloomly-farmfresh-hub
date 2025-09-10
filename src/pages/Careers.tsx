@@ -46,21 +46,53 @@ const Careers = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        position: '',
-        experience: '',
-        coverLetter: ''
+    try {
+      // TODO: Replace with your actual Formspree endpoint for careers
+      // Get your form endpoint from https://formspree.io/
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_CAREERS_FORM_ID';
+      
+      // Create FormData for file upload
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('position', formData.position);
+      submitData.append('experience', formData.experience);
+      submitData.append('coverLetter', formData.coverLetter);
+      submitData.append('_replyto', formData.email);
+      submitData.append('_subject', `New Career Application from ${formData.name} for ${formData.position}`);
+      
+      // Add CV file if selected
+      if (cvFile) {
+        submitData.append('cv', cvFile);
+      }
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: submitData,
       });
-      setCvFile(null);
-    }, 2000);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          position: '',
+          experience: '',
+          coverLetter: ''
+        });
+        setCvFile(null);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting your application. Please try again or email us directly at operations@bloomly.co.in');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const positions = [

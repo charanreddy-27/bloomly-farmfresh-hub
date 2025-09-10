@@ -26,26 +26,49 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // TODO: Replace with your actual Formspree endpoint
+      // Get your form endpoint from https://formspree.io/
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
       
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. We'll get back to you within 24 hours.",
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          type: formData.type,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `New Contact Form Submission from ${formData.name}`,
+        }),
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        type: '',
-        message: ''
-      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. We'll get back to you within 24 hours.",
+        });
+        
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          type: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: "Error sending message",
-        description: "Please try again or contact us directly.",
+        description: "Please try again or contact us directly at operations@bloomly.co.in",
         variant: "destructive",
       });
     } finally {
@@ -86,7 +109,7 @@ const ContactSection = () => {
       <div className="container relative z-10">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Get in <span 
               className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
               style={{

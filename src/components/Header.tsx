@@ -84,51 +84,51 @@ const Header = () => {
             />
           </div>
 
-          {/* Desktop Navigation - improved spacing and typography */}
+          {/* Desktop Navigation - elegant minimal animations */}
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
             <button 
               onClick={handleHomeClick}
-              className="transition-colors font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-2 py-1.5
-                         inline-flex items-center justify-center rounded-md
-                         hover:bg-green-100/50 text-foreground hover:text-primary"
+              className="transition-all duration-300 font-medium 
+                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
+                         inline-flex items-center justify-center
+                         text-foreground hover:text-primary"
             >
               Home
-              <span className="absolute bottom-0.5 left-2 right-2 h-0.5 
-                             scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-primary"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
+                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('about', 'about')}
-              className="transition-colors font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-2 py-1.5
-                         inline-flex items-center justify-center rounded-md
-                         hover:bg-green-100/50 text-foreground hover:text-primary"
+              className="transition-all duration-300 font-medium 
+                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
+                         inline-flex items-center justify-center
+                         text-foreground hover:text-primary"
             >
               About
-              <span className="absolute bottom-0.5 left-2 right-2 h-0.5 
-                             scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-primary"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
+                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('contact', 'contact')}
-              className="transition-colors font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-2 py-1.5
-                         inline-flex items-center justify-center rounded-md
-                         hover:bg-green-100/50 text-foreground hover:text-primary"
+              className="transition-all duration-300 font-medium 
+                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
+                         inline-flex items-center justify-center
+                         text-foreground hover:text-primary"
             >
               Contact
-              <span className="absolute bottom-0.5 left-2 right-2 h-0.5 
-                             scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-primary"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
+                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
             <button 
               onClick={() => handleNavClick('/careers')}
-              className="transition-colors font-medium 
-                         text-responsive-base relative group min-h-[2.25rem] px-2 py-1.5
-                         inline-flex items-center justify-center rounded-md
-                         hover:bg-green-100/50 text-foreground hover:text-primary"
+              className="transition-all duration-300 font-medium 
+                         text-responsive-base relative group min-h-[2.25rem] px-3 py-2
+                         inline-flex items-center justify-center
+                         text-foreground hover:text-primary"
             >
               Careers
-              <span className="absolute bottom-0.5 left-2 right-2 h-0.5 
-                             scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bg-primary"></span>
+              <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 
+                             transition-all duration-300 group-hover:w-4/5 bg-primary"></span>
             </button>
           </nav>
 
