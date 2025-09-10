@@ -13,8 +13,8 @@ const AboutSection = () => {
        
 
         {/* Mission Statement */}
-        <div className="max-w-5xl mx-auto text-center mb-20">
-          <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-8 leading-tight fade-in">
+        <div className="max-w-5xl mx-auto text-center mb-12 md:mb-20">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6 md:mb-8 leading-tight fade-in px-4">
             Bloomly is on a mission to build the strongest{' '}
             <span className="text-primary">fruit sourcing ecosystem</span>{' '}
             in India.
@@ -22,13 +22,13 @@ const AboutSection = () => {
         </div>
 
         {/* The Challenge */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="fade-in">
-              <h4 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+        <div className="max-w-6xl mx-auto mb-12 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="fade-in px-4 lg:px-0">
+              <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8">
                 The Challenge
               </h4>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
                   We observed a core challenge in the market: even the largest retail chains and general trade players struggle to source fruits consistently and at the right quality.
                 </p>
@@ -37,15 +37,15 @@ const AboutSection = () => {
                 </p>
               </div>
             </div>
-            <div className="slide-up">
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-red-100 border-l-4 border-l-red-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-full bg-red-100">
-                    <Building2 className="w-8 h-8 text-red-600" />
+            <div className="slide-up px-4 lg:px-0">
+              <div className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-red-100 border-l-4 border-l-red-500">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="p-2 md:p-3 rounded-full bg-red-100 flex-shrink-0">
+                    <Building2 className="w-6 h-6 md:w-8 md:h-8 text-red-600" />
                   </div>
-                  <h5 className="text-xl font-bold text-foreground">Market Reality</h5>
+                  <h5 className="text-lg md:text-xl font-bold text-foreground">Market Reality</h5>
                 </div>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                   Even large retail chains face inconsistent fruit sourcing, affecting their ability to serve customers reliably.
                 </p>
               </div>
@@ -54,26 +54,26 @@ const AboutSection = () => {
         </div>
 
         {/* Our Solution */}
-        <div className="max-w-6xl mx-auto mb-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="slide-up order-2 lg:order-1">
-              <div className="bg-white rounded-xl p-8 shadow-lg border border-green-100 border-l-4 border-l-green-500">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-full bg-green-100">
-                    <HandHeart className="w-8 h-8 text-green-600" />
+        <div className="max-w-6xl mx-auto mb-12 md:mb-20">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="slide-up order-2 lg:order-1 px-4 lg:px-0">
+              <div className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-green-100 border-l-4 border-l-green-500">
+                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                  <div className="p-2 md:p-3 rounded-full bg-green-100 flex-shrink-0">
+                    <HandHeart className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
                   </div>
-                  <h5 className="text-xl font-bold text-foreground">Our Approach</h5>
+                  <h5 className="text-lg md:text-xl font-bold text-foreground">Our Approach</h5>
                 </div>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                   A hybrid purchase model that works for both farmers and businesses, ensuring fair access and reliable supply.
                 </p>
               </div>
             </div>
-            <div className="fade-in order-1 lg:order-2">
-              <h4 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+            <div className="fade-in order-1 lg:order-2 px-4 lg:px-0">
+              <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8">
                 Our Solution
               </h4>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+              <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
                   Bloomly set out to solve this. Through our hybrid purchase model, we source quality produce and ensure efficient distribution. This gives farmers fair market access, transparent pricing, and reliable payments.
                 </p>

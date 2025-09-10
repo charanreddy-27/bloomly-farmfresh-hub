@@ -94,7 +94,7 @@ const Metrics = () => {
       <div className="container relative z-10">
         {/* Section Header - improved mobile typography */}
         <div className="text-center mb-8 md:mb-12 animate-on-scroll">
-          <h2 className="text-foreground mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <h2 className="text-foreground mb-3 md:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4">
             Bloomly's{' '}
             <span 
               className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
@@ -107,14 +107,13 @@ const Metrics = () => {
               Journey
             </span>
           </h2>
-          <p className="text-responsive-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed
-                        px-4 sm:px-6 md:px-0">
+          <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-6 md:px-0">
             Our growing network of partners proves that direct sourcing works for businesses of all sizes
           </p>
         </div>
 
-        {/* Metrics Grid - mobile-first responsive with reduced sizes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {/* Metrics Grid - enhanced mobile-first responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {metrics.map((metric, index) => {
             const IconComponent = metric.icon;
             return (
@@ -125,16 +124,17 @@ const Metrics = () => {
               >
                 <div className="bg-white rounded-lg shadow-md border border-green-100 
                                 hover:shadow-lg transition-all duration-300 hover:-translate-y-1
-                                p-4 md:p-5 text-center h-full flex flex-col justify-between">
-                  {/* Icon with gradient background - reduced size */}
-                  <div className={`w-12 h-12 mx-auto mb-3 rounded-lg bg-gradient-to-br ${metric.color} 
+                                p-4 md:p-6 text-center h-full flex flex-col justify-between
+                                min-h-[160px] sm:min-h-[180px]">
+                  {/* Icon with gradient background */}
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 md:mb-4 rounded-lg bg-gradient-to-br ${metric.color} 
                                   flex items-center justify-center group-hover:scale-110 
                                   transition-transform duration-300`}>
-                    <IconComponent className="w-6 h-6 text-white" />
+                    <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                   
-                  {/* Metric value - reduced typography */}
-                  <div className="text-2xl md:text-3xl font-bold text-green-800 mb-2">
+                  {/* Metric value */}
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-800 mb-2">
                     <Counter 
                       end={metric.value} 
                       suffix={metric.suffix}
@@ -142,8 +142,8 @@ const Metrics = () => {
                     />
                   </div>
                   
-                  {/* Label - reduced typography */}
-                  <h3 className="text-base md:text-lg font-semibold text-green-700 mb-1">
+                  {/* Label */}
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-green-700 leading-tight">
                     {metric.label}
                   </h3>
                 </div>

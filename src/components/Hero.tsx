@@ -141,56 +141,69 @@ const Hero = () => {
             filter: drop-shadow(0 0 15px rgba(74, 222, 128, 0.4));
           }
 
-          /* Decreased font sizing */
+          /* Improved mobile-first typography */
           .hero-title {
-            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-size: clamp(1.75rem, 5vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.15;
+            line-height: 1.1;
             letter-spacing: -0.02em;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
           }
           
           .hero-subtitle {
-            font-size: clamp(1.25rem, 2.5vw, 2rem);
+            font-size: clamp(1.125rem, 3vw, 1.875rem);
             font-weight: 500;
-            line-height: 1.25;
+            line-height: 1.3;
             letter-spacing: -0.01em;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
           }
 
-          /* Override responsive typography with smaller sizes */
+          /* Mobile-optimized responsive breakpoints */
           @media (max-width: 640px) {
             .hero-title {
-              font-size: 2rem;
+              font-size: 1.75rem;
               line-height: 1.15;
+              margin-bottom: 1rem;
             }
             
             .hero-subtitle {
-              font-size: 1.25rem;
-              line-height: 1.25;
+              font-size: 1.125rem;
+              line-height: 1.35;
             }
           }
 
           @media (min-width: 641px) and (max-width: 768px) {
+            .hero-title {
+              font-size: 2.25rem;
+              line-height: 1.15;
+            }
+            
+            .hero-subtitle {
+              font-size: 1.375rem;
+              line-height: 1.3;
+            }
+          }
+
+          @media (min-width: 769px) and (max-width: 1024px) {
             .hero-title {
               font-size: 2.75rem;
               line-height: 1.15;
             }
             
             .hero-subtitle {
-              font-size: 1.5rem;
+              font-size: 1.625rem;
               line-height: 1.25;
             }
           }
 
-          @media (min-width: 769px) {
+          @media (min-width: 1025px) {
             .hero-title {
               font-size: 3.5rem;
-              line-height: 1.15;
+              line-height: 1.1;
             }
             
             .hero-subtitle {
-              font-size: 2rem;
+              font-size: 1.875rem;
               line-height: 1.25;
             }
           }
@@ -242,20 +255,20 @@ const Hero = () => {
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 lg:py-24">
-          <div className="flex flex-col items-center justify-center min-h-[80vh] text-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
+          <div className="flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] text-center">
             
-            {/* Hero Title with Exact Typography to Match Image */}
-            <div className="mb-8 md:mb-12 lg:mb-16 animate-fade-in-up" 
+            {/* Hero Title with Mobile-Optimized Typography */}
+            <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16 animate-fade-in-up max-w-5xl mx-auto" 
                  style={{ animationDelay: '0.2s' }}>
-              <h1 className="hero-title text-white leading-tight tracking-tight mb-4 md:mb-6">
-                <span className="block mb-1">
+              <h1 className="hero-title text-white leading-tight tracking-tight mb-3 sm:mb-4 md:mb-6 px-2">
+                <span className="block mb-1 sm:mb-2">
                   <span className="font-bold">Transforming how </span>
                   <span className="text-gradient-green animate-gradient font-bold">
                     farmers sell Fruits
                   </span>
                 </span>
-                <span className="block mb-3">
+                <span className="block mb-2 sm:mb-3">
                   <span className="font-bold">and how </span>
                   <span className="text-gradient-green animate-gradient font-bold">
                     businesses buy
@@ -263,7 +276,7 @@ const Hero = () => {
                 </span>
               </h1>
               
-              <div className="hero-subtitle text-white/90 leading-relaxed max-w-4xl mx-auto">
+              <div className="hero-subtitle text-white/90 leading-relaxed max-w-3xl mx-auto px-2">
                 <span className="block">
                   Bloomly is building a{' '}
                   <span className="text-gradient-green-light animate-gradient font-semibold">
