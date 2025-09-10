@@ -57,8 +57,9 @@ const ContactSection = () => {
     {
       icon: MapPin,
       title: "Address",
-      content: "Bangalore, Karnataka, India",
-      color: "text-primary"
+      content: ["Salarpuria Sattva Magnificia,", "78, Old Madras Rd, Mahadevapura, Bangalore - 560016"],
+      color: "text-primary",
+      isMultiLine: true
     },
     {
       icon: Mail,
@@ -114,15 +115,25 @@ const ContactSection = () => {
                 return (
                   <div 
                     key={index}
-                    className="flex items-start gap-2 bg-white rounded-md p-3 shadow-sm border border-green-100"
+                    className="flex items-start gap-3 bg-white rounded-md p-4 shadow-sm border border-green-100"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className={`${info.color} mt-0.5`}>
-                      <IconComponent className="w-4 h-4" />
+                    <div className={`${info.color} mt-1 flex-shrink-0`}>
+                      <IconComponent className="w-5 h-5" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-0.5 text-sm">{info.title}</h4>
-                      <p className="text-muted-foreground text-xs">{info.content}</p>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-semibold text-foreground mb-1 text-sm">{info.title}</h4>
+                      {info.isMultiLine ? (
+                        <div className="text-muted-foreground text-sm leading-relaxed">
+                          {(info.content as string[]).map((line, lineIndex) => (
+                            <div key={lineIndex}>{line}</div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-muted-foreground text-sm leading-relaxed break-words">
+                          {info.content as string}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );
