@@ -1147,3 +1147,24 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary-hover));
 }
+
+/* Smooth WhatsApp Chat Animations */
+@keyframes gentle-float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-3px); 
+  }
+}
+
+@keyframes soft-glow {
+  0% { 
+    opacity: 0.2; 
+    transform: scale(1); 
+  }
+  100% { 
+    opacity: 0.4; 
+    transform: scale(1.05); 
+  }
+}

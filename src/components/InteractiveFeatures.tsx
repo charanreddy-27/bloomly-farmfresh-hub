@@ -65,15 +65,23 @@ const InteractiveFeatures = () => {
             {/* WhatsApp Button */}
             <button
               onClick={openWhatsApp}
-              className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group animate-pulse hover:animate-none"
+              className="flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group relative hover:animate-none"
+              style={{ 
+                animation: 'gentle-float 3s ease-in-out infinite'
+              }}
               aria-label="Chat on WhatsApp"
             >
               <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
               <span className="font-medium text-sm">Chat with us</span>
+              
+              {/* Smooth breathing glow */}
+              <div 
+                className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-green-500/20 rounded-full -z-10" 
+                style={{ 
+                  animation: 'soft-glow 4s ease-in-out infinite alternate'
+                }}
+              />
             </button>
-            
-            {/* Pulse animation */}
-            <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-20 -z-10" />
           </div>
         </div>
       )}
