@@ -104,8 +104,8 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="fade-in">
-            <h3 className="text-lg font-bold text-foreground mb-3">Let's Connect</h3>
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            <h3 className="text-2xl font-bold text-foreground mb-4">Let's Connect</h3>
+            <p className="text-base text-muted-foreground mb-6 leading-relaxed">
               Whether you're a retailer, farmer, or investor - we'd love to hear from you.
             </p>
             
@@ -138,16 +138,6 @@ const ContactSection = () => {
                   </div>
                 );
               })}
-            </div>
-
-            {/* Business Hours */}
-            <div className="mt-4 p-3 bg-white rounded-md shadow-sm border border-green-100">
-              <h4 className="font-semibold text-foreground mb-1 text-sm">Business Hours</h4>
-              <div className="space-y-0.5 text-muted-foreground text-xs">
-                <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                <p>Saturday: 9:00 AM - 5:00 PM</p>
-                <p>Sunday: Closed</p>
-              </div>
             </div>
           </div>
 
