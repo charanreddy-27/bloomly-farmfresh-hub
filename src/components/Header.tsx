@@ -153,70 +153,78 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation - improved layout and touch targets */}
+        {/* Mobile Navigation - elegant slide animations */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border bg-white/98 backdrop-blur-sm
                           animation-slide-down">
             <nav className="py-3 space-y-1">
               <button 
                 onClick={handleHomeClick}
-                className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-150 font-medium 
+                className="text-foreground hover:text-primary 
+                          transition-all duration-300 font-medium 
                           text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 rounded-lg
+                          min-h-[2.25rem] px-4 py-2 
                           inline-flex items-center will-change-transform
-                          hover:translate-x-1"
+                          hover:pl-6 relative group"
                 style={{ 
                   animationDelay: '0.05s',
                   transform: 'translateZ(0)' // Force hardware acceleration
                 }}
               >
                 Home
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
+                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('about', 'about')}
-                className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-150 font-medium 
+                className="text-foreground hover:text-primary 
+                          transition-all duration-300 font-medium 
                           text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 rounded-lg
+                          min-h-[2.25rem] px-4 py-2 
                           inline-flex items-center will-change-transform
-                          hover:translate-x-1"
+                          hover:pl-6 relative group"
                 style={{ 
                   animationDelay: '0.1s',
                   transform: 'translateZ(0)' // Force hardware acceleration
                 }}
               >
                 About
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
+                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('contact', 'contact')}
-                className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-150 font-medium 
+                className="text-foreground hover:text-primary 
+                          transition-all duration-300 font-medium 
                           text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 rounded-lg
+                          min-h-[2.25rem] px-4 py-2 
                           inline-flex items-center will-change-transform
-                          hover:translate-x-1"
+                          hover:pl-6 relative group"
                 style={{ 
                   animationDelay: '0.15s',
                   transform: 'translateZ(0)' // Force hardware acceleration
                 }}
               >
                 Contact
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
+                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
               <button 
                 onClick={() => handleNavClick('/careers')}
-                className="text-foreground hover:text-primary hover:bg-green-100/50 
-                          transition-all duration-150 font-medium 
+                className="text-foreground hover:text-primary 
+                          transition-all duration-300 font-medium 
                           text-responsive-base w-full text-left
-                          min-h-[2.25rem] px-4 py-2 rounded-lg
+                          min-h-[2.25rem] px-4 py-2 
                           inline-flex items-center will-change-transform
-                          hover:translate-x-1"
+                          hover:pl-6 relative group"
                 style={{ 
                   animationDelay: '0.2s',
                   transform: 'translateZ(0)' // Force hardware acceleration
                 }}
               >
                 Careers
+                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 w-0 h-0.5 
+                               transition-all duration-300 group-hover:w-2 bg-primary"></span>
               </button>
             </nav>
           </div>
