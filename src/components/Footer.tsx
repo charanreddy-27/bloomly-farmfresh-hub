@@ -13,12 +13,9 @@ const Footer = () => {
               <img 
                 src="/bloomlyfooter.png" 
                 alt="Bloomly Logo" 
-                className="h-6 md:h-8 w-auto object-contain"
+                className="h-8 md:h-10 w-auto object-contain"
               />
             </div>
-            <p className="text-primary-foreground/80 text-xs md:text-sm leading-relaxed">
-              Connecting farms directly with retailers for fresh, reliable produce delivery.
-            </p>
           </div>
 
           {/* Company */}
