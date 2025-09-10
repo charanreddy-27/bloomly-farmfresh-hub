@@ -1,8 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 const PrivacyPolicy = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -16,7 +22,7 @@ const PrivacyPolicy = () => {
             <div className="prose prose-lg max-w-none space-y-6">
               <div className="text-justify leading-relaxed space-y-4">
                 <p>
-                  <strong>BLOOMLY FARMFRESH HUB PRIVATE LIMITED</strong> ("Company", "We", "Us", or "Our"), a company incorporated under the Companies Act, 2013, with its registered office at Salarpuria Sattva Magnificia,
+                  <strong>BLOOMLY PLATFORMS INDIA PRIVATE LIMITED</strong> ("Company", "We", "Us", or "Our"), a company incorporated under the Companies Act, 2013, with its registered office at Salarpuria Sattva Magnificia,
 78, Old Madras Rd, Mahadevapura, Bangalore - 560016, India which owns and operates the website{" "}
                   <a href="https://bloomly-farmfresh-hub.com" className="text-green-600 hover:underline">
                     https://bloomly-farmfresh-hub.com
