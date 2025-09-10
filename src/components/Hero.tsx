@@ -161,26 +161,26 @@ const Hero = () => {
           /* Mobile-optimized responsive breakpoints */
           @media (max-width: 640px) {
             .hero-title {
-              font-size: 1.75rem;
-              line-height: 1.15;
-              margin-bottom: 1rem;
+              font-size: 1.5rem;
+              line-height: 1.2;
+              margin-bottom: 0.75rem;
             }
             
             .hero-subtitle {
-              font-size: 1.125rem;
-              line-height: 1.35;
+              font-size: 1rem;
+              line-height: 1.4;
             }
           }
 
           @media (min-width: 641px) and (max-width: 768px) {
             .hero-title {
-              font-size: 2.25rem;
-              line-height: 1.15;
+              font-size: 1.875rem;
+              line-height: 1.2;
             }
             
             .hero-subtitle {
-              font-size: 1.375rem;
-              line-height: 1.3;
+              font-size: 1.125rem;
+              line-height: 1.35;
             }
           }
 
@@ -255,20 +255,18 @@ const Hero = () => {
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
-          <div className="flex flex-col items-center justify-center min-h-[70vh] sm:min-h-[75vh] md:min-h-[80vh] text-center">
-            
-            {/* Hero Title with Mobile-Optimized Typography */}
-            <div className="mb-6 sm:mb-8 md:mb-12 lg:mb-16 animate-fade-in-up max-w-5xl mx-auto" 
+        <div className="container mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col items-center justify-center min-h-[60vh] sm:min-h-[70vh] md:min-h-[75vh] lg:min-h-[80vh] text-center">{/* Hero Title with Mobile-Optimized Typography */}
+            <div className="mb-4 sm:mb-6 md:mb-8 lg:mb-12 animate-fade-in-up max-w-5xl mx-auto" 
                  style={{ animationDelay: '0.2s' }}>
-              <h1 className="hero-title text-white leading-tight tracking-tight mb-3 sm:mb-4 md:mb-6 px-2">
+              <h1 className="hero-title text-white leading-tight tracking-tight mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-1">
                 <span className="block mb-1 sm:mb-2">
                   <span className="font-bold">Transforming how </span>
                   <span className="text-gradient-green animate-gradient font-bold">
                     farmers sell Fruits
                   </span>
                 </span>
-                <span className="block mb-2 sm:mb-3">
+                <span className="block mb-1 sm:mb-2">
                   <span className="font-bold">and how </span>
                   <span className="text-gradient-green animate-gradient font-bold">
                     businesses buy
@@ -276,7 +274,7 @@ const Hero = () => {
                 </span>
               </h1>
               
-              <div className="hero-subtitle text-white/90 leading-relaxed max-w-3xl mx-auto px-2">
+              <div className="hero-subtitle text-white/90 leading-relaxed max-w-3xl mx-auto px-1">
                 <span className="block">
                   Bloomly is building a{' '}
                   <span className="text-gradient-green-light animate-gradient font-semibold">

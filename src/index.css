@@ -14,7 +14,7 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 210 24% 12%;
     
-    /* Enhanced Primary Green Palette */
+    /*mobile Green Palette */
     --primary: 138 65% 25%; /* Rich forest green #1A7F37 */
     --primary-foreground: 0 0% 98%;
     --primary-hover: 138 70% 22%;
@@ -109,6 +109,9 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    /* Mobile optimizations */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
   }
   
   /* Enhanced typography with modern font stack */
@@ -1166,5 +1169,169 @@ body {
   100% { 
     opacity: 0.4; 
     transform: scale(1.05); 
+  }
+}
+
+/* Mobile-specific responsive improvements */
+@media (max-width: 767px) {
+  /* Improve touch targets for mobile */
+  button, 
+  a, 
+  input, 
+  select, 
+  textarea,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better mobile section spacing */
+  .section-padding {
+    padding-top: 1.5rem; /* 24px */
+    padding-bottom: 1.5rem; /* 24px */
+  }
+
+  /* Mobile typography improvements */
+  h1, h2, h3 {
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* Mobile container improvements */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Better mobile grid gaps */
+  .grid-responsive-2,
+  .grid-responsive-3,
+  .grid-responsive-4 {
+    gap: 0.75rem;
+  }
+
+  /* Mobile form improvements */
+  input, 
+  textarea, 
+  select {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Fixed positioning improvements for mobile floating elements */
+  .fixed {
+    position: fixed !important;
+  }
+
+  /* Ensure floating buttons don't interfere with content */
+  body {
+    padding-bottom: 80px;
+  }
+
+  /* WhatsApp button mobile optimizations */
+  [aria-label="Chat on WhatsApp"] {
+    font-size: 0.875rem !important;
+    padding: 0.625rem 0.75rem !important;
+    min-width: 120px !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Ensure fixed elements are properly positioned */
+  .fixed {
+    position: fixed !important;
+  }
+
+  /* Better spacing for mobile floating buttons */
+  .fixed[class*="bottom-16"] {
+    bottom: 4rem !important;
+  }
+
+  .fixed[class*="left-3"] {
+    left: 0.75rem !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-padding {
+    padding-top: 2.5rem; /* 40px */
+    padding-bottom: 2.5rem; /* 40px */
+  }
+}
+
+/* Prevent zoom on mobile form inputs */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="password"],
+  textarea,
+  select {
+    font-size: 16px !important;
+    transform: translateZ(0);
+    -webkit-appearance: none;
+  }
+}
+
+/* Mobile landscape improvements */
+@media (max-width: 920px) and (orientation: landscape) {
+  .section-padding {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  h1, h2, h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 375px) {
+  /* Even tighter spacing for very small screens */
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  /* WhatsApp button adjustments for small screens */
+  [aria-label="Chat on WhatsApp"] {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0.75rem !important;
+    min-width: 110px !important;
+    gap: 0.375rem !important;
+  }
+
+  /* Back to top button adjustments */
+  [aria-label="Back to top"] {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  /* Floating elements positioning for small screens */
+  .fixed[class*="bottom-"] {
+    bottom: 0.75rem !important;
+  }
+
+  .fixed[class*="left-"] {
+    left: 0.5rem !important;
+  }
+
+  .fixed[class*="right-"] {
+    right: 0.5rem !important;
+  }
+
+  /* Ensure chat button fits on very small screens */
+  .fixed[class*="bottom-16"] {
+    bottom: 3.5rem !important;
   }
 }
