@@ -23,7 +23,7 @@ const InteractiveFeatures = () => {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = '919876543210'; // Replace with actual WhatsApp number
+    const phoneNumber = '917259536656'; // Replace with actual WhatsApp number
     const message = encodeURIComponent(
       'Hi Bloomly! I\'m interested in learning more about your fresh produce supply chain solutions.'
     );
