@@ -34,6 +34,12 @@ const FlowchartDiagram = () => {
               transform-origin: center top;
               margin-bottom: -120px;
             }
+            
+            /* Ensure text doesn't wrap in mobile view */
+            .flowchart-content .text-sm {
+              white-space: nowrap;
+              font-size: 0.75rem;
+            }
           }
 
           @media (min-width: 641px) and (max-width: 768px) {
