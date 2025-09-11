@@ -244,12 +244,12 @@ const FlowchartDiagram = () => {
                       {/* Right curved arrow to Retailers */}
                       <path 
                         d="M 250 0 L 250 25 Q 250 30 255 30 L 450 30 Q 455 30 455 34 L 455 56" 
-                        stroke="#ed209be1" 
+                        stroke="#006400" 
                         strokeWidth="2" 
                         fill="none" 
                         className="flow-arrow"
                       />
-                      <polygon points="455,56 452,50 458,50" fill="#ed209be1" className="flow-arrow"/>
+                      <polygon points="455,56 452,50 458,50" fill="#006400" className="flow-arrow"/>
                     </svg>
                   </div>
                 </div>
@@ -266,7 +266,7 @@ const FlowchartDiagram = () => {
                   </div>
 
                   <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
-                    <h3 className="font-semibold text-pink-700 text-sm">Retailers</h3>
+                    <h3 className="font-semibold text-green-700 text-sm">Retailers</h3>
                   </div>
                 </div>
               </div>
