@@ -30,7 +30,7 @@ const AboutSection = () => {
               </h4>
               <div className="space-y-4 md:space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  We observed a core challenge in the market: even the largest retail chains and general trade players struggle to source fruits consistently and at the right quality.
+                  We observed a core challenge in the market even the largest retail chains and general trade players struggle to source fruits consistently and at the right quality.
                 </p>
                 <p>
                   While businesses excel at selling to end customers, sourcing remains their biggest bottleneck and reliable, consistent supply is the true backbone of the fresh produce value chain.
