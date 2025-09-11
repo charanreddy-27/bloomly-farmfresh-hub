@@ -1,4 +1,4 @@
-import { Truck, Building2, HandHeart, Users } from "lucide-react";
+import { Truck, Building2, HandHeart, Users, TrendingUp, Shield, CheckCircle2, MapPin } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -38,16 +38,41 @@ const AboutSection = () => {
               </div>
             </div>
             <div className="slide-up px-4 lg:px-0">
-              <div className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-red-100 border-l-4 border-l-red-500">
-                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                  <div className="p-2 md:p-3 rounded-full bg-red-100 flex-shrink-0">
-                    <Building2 className="w-6 h-6 md:w-8 md:h-8 text-red-600" />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-orange-500/5 rounded-3xl blur-xl"></div>
+                <div className="relative bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-red-100">
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-red-100 rounded-lg flex-shrink-0 mt-1">
+                        <TrendingUp className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Inconsistent Supply</h5>
+                        <p className="text-muted-foreground">Large retailers struggle with fruit quality and availability</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-red-100 rounded-lg flex-shrink-0 mt-1">
+                        <Shield className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Quality Concerns</h5>
+                        <p className="text-muted-foreground">Maintaining consistent quality standards is challenging</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-red-100 rounded-lg flex-shrink-0 mt-1">
+                        <Truck className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Supply Chain Gaps</h5>
+                        <p className="text-muted-foreground">Sourcing bottlenecks affect business operations</p>
+                      </div>
+                    </div>
                   </div>
-                  <h5 className="text-lg md:text-xl font-bold text-foreground">Market Reality</h5>
                 </div>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                  Even large retail chains face inconsistent fruit sourcing, affecting their ability to serve customers reliably.
-                </p>
               </div>
             </div>
           </div>
@@ -57,16 +82,41 @@ const AboutSection = () => {
         <div className="max-w-6xl mx-auto mb-12 md:mb-20">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="slide-up order-2 lg:order-1 px-4 lg:px-0">
-              <div className="bg-white rounded-xl p-6 md:p-8 shadow-lg border border-green-100 border-l-4 border-l-green-500">
-                <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                  <div className="p-2 md:p-3 rounded-full bg-green-100 flex-shrink-0">
-                    <HandHeart className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-3xl blur-xl"></div>
+                <div className="relative bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-green-100">
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-green-100 rounded-lg flex-shrink-0 mt-1">
+                        <HandHeart className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Hybrid Purchase Model</h5>
+                        <p className="text-muted-foreground">Farmers can sell at farm gate or distribution centers</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-green-100 rounded-lg flex-shrink-0 mt-1">
+                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Fair & Transparent</h5>
+                        <p className="text-muted-foreground">Market access with transparent pricing and reliable payments</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="p-2 bg-green-100 rounded-lg flex-shrink-0 mt-1">
+                        <MapPin className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h5 className="text-lg font-bold text-foreground mb-2">Reliable Distribution</h5>
+                        <p className="text-muted-foreground">Consistent supply to all types of retail partners</p>
+                      </div>
+                    </div>
                   </div>
-                  <h5 className="text-lg md:text-xl font-bold text-foreground">Our Approach</h5>
                 </div>
-                <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                  A hybrid purchase model that works for both farmers and businesses, ensuring fair access and reliable supply.
-                </p>
               </div>
             </div>
             <div className="fade-in order-1 lg:order-2 px-4 lg:px-0">
