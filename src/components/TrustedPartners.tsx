@@ -50,14 +50,16 @@ const TrustedPartners = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto scroll functionality (mobile only)
   const startAutoScroll = () => {
-    if (!scrollerRef.current || !isMobile || isDragging) return;
+    if (!scrollerRef.current || !isMobile || isDragging || isUserInteracting) return;
     
     const scroll = () => {
-      if (!scrollerRef.current || isDragging || !isAutoScrolling) return;
+      if (!scrollerRef.current || isDragging || !isAutoScrolling || isUserInteracting) return;
       
       const scroller = scrollerRef.current;
       const currentScroll = scroller.scrollLeft;
@@ -69,13 +71,13 @@ const TrustedPartners = () => {
         scroller.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
         // Slower, smoother scrolling
-        scroller.scrollBy({ left: 0.5, behavior: 'auto' });
+        scroller.scrollBy({ left: 0.8, behavior: 'auto' });
       }
     };
     
     // Stop any existing interval first
     stopAutoScroll();
-    autoScrollRef.current = setInterval(scroll, 50); // Slower intervals for smoother motion
+    autoScrollRef.current = setInterval(scroll, 40); // Slightly faster for better visibility
   };
 
   const stopAutoScroll = () => {
@@ -85,6 +87,19 @@ const TrustedPartners = () => {
     }
   };
 
+  const scheduleAutoScrollResume = (delay = 2000) => {
+    // Clear any existing resume timeout
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsUserInteracting(false);
+      setIsAutoScrolling(true);
+      startAutoScroll();
+    }, delay);
+  };
+
   // Mouse handlers for both desktop and mobile
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -92,8 +107,15 @@ const TrustedPartners = () => {
     setScrollLeft(scrollerRef.current?.scrollLeft || 0);
     
     if (isMobile) {
+      setIsUserInteracting(true);
       setIsAutoScrolling(false);
       stopAutoScroll();
+      
+      // Clear any pending resume timeout
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+        resumeTimeoutRef.current = null;
+      }
     }
     
     if (scrollerRef.current) {
@@ -119,11 +141,8 @@ const TrustedPartners = () => {
     }
     
     if (isMobile) {
-      // Resume auto scroll after a short delay
-      setTimeout(() => {
-        setIsAutoScrolling(true);
-        startAutoScroll();
-      }, 2000);
+      // Schedule auto-scroll resume
+      scheduleAutoScrollResume(2000);
     }
   };
 
@@ -135,36 +154,44 @@ const TrustedPartners = () => {
     }
     
     if (isMobile) {
-      // Resume auto scroll after leaving
-      setTimeout(() => {
-        setIsAutoScrolling(true);
-        startAutoScroll();
-      }, 1000);
+      // Schedule auto-scroll resume
+      scheduleAutoScrollResume(1000);
     }
   };
 
   // Touch handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!isMobile) return;
+    setIsUserInteracting(true);
     setIsAutoScrolling(false);
     stopAutoScroll();
+    
+    // Clear any pending resume timeout
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!isMobile) return;
-    // Resume auto scroll after a longer delay to allow for natural scrolling
-    setTimeout(() => {
-      setIsAutoScrolling(true);
-      startAutoScroll();
-    }, 3000); // Increased delay
+    // Schedule auto-scroll resume
+    scheduleAutoScrollResume(3000); // Increased delay for touch
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     // Allow native touch scrolling - don't prevent default
     if (!isMobile) return;
     // Keep auto scroll stopped while user is actively scrolling
+    setIsUserInteracting(true);
     setIsAutoScrolling(false);
     stopAutoScroll();
+    
+    // Clear any pending resume timeout
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
   };
 
   // Mobile infinite scroll setup
@@ -177,21 +204,15 @@ const TrustedPartners = () => {
     if (!scroller || !isMobile) return;
 
     // Handle scroll events to pause auto-scroll when user manually scrolls
-    let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
-      if (!isAutoScrolling) return; // Don't interfere if already paused
+      if (!isAutoScrolling || isUserInteracting) return; // Don't interfere if already paused or user is interacting
       
+      setIsUserInteracting(true);
       setIsAutoScrolling(false);
       stopAutoScroll();
       
-      // Clear existing timeout
-      clearTimeout(scrollTimeout);
-      
-      // Resume auto-scroll after user stops scrolling
-      scrollTimeout = setTimeout(() => {
-        setIsAutoScrolling(true);
-        startAutoScroll();
-      }, 2000);
+      // Schedule auto-scroll resume
+      scheduleAutoScrollResume(2000);
     };
 
     scroller.addEventListener('scroll', handleScroll, { passive: true });
@@ -206,8 +227,11 @@ const TrustedPartners = () => {
     return () => {
       window.removeEventListener('resize', checkMobile);
       scroller.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
       stopAutoScroll();
+      // Clean up resume timeout
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current);
+      }
     };
   }, [isMobile]);
 
