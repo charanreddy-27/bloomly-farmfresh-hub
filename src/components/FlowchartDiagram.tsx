@@ -14,17 +14,23 @@ const FlowchartDiagram = () => {
             animation: arrowFlow 2s ease-in-out infinite;
           }
 
-          /* Mobile responsive flowchart wrapper */
-          .flowchart-mobile-wrapper {
-            overflow-x: auto;
-            overflow-y: visible;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+          /* Ensure proper text centering for all auto-size boxes */
+          .auto-size-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
           }
 
-          .flowchart-mobile-wrapper::-webkit-scrollbar {
-            display: none;
+          .auto-size-box h3 {
+            margin: 0;
+            line-height: 1.3;
+          }
+
+          /* Mobile responsive flowchart wrapper */
+          .flowchart-mobile-wrapper {
+            overflow: visible;
           }
 
           /* Scale the entire flowchart on mobile while preserving design */
@@ -35,10 +41,23 @@ const FlowchartDiagram = () => {
               margin-bottom: -120px;
             }
             
-            /* Ensure text doesn't wrap in mobile view */
-            .flowchart-content .text-sm {
+            /* Auto-size boxes based on content in mobile */
+            .auto-size-box {
+              width: auto !important;
+              min-width: fit-content !important;
+              padding: 0.75rem 1rem !important;
               white-space: nowrap;
-              font-size: 0.75rem;
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+              text-align: center !important;
+            }
+            
+            .auto-size-box h3 {
+              font-size: 0.75rem !important;
+              margin: 0 !important;
+              line-height: 1.2 !important;
             }
           }
 
@@ -80,13 +99,13 @@ const FlowchartDiagram = () => {
                   <div className="flex justify-center items-start gap-12 max-w-3xl mx-auto">
                     
                     {/* Left: Farm-Gate Purchase */}
-                    <div className="bg-white rounded-xl shadow-sm border-2 border-green-200 p-4 text-center w-[180px]">
+                    <div className="bg-white rounded-xl shadow-sm border-2 border-green-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px]">
                       <h3 className="font-semibold text-green-700 text-sm">Bloomly purchases</h3>
                       <h3 className="font-semibold text-green-700 text-sm">at Farm-gate</h3>
                     </div>
 
                     {/* Right: Farmer brings to DC */}
-                    <div className="bg-white rounded-xl shadow-sm border-2 border-orange-200 p-4 text-center w-[180px]">
+                    <div className="bg-white rounded-xl shadow-sm border-2 border-orange-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px]">
                       <h3 className="font-semibold text-orange-700 text-sm">Farmer harvests</h3>
                       <h3 className="font-semibold text-orange-700 text-sm">& brings to DC</h3>
                     </div>
@@ -125,7 +144,7 @@ const FlowchartDiagram = () => {
 
                 {/* Middle: Distribution Center */}
                 <div className="flex justify-center mt-20 mb-4">
-                  <div className="bg-blue-50 rounded-xl shadow-sm border-2 border-blue-200 p-5 text-center w-[220px]">
+                  <div className="bg-blue-50 rounded-xl shadow-sm border-2 border-blue-200 p-5 text-center auto-size-box min-w-[160px] max-w-[220px]">
                     <h3 className="font-bold text-blue-800 text-base">Bloomly's Dispatch</h3>
                     <h3 className="font-bold text-blue-800 text-base">Center</h3>
                   </div>
@@ -171,15 +190,15 @@ const FlowchartDiagram = () => {
                 {/* Bottom Row: Three retail channels */}
                 <div className="flex justify-center items-start gap-20 max-w-5xl mx-auto mt-1">
                   
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center w-[180px]">
+                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px]">
                     <h3 className="font-semibold text-purple-700 text-sm">Modern Trade</h3>
                   </div>
 
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center w-[180px]">
+                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px]">
                     <h3 className="font-semibold text-red-700 text-sm">Wholesale</h3>
                   </div>
 
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center w-[180px]">
+                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px]">
                     <h3 className="font-semibold text-green-700 text-sm">Retailers</h3>
                   </div>
                 </div>
