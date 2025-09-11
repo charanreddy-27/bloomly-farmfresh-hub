@@ -53,7 +53,7 @@ const FlowchartDiagram = () => {
         `}
       </style>
 
-      <section className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
+      <section className="pt-0 pb-8 md:pb-12 lg:pb-16 bg-gradient-to-b from-background to-green-50/30 relative">
         <div className="container mx-auto px-2 sm:px-4 max-w-4xl">
           {/* Simple Header */}
           <div className="text-center mb-4 md:mb-6">

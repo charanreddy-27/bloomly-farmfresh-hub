@@ -241,17 +241,7 @@ const Hero = () => {
       {/* Subtle Pattern Overlay for Texture */}
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_rgba(34,197,94,0.1)_0%,_transparent_70%)]" />
       
-      {/* Floating Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-8 md:right-16 text-green-300/20 
-                        text-3xl md:text-6xl lg:text-7xl transform rotate-12 animate-float-gentle">🍃</div>
-        <div className="absolute bottom-1/4 left-8 md:left-16 text-green-200/25 
-                        text-2xl md:text-4xl lg:text-5xl transform -rotate-12 animate-float-gentle" 
-                        style={{ animationDelay: '1s' }}>🌿</div>
-        <div className="absolute top-1/3 left-1/3 text-green-400/15 
-                        text-xl md:text-3xl lg:text-4xl transform rotate-45 animate-float-gentle" 
-                        style={{ animationDelay: '2s' }}>🌱</div>
-      </div>
+      {/* Floating Decorative Elements - Removed */}
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full">

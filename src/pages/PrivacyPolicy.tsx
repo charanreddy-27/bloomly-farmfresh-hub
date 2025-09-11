@@ -24,8 +24,8 @@ const PrivacyPolicy = () => {
                 <p>
                   <strong>BLOOMLY PLATFORMS INDIA PRIVATE LIMITED</strong> ("Company", "We", "Us", or "Our"), a company incorporated under the Companies Act, 2013, with its registered office at Salarpuria Sattva Magnificia,
 78, Old Madras Rd, Mahadevapura, Bangalore - 560016, India which owns and operates the website{" "}
-                  <a href="https://bloomly-farmfresh-hub.com" className="text-green-600 hover:underline">
-                    https://bloomly-farmfresh-hub.com
+                  <a href="https://Bloomly.co.in" className="text-green-600 hover:underline">
+                    https://Bloomly.co.in
                   </a>{" "}
                   (referred to as "Platform") is committed to protecting your ("Your" or "You", as applicable) privacy and the information that You share while using the Platform. We value the trust You place in Us. That's why, We maintain reasonable security standards for securing the transactions and Your information.
                 </p>

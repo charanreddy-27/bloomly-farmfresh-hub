@@ -2,7 +2,7 @@ import { Truck, Building2, HandHeart, Users } from "lucide-react";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
+    <section id="about" className="pt-8 md:pt-12 lg:pt-16 pb-4 md:pb-6 lg:pb-8 bg-gradient-to-b from-background to-green-50/30 relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-16 left-16 w-24 h-24 bg-green-300 rounded-full blur-2xl" />
