@@ -52,6 +52,27 @@ const FlowchartDiagram = () => {
             }
           }
 
+          @keyframes bloomlyGlow {
+            0%, 100% {
+              box-shadow: 0 8px 30px rgba(52, 211, 153, 0.2), 0 0 20px rgba(34, 197, 94, 0.15);
+            }
+            50% {
+              box-shadow: 0 12px 40px rgba(52, 211, 153, 0.25), 0 0 30px rgba(34, 197, 94, 0.2);
+            }
+          }
+
+          .bloomly-highlight {
+            animation: bloomlyGlow 3s ease-in-out infinite;
+          }
+
+          .bloomly-text {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1f2937;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+          }
+
           .flow-arrow {
             animation: arrowFlow 3s ease-in-out infinite;
             transition: all 0.3s ease;
@@ -166,15 +187,15 @@ const FlowchartDiagram = () => {
                   <div className="flex justify-center items-start gap-12 max-w-3xl mx-auto">
                     
                     {/* Left: Farm-Gate Purchase */}
-                    <div className="bg-white rounded-xl shadow-sm border-2 border-purple-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px] flowchart-box">
-                      <h3 className="font-semibold text-purple-700 text-sm">Bloomly purchases</h3>
-                      <h3 className="font-semibold text-purple-700 text-sm">at Farm-gate</h3>
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl shadow-sm border-2 border-blue-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px] flowchart-box">
+                      <h3 className="font-semibold text-blue-700 text-sm">Bloomly purchases</h3>
+                      <h3 className="font-semibold text-blue-700 text-sm">at Farm-gate</h3>
                     </div>
 
                     {/* Right: Farmer brings to DC */}
-                    <div className="bg-white rounded-xl shadow-sm border-2 border-orange-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px] flowchart-box">
-                      <h3 className="font-semibold text-orange-700 text-sm">Farmer harvests</h3>
-                      <h3 className="font-semibold text-orange-700 text-sm">& brings to DC</h3>
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl shadow-sm border-2 border-amber-200 p-4 text-center auto-size-box min-w-[140px] max-w-[180px] flowchart-box">
+                      <h3 className="font-semibold text-amber-700 text-sm">Farmer harvests</h3>
+                      <h3 className="font-semibold text-amber-700 text-sm">& brings to DC</h3>
                     </div>
                   </div>
 
@@ -185,22 +206,22 @@ const FlowchartDiagram = () => {
                         {/* Left curved path */}
                         <path 
                           d="M 70 0 L 70 20 Q 70 25 74 25 L 156 25 Q 160 25 160 29 L 160 35" 
-                          stroke="#7c3aed" 
+                          stroke="#3b82f6" 
                           strokeWidth="2" 
                           fill="none" 
                           className="flow-arrow"
                         />
-                        <polygon points="160,35 157,29 163,29" fill="#7c3aed" className="flow-arrow"/>
+                        <polygon points="160,35 157,29 163,29" fill="#3b82f6" className="flow-arrow"/>
                         
                         {/* Right curved path */}
                         <path 
                           d="M 250 0 L 250 20 Q 250 25 246 25 L 164 25 Q 160 25 160 29 L 160 35" 
-                          stroke="#ea580c" 
+                          stroke="#f59e0b" 
                           strokeWidth="2" 
                           fill="none" 
                           className="flow-arrow"
                         />
-                        <polygon points="160,35 157,29 163,29" fill="#ea580c" className="flow-arrow"/>
+                        <polygon points="160,35 157,29 163,29" fill="#f59e0b" className="flow-arrow"/>
                       </svg>
                     </div>
                   </div>
@@ -211,9 +232,17 @@ const FlowchartDiagram = () => {
 
                 {/* Middle: Distribution Center */}
                 <div className="flex justify-center mt-20 mb-4">
-                  <div className="bg-green-50 rounded-xl shadow-sm border-2 border-green-200 p-5 text-center auto-size-box min-w-[160px] max-w-[220px] flowchart-box">
-                    <h3 className="font-bold text-green-800 text-base">Bloomly's Dispatch</h3>
-                    <h3 className="font-bold text-green-800 text-base">Center</h3>
+                  <div className="bg-gradient-to-br from-emerald-100 to-green-200 rounded-xl shadow-lg border-2 border-emerald-300 p-6 text-center auto-size-box min-w-[180px] max-w-[240px] flowchart-box bloomly-highlight relative overflow-hidden">
+                    {/* Glow effect background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/40 to-green-100/40 rounded-xl blur-sm"></div>
+                    <div className="relative z-10">
+                      <h3 className="font-bold text-lg mb-1">
+                        <span className="bloomly-text text-xl font-bold">Bloomly's</span>
+                      </h3>
+                      <h3 className="font-semibold text-gray-700 text-base">Dispatch Center</h3>
+                    </div>
+                    {/* Subtle animation border */}
+                    <div className="absolute inset-0 rounded-xl border-2 border-emerald-200/60 animate-pulse"></div>
                   </div>
                 </div>
 
@@ -224,32 +253,32 @@ const FlowchartDiagram = () => {
                       {/* Left curved arrow to Modern Trade */}
                       <path 
                         d="M 250 0 L 250 25 Q 250 30 245 30 L 50 30 Q 45 30 45 34 L 45 56" 
-                        stroke="#0b42ccef" 
+                        stroke="#8b5cf6" 
                         strokeWidth="2" 
                         fill="none" 
                         className="flow-arrow"
                       />
-                      <polygon points="45,56 42,50 48,50" fill="#0b42ccef" className="flow-arrow"/>
+                      <polygon points="45,56 42,50 48,50" fill="#8b5cf6" className="flow-arrow"/>
                       
                       {/* Center straight arrow to Wholesale */}
                       <path 
                         d="M 250 0 L 250 56" 
-                        stroke="#dc2626" 
+                        stroke="#ef4444" 
                         strokeWidth="2" 
                         fill="none" 
                         className="flow-arrow"
                       />
-                      <polygon points="250,56 247,50 253,50" fill="#dc2626" className="flow-arrow"/>
+                      <polygon points="250,56 247,50 253,50" fill="#ef4444" className="flow-arrow"/>
                       
                       {/* Right curved arrow to Retailers */}
                       <path 
                         d="M 250 0 L 250 25 Q 250 30 255 30 L 450 30 Q 455 30 455 34 L 455 56" 
-                        stroke="#006400" 
+                        stroke="#06b6d4" 
                         strokeWidth="2" 
                         fill="none" 
                         className="flow-arrow"
                       />
-                      <polygon points="455,56 452,50 458,50" fill="#006400" className="flow-arrow"/>
+                      <polygon points="455,56 452,50 458,50" fill="#06b6d4" className="flow-arrow"/>
                     </svg>
                   </div>
                 </div>
@@ -257,16 +286,16 @@ const FlowchartDiagram = () => {
                 {/* Bottom Row: Three retail channels */}
                 <div className="flex justify-center items-start gap-20 max-w-5xl mx-auto mt-1">
                   
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
-                    <h3 className="font-semibold text-blue-700 text-sm">Modern Trade</h3>
+                  <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-xl shadow-sm border border-purple-200 p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
+                    <h3 className="font-semibold text-purple-700 text-sm">Modern Trade</h3>
                   </div>
 
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
+                  <div className="bg-gradient-to-br from-red-50 to-rose-100 rounded-xl shadow-sm border border-red-200 p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
                     <h3 className="font-semibold text-red-700 text-sm">Wholesale</h3>
                   </div>
 
-                  <div className="bg-white rounded-xl shadow-sm border p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
-                    <h3 className="font-semibold text-green-700 text-sm">Retailers</h3>
+                  <div className="bg-gradient-to-br from-cyan-50 to-sky-100 rounded-xl shadow-sm border border-cyan-200 p-4 text-center auto-size-box min-w-[100px] max-w-[150px] flowchart-box">
+                    <h3 className="font-semibold text-cyan-700 text-sm">Retailers</h3>
                   </div>
                 </div>
               </div>
