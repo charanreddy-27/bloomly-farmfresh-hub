@@ -268,7 +268,7 @@ const Hero = () => {
                 <span className="block">
                   Bloomly is building a{' '}
                   <span className="text-gradient-green-light animate-gradient font-semibold">
-                    supportive ecosystem
+                    strong ecosystem
                   </span>
                   {' '}for both
                 </span>
