@@ -54,7 +54,7 @@ const TrustedPartners = () => {
 
   // Auto scroll functionality (mobile only)
   const startAutoScroll = () => {
-    if (!scrollerRef.current || !isMobile) return;
+    if (!scrollerRef.current || !isMobile || isDragging) return;
     
     const scroll = () => {
       if (!scrollerRef.current || isDragging || !isAutoScrolling) return;
@@ -64,15 +64,18 @@ const TrustedPartners = () => {
       const maxScroll = scroller.scrollWidth - scroller.clientWidth;
       
       // Smooth auto scroll to the right
-      if (currentScroll >= maxScroll - 10) {
+      if (currentScroll >= maxScroll - 5) {
         // Reset to beginning when reaching end
         scroller.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        scroller.scrollBy({ left: 1, behavior: 'auto' });
+        // Slower, smoother scrolling
+        scroller.scrollBy({ left: 0.5, behavior: 'auto' });
       }
     };
     
-    autoScrollRef.current = setInterval(scroll, 30); // Smooth 30ms intervals
+    // Stop any existing interval first
+    stopAutoScroll();
+    autoScrollRef.current = setInterval(scroll, 50); // Slower intervals for smoother motion
   };
 
   const stopAutoScroll = () => {
@@ -141,16 +144,27 @@ const TrustedPartners = () => {
   };
 
   // Touch handlers for mobile
-  const handleTouchStart = () => {
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isMobile) return;
     setIsAutoScrolling(false);
     stopAutoScroll();
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isMobile) return;
+    // Resume auto scroll after a longer delay to allow for natural scrolling
     setTimeout(() => {
       setIsAutoScrolling(true);
       startAutoScroll();
-    }, 2000);
+    }, 3000); // Increased delay
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    // Allow native touch scrolling - don't prevent default
+    if (!isMobile) return;
+    // Keep auto scroll stopped while user is actively scrolling
+    setIsAutoScrolling(false);
+    stopAutoScroll();
   };
 
   // Mobile infinite scroll setup
@@ -162,18 +176,40 @@ const TrustedPartners = () => {
     const scroller = scrollerRef.current;
     if (!scroller || !isMobile) return;
 
-    // Set initial position
+    // Handle scroll events to pause auto-scroll when user manually scrolls
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      if (!isAutoScrolling) return; // Don't interfere if already paused
+      
+      setIsAutoScrolling(false);
+      stopAutoScroll();
+      
+      // Clear existing timeout
+      clearTimeout(scrollTimeout);
+      
+      // Resume auto-scroll after user stops scrolling
+      scrollTimeout = setTimeout(() => {
+        setIsAutoScrolling(true);
+        startAutoScroll();
+      }, 2000);
+    };
+
+    scroller.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Set initial position and start auto-scroll
     setTimeout(() => {
-      scroller.scrollLeft = 0; // Start from beginning for auto scroll
+      scroller.scrollLeft = 0;
       setIsAutoScrolling(true);
       startAutoScroll();
-    }, 500);
+    }, 1000); // Increased delay for better initialization
     
     return () => {
       window.removeEventListener('resize', checkMobile);
+      scroller.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
       stopAutoScroll();
     };
-  }, [partners.length, isMobile]);
+  }, [isMobile]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -238,6 +274,9 @@ const TrustedPartners = () => {
               -webkit-mask: none;
               padding: 0 1rem;
               scroll-behavior: auto;
+              -webkit-overflow-scrolling: touch;
+              touch-action: pan-x;
+              overscroll-behavior-x: contain;
             }
             
             .scroller-inner {
@@ -295,6 +334,7 @@ const TrustedPartners = () => {
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             style={{ scrollBehavior: isAutoScrolling ? 'auto' : 'smooth' }}
           >
