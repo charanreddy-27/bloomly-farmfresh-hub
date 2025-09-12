@@ -5,18 +5,19 @@ interface CounterProps {
   start?: number;
   duration?: number;
   suffix?: string;
+  prefix?: string;
   className?: string;
 }
 
 const Counter: React.FC<CounterProps> = ({ 
   end, 
   start = 0, 
-  duration = 2000, 
+  duration = 1500, // Reduced from 2000ms to 1500ms for quicker animation
   suffix = '', 
+  prefix = '',
   className = '' 
 }) => {
   const [count, setCount] = useState(start);
-  const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const counterRef = useRef<HTMLDivElement>(null);
 
@@ -24,23 +25,35 @@ const Counter: React.FC<CounterProps> = ({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
-          setIsVisible(true);
           setHasAnimated(true);
+          startCountAnimation();
         }
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
     );
 
     if (counterRef.current) {
       observer.observe(counterRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [hasAnimated]);
+    // Backup trigger in case intersection observer doesn't work
+    const backupTimer = setTimeout(() => {
+      if (!hasAnimated) {
+        setHasAnimated(true);
+        startCountAnimation();
+      }
+    }, 500); // Reduced from 1000ms to 500ms for quicker backup trigger
 
-  useEffect(() => {
-    if (!isVisible) return;
+    return () => {
+      observer.disconnect();
+      clearTimeout(backupTimer);
+    };
+  }, []);
 
+  const startCountAnimation = () => {
     let startTime: number | null = null;
     const startValue = start;
     const endValue = end;
@@ -48,11 +61,12 @@ const Counter: React.FC<CounterProps> = ({
 
     const animate = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
-      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
       
-      // Easing function for smooth animation
-      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-      const currentCount = Math.floor(startValue + (difference * easeOutCubic));
+      // Quicker easing for faster feel
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3); // Changed from easeOutQuart to easeOutCubic for quicker response
+      const currentCount = Math.round(startValue + (difference * easeOutCubic));
       
       setCount(currentCount);
 
@@ -64,11 +78,16 @@ const Counter: React.FC<CounterProps> = ({
     };
 
     requestAnimationFrame(animate);
-  }, [isVisible, start, end, duration]);
+  };
 
   return (
-    <div ref={counterRef} className={className}>
-      {count.toLocaleString()}{suffix}
+    <div 
+      ref={counterRef} 
+      className={`counter-container ${className}`}
+    >
+      <span className="font-bold tabular-nums tracking-tight">
+        {`${prefix}${count.toLocaleString()}${suffix}`}
+      </span>
     </div>
   );
 };

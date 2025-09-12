@@ -1080,6 +1080,27 @@ All colors MUST be HSL.
   opacity: 0;
 }
 
+/* Counter Animation Optimizations */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Smooth counter animation styles */
+.counter-container {
+  contain: layout;
+  will-change: contents;
+}
+
+.counter-container span {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .animate-float-slow {
   animation: floatSlow 8s ease-in-out infinite;
 }

@@ -1,36 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { TrendingUp, Users, Truck, Network, Weight, CheckCircle2 } from 'lucide-react';
-
-const Counter = ({ end, duration = 2000, prefix = '', suffix = '' }: {
-  end: number;
-  duration?: number;
-  prefix?: string;
-  suffix?: string;
-}) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let startTime: number;
-    let animationId: number;
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const progress = (currentTime - startTime) / duration;
-
-      if (progress < 1) {
-        setCount(Math.floor(end * progress));
-        animationId = requestAnimationFrame(animate);
-      } else {
-        setCount(end);
-      }
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [end, duration]);
-
-  return <span>{prefix}{count.toLocaleString()}{suffix}</span>;
-};
+import Counter from './ui/Counter';
 
 const Metrics = () => {
   const metrics = [
@@ -61,26 +31,6 @@ const Metrics = () => {
     }
   ];
 
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in-up');
-        }
-      });
-    }, observerOptions);
-
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    animateElements.forEach(el => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section id="metrics" className="section-padding bg-gradient-to-b from-background to-green-50/30 relative">
       {/* Background Pattern - responsive positioning */}
@@ -93,7 +43,7 @@ const Metrics = () => {
 
       <div className="container relative z-10">
         {/* Section Header - improved mobile typography */}
-        <div className="text-center mb-8 md:mb-12 animate-on-scroll">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-foreground mb-3 md:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4">
             Bloomly's{' '}
             <span 
@@ -119,8 +69,7 @@ const Metrics = () => {
             return (
               <div 
                 key={index}
-                className="animate-on-scroll group w-full"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group w-full"
               >
                 <div className="bg-white rounded-lg shadow-md border border-green-100 
                                 hover:shadow-lg transition-all duration-300 hover:-translate-y-1
@@ -138,7 +87,7 @@ const Metrics = () => {
                     <Counter 
                       end={metric.value} 
                       suffix={metric.suffix}
-                      duration={2000 + index * 200}
+                      duration={1200 + index * 200}
                     />
                   </div>
                   
