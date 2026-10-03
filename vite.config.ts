@@ -17,12 +17,17 @@ export default defineConfig(({ mode }) => ({
   },
   publicDir: "public",
   build: {
+    assetsDir: "assets",
+    // Split stable vendor code into long-cacheable chunks.
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
+      input: { main: path.resolve(__dirname, "index.html") },
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "react-router-dom"],
+          motion: ["framer-motion", "lenis"],
+        },
       },
     },
-    assetsDir: "assets",
     copyPublicDir: true,
   },
 }));

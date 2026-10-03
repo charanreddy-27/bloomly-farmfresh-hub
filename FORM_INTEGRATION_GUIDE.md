@@ -1,3 +1,5 @@
+> **Outdated (pre-2026 redesign).** This describes the old site. The current site has no forms: contact and careers use email (operations@bloomly.co.in) — see `README.md`.
+
 # 📧 Form Integration Setup Guide
 
 ## 🚨 **Current Status**

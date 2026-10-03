@@ -1,29 +1,31 @@
-import Header from "../components/Header";
-import Hero from "../components/Hero";
-import Metrics from "../components/Metrics";
-import TrustedPartners from "../components/TrustedPartners";
-import FlowchartDiagram from "../components/FlowchartDiagram";
-import AboutSection from "../components/AboutSection";
-import ContactSection from "../components/ContactSection";
-import Footer from "../components/Footer";
-import InteractiveFeatures from "../components/InteractiveFeatures";
+import SiteLayout from "@/components/site/SiteLayout";
+import Hero from "@/components/home/Hero";
+import Ticker from "@/components/home/Ticker";
+import Problem from "@/components/home/Problem";
+import Mission from "@/components/home/Mission";
+import HybridModel from "@/components/home/HybridModel";
+import TwoSides from "@/components/home/TwoSides";
+import Impact from "@/components/home/Impact";
+import Partners from "@/components/home/Partners";
+import Contact from "@/components/home/Contact";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <Hero />
-        <Metrics />
-        <AboutSection />
-        <FlowchartDiagram />
-        <TrustedPartners />
-        <ContactSection />
-      </main>
-      <Footer />
-      <InteractiveFeatures />
-    </div>
-  );
-};
+/**
+ * The homepage is one story, told in chapters:
+ * who we are → the broken chain → our mission → how the hybrid model fixes it →
+ * what each side gets → proof → who trusts us → talk to us.
+ */
+const Index = () => (
+  <SiteLayout rail>
+    <Hero />
+    <Ticker />
+    <Problem />
+    <Mission />
+    <HybridModel />
+    <TwoSides />
+    <Impact />
+    <Partners />
+    <Contact />
+  </SiteLayout>
+);
 
 export default Index;
