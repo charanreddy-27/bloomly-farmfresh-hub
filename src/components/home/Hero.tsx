@@ -1,100 +1,33 @@
-import { animate, motion, useMotionValue, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { animate, motion, useMotionValue, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import HeroFilm from "@/components/home/HeroFilm";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { SplitText } from "@/components/motion/SplitText";
 import { useIntroReady } from "@/components/site/Intro";
-import { hero } from "@/lib/content";
+import { hero, partners } from "@/lib/content";
 import { EASE_PREMIUM } from "@/lib/motion";
 import { useGoToSection } from "@/lib/scroll";
 
-const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
-const easeInOut = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-const RADIUS = 20;
-
 /**
- * Headline on deep green, with the Bloomly film framed below it.
- * On scroll the frame opens to full-bleed and the opening line of the story appears.
+ * The opening statement, paired with a live, framed preview of the network
+ * it describes — not just a headline on a blurred gradient. The hero uses
+ * Lenis snap plus a restrained depth shift to make the first scroll feel intentional.
  */
 export default function Hero() {
   const ready = useIntroReady();
   const reduce = useReducedMotion();
   const goTo = useGoToSection();
-
   const sectionRef = useRef<HTMLElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
-  // Where the frame sits at rest, measured from the layout (px, relative to the pinned viewport)
-  const rest = useRef({ x: 0, y: 0, w: 0, h: 0, vw: 0, vh: 0 });
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
-  const entrance = useMotionValue(reduce ? 1 : 0);
-
-  // The film's live rectangle: drives the clip, the canvas layout and the frame chrome together.
-  const fx = useMotionValue(0);
-  const fy = useMotionValue(0);
-  const fw = useMotionValue(0);
-  const fh = useMotionValue(0);
-  const radius = useMotionValue(RADIUS);
-  const clipPath = useMotionValue("inset(100% 0% 0% 0%)");
-  // the film composes itself in a slightly shorter box once full-bleed, leaving room for the headline below it
-  const filmH = useMotionValue(0);
-
-  const update = useCallback(() => {
-    const r = rest.current;
-    if (!r.vw) return;
-    const e = reduce ? 0 : easeInOut(clamp01(scrollYProgress.get() / 0.5));
-    const open = entrance.get();
-    const x = lerp(r.x, 0, e);
-    const w = lerp(r.w, r.vw, e);
-    const bottom = lerp(r.y + r.h, r.vh, e);
-    const top = lerp(lerp(r.y + r.h, r.y, open), 0, e); // rises open on load, then expands on scroll
-    const rad = lerp(RADIUS, 0, e);
-    fx.set(x);
-    fy.set(top);
-    fw.set(w);
-    fh.set(Math.max(0, bottom - top));
-    filmH.set(Math.max(0, bottom - top) * lerp(1, 0.74, e));
-    radius.set(rad);
-    clipPath.set(`inset(${top}px ${r.vw - x - w}px ${r.vh - bottom}px ${x}px round ${rad}px)`);
-  }, [clipPath, entrance, filmH, fh, fw, fx, fy, radius, reduce, scrollYProgress]);
-
-  useLayoutEffect(() => {
-    const measure = () => {
-      const st = stickyRef.current?.getBoundingClientRect();
-      const fr = frameRef.current?.getBoundingClientRect();
-      if (!st || !fr || !st.height) return;
-      rest.current = { x: fr.left - st.left, y: fr.top - st.top, w: fr.width, h: fr.height, vw: st.width, vh: st.height };
-      update();
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (stickyRef.current) ro.observe(stickyRef.current);
-    if (frameRef.current) ro.observe(frameRef.current);
-    return () => ro.disconnect();
-  }, [update]);
-
-  useMotionValueEvent(scrollYProgress, "change", update);
-  useMotionValueEvent(entrance, "change", update);
-
-  useEffect(() => {
-    if (!ready || reduce) return;
-    const controls = animate(entrance, 1, { duration: 1.5, ease: EASE_PREMIUM, delay: 0.5 });
-    return () => controls.stop();
-  }, [ready, reduce, entrance]);
-
-  const contentY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-30%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0]);
-  const filmUi = useTransform(scrollYProgress, [0.12, 0.3], [1, 0]);
-  const shade = useTransform(scrollYProgress, [0.32, 0.6], [0, 1]);
-  const settle = useTransform(scrollYProgress, [0.06, 0.34], [0, 1]);
-  const always = useMotionValue(1); // reduced motion: the hero has no scroll range, so keep the caption visible
-
-  const [showCaption, setShowCaption] = useState(false);
-  useMotionValueEvent(scrollYProgress, "change", (p) => setShowCaption(p > 0.48));
+  // The foreground moves faster than the ambient field, creating a gentle
+  // depth shift while Lenis handles the section snap.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-24%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.25]);
+  const contentScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
+  const glowY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: 18, filter: "blur(8px)" },
@@ -103,62 +36,146 @@ export default function Hero() {
   });
 
   return (
-    <section ref={sectionRef} className="relative bg-forest-800" style={{ height: reduce ? "100svh" : "250vh" }} aria-label="Introduction">
-      <div ref={stickyRef} className="sticky top-0 flex h-[100svh] flex-col overflow-hidden">
-        {/* Headline block */}
-        <motion.div
-          className="container relative z-10 pt-[calc(var(--header-h)+1.25rem)] [@media(min-height:780px)]:pt-[calc(var(--header-h)+3rem)]"
-          style={reduce ? undefined : { y: contentY, opacity: contentOpacity }}
-        >
-          <motion.p {...rise(0)} className="eyebrow text-cream/55">
-            <span className="h-1 w-1 rounded-full bg-leaf" />
-            {hero.eyebrow}
+    <section
+      ref={sectionRef}
+      data-snap-section
+      data-parallax-section
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden bg-forest-800 px-5 pb-12 md:pb-0"
+      aria-label="Introduction"
+    >
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: "radial-gradient(55% 50% at 20% 25%, rgba(139,181,94,0.16), transparent 70%)",
+          y: reduce ? undefined : glowY,
+        }}
+        aria-hidden
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={ready ? { opacity: 1 } : undefined}
+        transition={{ duration: 2.4, ease: EASE_PREMIUM, delay: 0.3 }}
+        style={{ y: reduce ? undefined : glowY }}
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden
+      >
+        <motion.span
+          className="absolute -left-[14%] top-[10%] h-[42vh] w-[42vh] rounded-full bg-leaf/[0.1] blur-[110px]"
+          animate={{ x: [0, 24, 0], y: [0, -16, 0] }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.span
+          className="absolute -right-[10%] bottom-[8%] h-[46vh] w-[46vh] rounded-full bg-citrus/[0.08] blur-[120px]"
+          animate={{ x: [0, -20, 0], y: [0, 18, 0] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+      </motion.div>
+
+      <motion.div
+        style={reduce ? undefined : { y: contentY, opacity: contentOpacity, scale: contentScale }}
+        className="container relative -top-6 grid items-center gap-8 pt-[var(--header-h)] lg:grid-cols-[1.05fr_1fr] lg:gap-14 xl:gap-20"
+      >
+        <div className="text-center lg:text-left">
+          <SplitText
+            as="h1"
+            text={hero.headline}
+            play={ready}
+            delay={0.1}
+            stagger={0.045}
+            className="display-xl mx-auto mt-6 max-w-xl text-cream md:mt-7 lg:mx-0"
+          />
+
+          <motion.p {...rise(0.5)} className="mx-auto mt-6 max-w-[32rem] text-lg leading-relaxed text-cream/65 md:mt-7 lg:mx-0">
+            {hero.sub}
           </motion.p>
 
-          <SplitText as="h1" text={hero.headline} play={ready} delay={0.1} stagger={0.045} className="display-xl mt-5 max-w-5xl text-cream md:mt-6" />
-
-          <motion.div {...rise(0.55)} className="mt-6 flex flex-col gap-6 md:mt-7 lg:flex-row lg:items-end lg:justify-between">
-            <p className="max-w-[34rem] text-[1.0625rem] leading-relaxed text-cream/65">{hero.sub}</p>
-            <div className="flex flex-wrap gap-3">
-              <Magnetic>
-                <button type="button" onClick={() => goTo("contact", "retailer")} className="btn-leaf group">
-                  Source fruit with us
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:rotate-45" strokeWidth={1.75} />
-                </button>
-              </Magnetic>
-              <button type="button" onClick={() => goTo("contact", "farmer")} className="btn-ghost-light">
-                I'm a farmer
+          <motion.div {...rise(0.62)} className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:mt-10 lg:justify-start">
+            <Magnetic>
+              <button type="button" onClick={() => goTo("contact", "retailer")} className="btn-leaf group">
+                Source fruit with us
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 ease-premium group-hover:rotate-45" strokeWidth={1.75} />
               </button>
-            </div>
+            </Magnetic>
+            <button
+              type="button"
+              onClick={() => goTo("contact", "farmer")}
+              className="group inline-flex items-center gap-1.5 text-[0.9375rem] font-medium text-cream/70 transition-colors duration-300 hover:text-cream"
+            >
+              I'm a farmer
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-500 ease-premium group-hover:rotate-45" strokeWidth={1.75} />
+            </button>
           </motion.div>
-        </motion.div>
 
-        {/* Where the film frame sits before it opens */}
-        <div className="container relative flex min-h-[24vh] flex-1 pb-4 pt-7 md:pb-6 md:pt-9">
-          <div ref={frameRef} className="h-full w-full" />
+          <motion.p {...rise(0.78)} className="mx-auto mt-10 text-sm text-cream/40 lg:mx-0">
+            Trusted by {partners.logos.slice(0, 4).map((p) => p.name).join(", ")} and more.
+          </motion.p>
         </div>
 
-        {/* Film layer — clipped to the frame, opening to full-bleed */}
-        <motion.div className="absolute inset-0 z-20" style={{ clipPath }}>
-          <HeroFilm rect={{ x: fx, y: fy, w: fw, h: filmH, radius }} uiOpacity={reduce ? always : filmUi} settle={settle} ready={ready} />
-
-          {!reduce && (
-            <motion.div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-forest-900 via-forest-900/40 to-transparent" style={{ opacity: shade }}>
-              <div className="container pb-[9vh]">
-                <SplitText as="p" text={hero.reveal} play={showCaption} stagger={0.07} className="display-xl max-w-4xl text-cream" />
-                <motion.p
-                  className="mt-4 max-w-md text-lg text-cream/70"
-                  initial={false}
-                  animate={showCaption ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-                  transition={{ duration: 0.9, ease: EASE_PREMIUM, delay: showCaption ? 0.35 : 0 }}
-                >
-                  {hero.revealSub}
-                </motion.p>
-              </div>
-            </motion.div>
-          )}
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={ready ? { opacity: 1, y: 0, scale: 1 } : undefined}
+          transition={{ duration: 1.2, ease: EASE_PREMIUM, delay: 0.5 }}
+          className="hidden lg:block"
+        >
+          <LiveDiagram ready={ready} />
         </motion.div>
-      </div>
+      </motion.div>
+
+      <motion.div
+        style={reduce ? undefined : { opacity: cueOpacity }}
+        className="absolute inset-x-0 bottom-7 md:bottom-9"
+        aria-hidden
+      >
+        <motion.div {...rise(1.1)} className="flex flex-col items-center gap-2 text-cream/40">
+          <span className="text-[0.625rem] font-medium uppercase tracking-[0.3em]">Scroll</span>
+          <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
+            <ArrowDown className="h-4 w-4" strokeWidth={1.5} />
+          </motion.span>
+        </motion.div>
+      </motion.div>
     </section>
+  );
+}
+
+/** A framed, looping glimpse of the same network the headline describes — the full-bleed telling comes later. */
+function LiveDiagram({ ready }: { ready: boolean }) {
+  const reduce = useReducedMotion();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const w = useMotionValue(0);
+  const h = useMotionValue(0);
+  const radius = useMotionValue(28);
+  const uiOpacity = useMotionValue(0);
+  const settle = useMotionValue(reduce ? 1 : 0);
+
+  useLayoutEffect(() => {
+    const el = panelRef.current;
+    if (!el) return;
+    const measure = () => {
+      const r = el.getBoundingClientRect();
+      w.set(r.width);
+      h.set(r.height);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [h, w]);
+
+  useEffect(() => {
+    if (!ready || reduce) return;
+    const controls = animate(settle, 1, { duration: 1, delay: 0.6, ease: EASE_PREMIUM });
+    return () => controls.stop();
+  }, [ready, reduce, settle]);
+
+  return (
+    <div
+      ref={panelRef}
+      className="pointer-events-none relative aspect-[6/5] w-full overflow-hidden rounded-[1.75rem] border border-white/10 shadow-[0_50px_90px_-35px_rgba(2,12,8,0.7)]"
+    >
+      <HeroFilm rect={{ x, y, w, h, radius }} uiOpacity={uiOpacity} settle={settle} ready={ready} />
+      <div className="absolute inset-0 rounded-[inherit] ring-1 ring-inset ring-white/10" />
+    </div>
   );
 }

@@ -42,6 +42,10 @@
     scroll-padding-top: var(--header-h);
   }
 
+  section[id] {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
+
   body {
     @apply bg-cream font-sans text-ink antialiased;
     text-rendering: optimizeLegibility;

@@ -34,7 +34,6 @@ export const chapters = [
 export type ChapterId = (typeof chapters)[number]["id"];
 
 export const hero = {
-  eyebrow: "B2B fresh fruit supply · Bengaluru",
   // *word* = italic accent, \n = line break
   headline: "Transforming how farmers *sell* fruit,\nand how businesses *buy* it.",
   sub: "Bloomly is building India's most reliable B2B fresh fruit supply chain: fair, transparent sourcing for farmers, and consistent, quality supply for the businesses that sell it.",

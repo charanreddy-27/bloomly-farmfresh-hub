@@ -45,8 +45,16 @@ export default function Header() {
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
     setScrolled(y > 40);
-    setHidden(y > prev && y > 480);
+    setHidden(y > prev && y > 640);
   });
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -112,11 +120,11 @@ export default function Header() {
                 </>
               );
               return item.to ? (
-                <Link key={item.label} to={item.to} className={cls}>
+                <Link key={item.label} to={item.to} className={cls} aria-current={isActive ? "page" : undefined}>
                   {inner}
                 </Link>
               ) : (
-                <button key={item.label} type="button" onClick={() => handleNav(item)} className={cls}>
+                <button key={item.label} type="button" onClick={() => handleNav(item)} className={cls} aria-current={isActive ? "page" : undefined}>
                   {inner}
                 </button>
               );

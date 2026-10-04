@@ -16,6 +16,7 @@ import { EASE_PREMIUM } from "@/lib/motion";
 
 const DURATION = 20;
 const SCENE_ENDS = [3.0, 5.6, 10.2, 14.4, DURATION];
+const SPEED = 1.6; // plays the whole loop faster — this now runs once per view, not as a long ambient background
 const STILL_AT = 16.5; // the frame shown to reduced-motion users
 
 const CREAM = [246, 243, 234] as const;
@@ -320,8 +321,9 @@ export default function HeroFilm({ rect, uiOpacity, settle, ready }: Props) {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
       if (!visible || document.hidden) return;
-      if (!reduce && !pausedRef.current) time = (time + dt) % DURATION;
-      draw(reduce || pausedRef.current ? 0 : dt);
+      const step = dt * SPEED;
+      if (!reduce && !pausedRef.current) time = (time + step) % DURATION;
+      draw(reduce || pausedRef.current ? 0 : step);
       sync();
     };
 

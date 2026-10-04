@@ -1,59 +1,63 @@
-import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { motion, type Variants } from "framer-motion";
+import { Fragment, useMemo } from "react";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
 import { ChapterLabel } from "@/components/site/ChapterLabel";
+import { Reveal } from "@/components/motion/Reveal";
 import { parseMarked } from "@/components/motion/SplitText";
 import { mission } from "@/lib/content";
+import { EASE_OUT } from "@/lib/motion";
 
-function Word({ parts, progress, range }: { parts: { text: string; accent: boolean }[]; progress: MotionValue<number>; range: [number, number] }) {
-  const opacity = useTransform(progress, range, [0.14, 1]);
-  const y = useTransform(progress, range, [6, 0]);
-  return (
-    <motion.span style={{ opacity, y }} className="inline-block">
-      {parts.map((p, i) => (
-        <span key={i} className={p.accent ? "accent-italic text-leaf" : undefined}>
-          {p.text}
-        </span>
-      ))}
-    </motion.span>
-  );
-}
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.035, delayChildren: 0.1 } },
+};
+const word: Variants = {
+  hidden: { opacity: 0.16, y: 4 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
+};
 
-/** The mission statement lights up word by word as you scroll through it. */
+/** The mission statement lights up word by word as it scrolls into view — once, not scroll-scrubbed. */
 export default function Mission() {
-  const ref = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const words = useMemo(() => parseMarked(mission.statement).flat(), []);
-
-  const start = 0.08;
-  const end = 0.78;
-  const step = (end - start) / words.length;
+  const lines = useMemo(() => parseMarked(mission.statement), []);
 
   return (
-    <section
-      id="mission"
-      ref={ref}
-      className="relative bg-forest-800 text-cream"
-      style={{ height: reduce ? "auto" : "260vh" }}
-    >
-      <div className={reduce ? "relative py-32" : "sticky top-0 flex h-[100svh] items-center overflow-hidden"}>
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 [background:radial-gradient(closest-side,rgba(139,181,94,0.13),transparent)]" aria-hidden />
-        <div className="pointer-events-none absolute -right-[6%] top-1/2 hidden w-[34vw] max-w-[520px] -translate-y-1/2 opacity-[0.07] lg:block" aria-hidden>
-          <BloomlyLogo mark />
-        </div>
+    <section id="mission" className="relative overflow-hidden bg-forest-800 py-28 text-cream md:py-40">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[80vh] w-[80vh] -translate-x-1/2 -translate-y-1/2 [background:radial-gradient(closest-side,rgba(139,181,94,0.13),transparent)]" aria-hidden />
+      <div className="pointer-events-none absolute -right-[6%] top-1/2 hidden w-[34vw] max-w-[520px] -translate-y-1/2 opacity-[0.07] lg:block" aria-hidden>
+        <BloomlyLogo mark />
+      </div>
 
-        <div className="container relative z-10">
-          <ChapterLabel number="02" label="The mission" dark />
+      <div className="container relative z-10">
+        <ChapterLabel number="02" label="The mission" dark />
+        <Reveal>
           <p className="accent-italic mt-8 text-xl text-leaf md:text-2xl">{mission.lead}</p>
-          <p className="display-md mt-6 max-w-5xl text-balance md:text-[clamp(2rem,3.5vw,3.4rem)] md:leading-[1.12]" aria-label={mission.statement.replace(/\*/g, "")}>
-            {words.map((w, i) => (
-              <span key={i} aria-hidden>
-                <Word parts={w.parts} progress={scrollYProgress} range={reduce ? [-1, 0] : [start + i * step, start + (i + 1) * step]} />{" "}
-              </span>
-            ))}
-          </p>
-        </div>
+        </Reveal>
+
+        <motion.p
+          className="display-md mt-6 max-w-5xl text-balance md:text-[clamp(2rem,3.5vw,3.4rem)] md:leading-[1.12]"
+          aria-label={mission.statement.replace(/\*/g, "")}
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          {lines.map((line, li) => (
+            <span key={li} className="block" aria-hidden>
+              {line.map((t, wi) => (
+                <Fragment key={wi}>
+                  <motion.span variants={word} className="inline-block">
+                    {t.parts.map((p, pi) => (
+                      <span key={pi} className={p.accent ? "accent-italic text-leaf" : undefined}>
+                        {p.text}
+                      </span>
+                    ))}
+                  </motion.span>
+                  {wi < line.length - 1 && " "}
+                </Fragment>
+              ))}
+            </span>
+          ))}
+        </motion.p>
       </div>
     </section>
   );
