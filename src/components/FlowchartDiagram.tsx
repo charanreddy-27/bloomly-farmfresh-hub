@@ -5,22 +5,19 @@ import { Reveal } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Node = { title: string; note: string; share?: string };
+type Node = { title: string; note: string };
 
-const middle: Node[] = [
-  { title: "Farm-gate", note: "aggregator" },
-  { title: "Production Mandi", note: "(APMC)" },
-];
+const middle: Node[] = [{ title: "Farm-gate aggregators", note: "Collect and bring fruit in" }];
 const hubPoints = ["Open weighing", "A / B / C grading", "Spot payment"];
 const channels: Node[] = [
-  { title: "General Trade / Retailers", note: "Neighbourhood stores", share: "40%" },
-  { title: "Wholesalers", note: "Bulk buyers", share: "25–30%" },
-  { title: "Modern Trade", note: "Supermarket chains", share: "20–30%" },
-  { title: "Quick Commerce", note: "Instant-delivery apps", share: "5%" },
+  { title: "General Trade / Retailers", note: "Neighbourhood stores" },
+  { title: "Wholesalers", note: "Bulk buyers" },
+  { title: "Modern Trade", note: "Supermarket chains" },
+  { title: "Quick Commerce", note: "Instant-delivery apps" },
 ];
 
 const steps = [
-  { name: "Enter", detail: "A farmer or aggregator arrives at India's private mandi." },
+  { name: "Enter", detail: "A farmer or aggregator calls ahead with the tonnage and arrives at the Bloomly mandi." },
   { name: "Weigh & grade", detail: "Open weighing and transparent A / B / C grades." },
   { name: "Slip", detail: "An instant receipt: the grade attaches to the price, on paper." },
   { name: "Pay", detail: "Spot payment by RTGS or UPI, with zero commission." },
@@ -63,10 +60,7 @@ function NodeCard({ node, show, delay, compact = false, innerRef }: { node: Node
       animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.7, ease: EASE, delay }}
     >
-      <p className="font-bold leading-snug text-ink">
-        {node.title}
-        {node.share && <span className="ml-2 text-sm font-semibold text-[#D9694F]">{node.share}</span>}
-      </p>
+      <p className="font-bold leading-snug text-ink">{node.title}</p>
       <p className="mt-1 text-sm leading-snug text-ink-muted">{node.note}</p>
     </motion.div>
   );
@@ -95,13 +89,12 @@ const FlowchartDiagram = () => {
       const group = box(groupEl);
       const mid = middleRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
       const out = channelRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
-      if (mid.length < 2 || !out.length) return;
+      if (!mid.length || !out.length) return;
 
       const wide = prod.r <= mid[0].l; // desktop: producers, middle stack, hub, channels in a row
       const paths: Geometry["paths"] = wide
         ? [
             ...mid.map((m) => ({ d: across(prod, m), out: false })),
-            { d: down(mid[0], mid[1]), out: false },
             ...mid.map((m) => ({ d: across(m, hub), out: false })),
             ...out.map((c) => ({ d: across(hub, c), out: true })),
           ]
@@ -170,7 +163,7 @@ const FlowchartDiagram = () => {
           </motion.div>
 
           {/* 2. farm-gate aggregator and production mandi */}
-          <div className="grid grid-cols-2 gap-3 lg:col-start-2 lg:row-start-2 lg:grid-cols-1 lg:gap-12 lg:self-center">
+          <div className="mx-auto grid w-full max-w-[16rem] gap-3 lg:col-start-2 lg:row-start-2 lg:max-w-none lg:self-center">
             {middle.map((m, i) => (
               <NodeCard key={m.title} node={m} show={seen} delay={0.15 + i * 0.1} innerRef={(el) => (middleRefs.current[i] = el)} />
             ))}
@@ -210,8 +203,8 @@ const FlowchartDiagram = () => {
         </div>
 
         <Reveal className="mx-auto mt-10 max-w-3xl text-center text-sm italic leading-relaxed text-ink-muted">
-          What one consumption node absorbs: Azadpur, Delhi — 14,000 tonnes cleared daily across 78 acres, most of it before
-          sunrise · Koyambedu, Chennai — ~1,500 lorries a day, peaking above 12,000 tonnes
+          Azadpur, Delhi alone clears over 10,000 tonnes a day, and Koyambedu, Chennai sees well over 1,000 lorries daily. That
+          is the scale a single city mandi handles every day. Bloomly is building the private alternative, one metro at a time.
         </Reveal>
 
         <Reveal className="mx-auto mt-10 max-w-2xl text-center text-[0.9375rem] leading-relaxed text-ink-soft md:mt-12">

@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const farmerPains = [
-  "Commission taken at every hop in the chain",
+  "Commission and handling charges, all taken before the farmer is paid",
   "A long wait for payment",
   "No say on grade or price",
 ];
@@ -19,8 +19,8 @@ const buyers = [
 
 const benefits = [
   { title: "One accountable institution", body: "Not a cluster of agents: one company that owns the fruit and the outcome." },
-  { title: "Fair & Transparent", body: "Market access with transparent pricing and reliable payments." },
-  { title: "Reliable Distribution", body: "Consistent supply to all types of retail partners." },
+  { title: "Open grading, paid on the spot", body: "You see the weight, the grade and the price. Money reaches your account the same day." },
+  { title: "A buyer for every grade", body: "A-grade to supermarkets, quick commerce and neighbourhood stores; misfits to juice and cut-fruit businesses." },
 ];
 
 const cardLabel = "text-[0.8125rem] font-bold uppercase tracking-[0.12em] text-ink-muted";

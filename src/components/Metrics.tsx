@@ -98,7 +98,7 @@ const Metrics = () => {
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-14 md:gap-5 lg:grid-cols-6">
           <Stat value={3100} suffix="+" delay={0}>
-            Metric tonnes delivered
+            Metric tonnes handled
           </Stat>
           <Stat value={2800} suffix="+" delay={0.06}>
             Farmers connected

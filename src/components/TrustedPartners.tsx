@@ -23,7 +23,7 @@ const TrustedPartners = () => {
           <h2 className="h-section">
             Trusted by Leading <span className="hl">Retailers</span>
           </h2>
-          <p className="lead mt-4">Join the growing network of successful retailers who trust Bloomly for their fresh produce needs.</p>
+          <p className="lead mt-4">Supplying India's leading supermarkets and quick-commerce apps.</p>
         </Reveal>
       </div>
 
