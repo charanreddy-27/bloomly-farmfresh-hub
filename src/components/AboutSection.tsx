@@ -5,13 +5,11 @@ import { Reveal } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-/* What a farmer loses in the mandi chain before being paid (from the investor deck). */
-const leakage = [
-  { name: "Commission", value: "10%", share: 10, tone: "bg-ink" },
-  { name: "Wastage deduction", value: "10%", share: 10, tone: "bg-ink/50" },
-  { name: "Handling", value: "1–2%", share: 2, tone: "bg-ink/20" },
+const farmerPains = [
+  "Commission taken at every hop in the chain",
+  "A long wait for payment",
+  "No say on grade or price",
 ];
-const leakageTotal = leakage.reduce((sum, l) => sum + l.share, 0);
 
 const businessPains = [
   "Too small for any single agent to commit to reliably",
@@ -20,7 +18,7 @@ const businessPains = [
 ];
 
 const benefits = [
-  { title: "Hybrid Purchase Model", body: "Farmers can sell at the farm gate or at our distribution centers." },
+  { title: "India's Private Mandi", body: "Farmers can sell at the farm gate or at our private mandi." },
   { title: "Fair & Transparent", body: "Market access with transparent pricing and reliable payments." },
   { title: "Reliable Distribution", body: "Consistent supply to all types of retail partners." },
 ];
@@ -99,36 +97,16 @@ const AboutSection = () => {
               {/* The farmer */}
               <Reveal className="card flex flex-col p-7 md:p-8">
                 <p className={cardLabel}>The farmer</p>
-                <p className={cardFigure}>21–22%</p>
-                <p className="mt-3 text-lg font-bold leading-snug text-ink">of value is gone before the farmer is paid</p>
+                <p className={cardFigure}>10%</p>
+                <p className="mt-3 text-lg font-bold leading-snug text-ink">goes to commission before the farmer is paid</p>
 
-                <div className="mt-6 flex h-2 gap-1" aria-hidden>
-                  {leakage.map((l, i) => (
-                    <motion.span
-                      key={l.name}
-                      className={`origin-left rounded-full ${l.tone}`}
-                      style={{ width: `${(l.share / leakageTotal) * 100}%` }}
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{ duration: 0.8, ease: EASE, delay: 0.2 + i * 0.18 }}
-                    />
-                  ))}
-                </div>
-                <ul className="mt-4 space-y-2 text-[0.9375rem]">
-                  {leakage.map((l) => (
-                    <li key={l.name} className="flex items-center justify-between gap-3">
-                      <span className="flex items-center gap-2.5 text-ink-soft">
-                        <span className={`h-2 w-2 rounded-full ${l.tone}`} />
-                        {l.name}
-                      </span>
-                      <span className="font-bold text-ink">{l.value}</span>
+                <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
+                  {farmerPains.map((pain) => (
+                    <li key={pain} className="py-3 text-ink-soft last:pb-0">
+                      {pain}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-auto pt-5 text-[0.9375rem] leading-relaxed text-ink-soft">
-                  Then a wait for payment, with no say on grade or price.
-                </p>
               </Reveal>
 
               {/* The business */}
@@ -156,7 +134,7 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  Bloomly set out to solve this as the private mandi: owned and transparent. Through our hybrid purchase model,
+                  Bloomly set out to solve this as the private mandi: owned and transparent. Through India's private mandi,
                   we source quality produce and ensure efficient distribution. This gives farmers fair market access,
                   transparent pricing, and reliable payments.
                 </p>
