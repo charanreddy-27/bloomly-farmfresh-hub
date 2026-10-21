@@ -1,13 +1,13 @@
 import { motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { EASE_PREMIUM } from "@/lib/motion";
 import { LOGO_SHAPES, LOGO_VIEWBOX, type LogoShape } from "./logoPaths";
 
 const LEAF = "#7FC141";
+const EASE = [0.32, 0.72, 0, 1] as const;
 const MARK_VIEWBOX = "110 50 2030 1940"; // just the two leaves
 
-/* Each shape animates from where it would naturally grow:
-   the leaves unfurl from the diagonal seam they share, letters rise, the green "o" swells like a bud. */
+/* Each shape moves the way it would naturally grow: the two leaves unfurl from
+   the diagonal seam they share, the letters rise into place, and the green "o" swells. */
 const origin = (s: LogoShape) => {
   if (s.id === "leafUpper") return { originX: 0, originY: 1 };
   if (s.id === "leafLower") return { originX: 1, originY: 0 };
@@ -15,37 +15,33 @@ const origin = (s: LogoShape) => {
 };
 
 const leaf: Variants = {
-  hidden: { scale: 0, rotate: -24, opacity: 0 },
-  show: (i: number) => ({
-    scale: 1,
-    rotate: 0,
-    opacity: 1,
-    transition: { duration: 1.25, ease: EASE_PREMIUM, delay: i * 0.14 },
-  }),
+  hidden: { scale: 0, rotate: -22, opacity: 0 },
+  show: (i: number) => ({ scale: 1, rotate: 0, opacity: 1, transition: { duration: 1.05, ease: EASE, delay: i * 0.13 } }),
 };
 const letter: Variants = {
-  hidden: { y: 420, opacity: 0 },
-  show: (i: number) => ({ y: 0, opacity: 1, transition: { duration: 0.95, ease: EASE_PREMIUM, delay: 0.42 + i * 0.055 } }),
+  hidden: { y: 380, opacity: 0 },
+  show: (i: number) => ({ y: 0, opacity: 1, transition: { duration: 0.8, ease: EASE, delay: 0.38 + i * 0.05 } }),
 };
 const dot: Variants = {
   hidden: { scale: 0, opacity: 0 },
-  show: (i: number) => ({ scale: 1, opacity: 1, transition: { duration: 0.9, ease: EASE_PREMIUM, delay: 0.5 + i * 0.055 } }),
+  show: (i: number) => ({ scale: 1, opacity: 1, transition: { duration: 0.8, ease: EASE, delay: 0.44 + i * 0.05 } }),
 };
 
 type Props = {
   className?: string;
-  /** "dark" = forest letters (for light backgrounds); "light" = cream letters (for dark backgrounds). */
+  /** "dark" = green letters for light backgrounds; "light" = white letters for dark backgrounds. */
   tone?: "dark" | "light";
   /** Only the two leaves. */
   mark?: boolean;
-  /** true/false plays or resets the build-in animation; leave undefined for a static logo. */
+  /** Overrides the leaf colour (used for the faint watermark). */
+  leafColor?: string;
+  /** true plays the build-in, false resets it; leave undefined for a static logo. */
   play?: boolean;
-  /** Leaves sway gently on hover. */
-  interactive?: boolean;
   title?: string;
 };
 
-export function BloomlyLogo({ className, tone = "dark", mark = false, play, interactive = false, title = "Bloomly" }: Props) {
+/** The Bloomly logo drawn from its real artwork, shape by shape, so it can build itself. */
+export function BloomlyLogo({ className, tone = "dark", mark = false, leafColor = LEAF, play, title = "Bloomly" }: Props) {
   const shapes = mark ? LOGO_SHAPES.filter((s) => s.kind === "leaf") : LOGO_SHAPES;
   const animated = play !== undefined;
   let letterIndex = 0;
@@ -54,35 +50,23 @@ export function BloomlyLogo({ className, tone = "dark", mark = false, play, inte
     <motion.svg
       viewBox={mark ? MARK_VIEWBOX : `0 0 ${LOGO_VIEWBOX.w} ${LOGO_VIEWBOX.h}`}
       className={cn("block overflow-visible", className)}
-      role="img"
-      aria-label={title}
+      role={title ? "img" : undefined}
+      aria-label={title || undefined}
+      aria-hidden={title ? undefined : true}
       initial={animated ? "hidden" : false}
       animate={animated ? (play ? "show" : "hidden") : undefined}
-      whileHover={interactive ? "sway" : undefined}
     >
       {shapes.map((s) => {
-        const isLeaf = s.kind === "leaf";
-        const index = isLeaf ? (s.id === "leafUpper" ? 0 : 1) : letterIndex++;
+        const green = s.kind !== "letter";
+        const index = s.kind === "leaf" ? (s.id === "leafUpper" ? 0 : 1) : letterIndex++;
         return (
           <g key={s.id} transform={`translate(${s.x},${s.y})`}>
             <motion.path
               d={s.d}
               custom={index}
-              variants={
-                isLeaf
-                  ? {
-                      ...leaf,
-                      sway: { rotate: s.id === "leafUpper" ? [0, -7, 3, 0] : [0, 6, -2, 0], transition: { duration: 1.4, ease: "easeInOut" } },
-                    }
-                  : s.kind === "dot"
-                    ? dot
-                    : letter
-              }
-              style={{ ...origin(s), fill: isLeaf || s.kind === "dot" ? LEAF : undefined }}
-              className={cn(
-                !isLeaf && s.kind !== "dot" && "transition-[fill] duration-500",
-                !isLeaf && s.kind !== "dot" && (tone === "light" ? "fill-cream" : "fill-forest"),
-              )}
+              variants={s.kind === "leaf" ? leaf : s.kind === "dot" ? dot : letter}
+              style={{ ...origin(s), fill: green ? (s.kind === "leaf" ? leafColor : LEAF) : undefined }}
+              className={cn(!green && "transition-[fill] duration-700", !green && (tone === "light" ? "fill-white" : "fill-forest"))}
             />
           </g>
         );

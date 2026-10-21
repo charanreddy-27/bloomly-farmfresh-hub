@@ -1,7 +1,7 @@
-import { ArrowLeft } from "lucide-react";
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import SiteLayout from "@/components/site/SiteLayout";
+import { useEffect } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const NotFound = () => {
   const location = useLocation();
@@ -11,21 +11,18 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <SiteLayout>
-      <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-cream pt-[var(--header-h)]">
-        <div className="container relative text-center">
-          <p className="font-display text-[clamp(5rem,14vw,9rem)] leading-none text-forest/15">404</p>
-          <h1 className="display-lg mx-auto mt-2 max-w-xl text-forest">
-            This one fell off the <span className="accent-italic text-leaf-600">truck</span>.
-          </h1>
-          <p className="mx-auto mt-4 max-w-md text-lg text-ink-soft">The page you're looking for doesn't exist — but there's plenty of fresh stuff back home.</p>
-          <Link to="/" className="btn-forest group mt-10">
-            <ArrowLeft className="h-4 w-4 transition-transform duration-500 ease-out-expo group-hover:-translate-x-1" />
-            Back to home
-          </Link>
-        </div>
-      </section>
-    </SiteLayout>
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+      <main className="container flex flex-1 flex-col items-start justify-center pb-24 pt-[calc(var(--header-h)+4rem)]">
+        <p className="eyebrow">404</p>
+        <h1 className="h-section mt-3 text-forest">Page not found</h1>
+        <p className="lead mt-4 max-w-md">The page you're looking for doesn't exist or has moved.</p>
+        <Link to="/" className="btn-forest mt-8">
+          Return to Home
+        </Link>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

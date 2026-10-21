@@ -1,157 +1,56 @@
-# Bloomly Website - Production Deployment Guide
+# Bloomly website: hosting guide
 
-## Performance Optimizations Implemented
+The site is a static single-page app (Vite + React). Hosting it means building it and uploading the result.
 
-### 1. **SEO Optimizations**
-- Complete meta tags for social media sharing
-- Structured data (JSON-LD) for search engines
-- Canonical URLs
-- Open Graph and Twitter Cards
-- Optimized title and description tags
-
-### 2. **Performance Features**
-- Font preloading for critical web fonts
-- Lazy loading for images
-- Optimized CSS with modern animations
-- Component-based architecture for code splitting
-- Preconnect to external domains
-
-### 3. **Visual Enhancements**
-- Premium SVG logo with gradient effects
-- Glassmorphism design elements
-- Smooth scroll animations and parallax effects
-- Interactive hover states and micro-animations
-- Modern gradient backgrounds
-
-### 4. **Interactive Features**
-- WhatsApp chat widget with pulse animation
-- Back-to-top button with smooth scrolling
-- Animated number counters
-- Working navigation with route-based routing
-- Contact form with loading states
-
-## Build Commands for Production
+## 1. Build
 
 ```bash
-# Install dependencies
 npm install
-
-# Build for production
 npm run build
+```
 
-# Preview production build
+This creates the `dist` folder. To look at the built site locally before uploading:
+
+```bash
 npm run preview
 ```
 
-## Deployment to Hostinger
+## 2. Upload to Hostinger
 
-### 1. **Build the Project**
-```bash
-npm run build
-```
+1. Open **hPanel > Files > File Manager** and go to `public_html`.
+2. Delete the old site files there (keep anything unrelated to the website, such as mail folders).
+3. Upload **the contents of `dist`**, not the `dist` folder itself. The quickest way is to upload `bloomly-website-upload.zip` (created from `dist`) and use **Extract** into `public_html`.
+4. Check that `.htaccess` is in `public_html`. It is a hidden file, so turn on "show hidden files" if you don't see it. Without it, opening `bloomly.co.in/privacy-policy` directly gives a 404.
 
-### 2. **Upload Files**
-Upload the contents of the `dist` folder to your Hostinger public_html directory.
+## 3. Check after upload
 
-### 3. **Required Files for Hostinger**
-Create `.htaccess` file in the root directory:
+- `https://bloomly.co.in/` loads, and the logo intro plays once.
+- `https://bloomly.co.in/privacy-policy` loads when opened directly.
+- The partner logos, the hero photo and the fonts all load.
+- "Write to us" and "Copy address" in the contact card use `operations@bloomly.co.in`.
 
-```apache
-# Enable compression
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/plain
-  AddOutputFilterByType DEFLATE text/html
-  AddOutputFilterByType DEFLATE text/xml
-  AddOutputFilterByType DEFLATE text/css
-  AddOutputFilterByType DEFLATE application/xml
-  AddOutputFilterByType DEFLATE application/xhtml+xml
-  AddOutputFilterByType DEFLATE application/rss+xml
-  AddOutputFilterByType DEFLATE application/javascript
-  AddOutputFilterByType DEFLATE application/x-javascript
-</IfModule>
+If the old site still shows, clear the cache in **hPanel > Advanced > Cache Manager** and reload with Ctrl+F5.
 
-# Handle React Router
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
+## What the site contains
 
-# Cache static assets
-<IfModule mod_expires.c>
-  ExpiresActive on
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/jpg "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-</IfModule>
-```
+| Page | Address |
+|---|---|
+| Home (hero, Bloomly's Journey, mission, challenge and solution, how it works, partners, contact) | `/` |
+| Privacy policy | `/privacy-policy` |
+| Page not found | any other address |
 
-### 4. **Environment Variables**
-Update any API endpoints or contact form handlers in production.
+Contact is by email only (`operations@bloomly.co.in`); there are no forms, so nothing needs configuring on the server.
 
-## Features Checklist ✅
+## Where to change things
 
-### Design & UI
-- ✅ Premium SVG logo with gradient two-leaf design
-- ✅ Modern gradient hero background
-- ✅ Glassmorphism cards and effects
-- ✅ Floating background animations
-- ✅ Parallax scrolling effects
-- ✅ Premium typography (Nunito/Quicksand fonts)
-- ✅ Responsive design for all screen sizes
+| To change | Edit |
+|---|---|
+| Contact email | `CONTACT_EMAIL` in `src/components/ContactSection.tsx` |
+| Numbers in Bloomly's Journey | `src/components/Metrics.tsx` |
+| Challenge and solution text | `src/components/AboutSection.tsx` |
+| How-it-works diagram and steps | `src/components/FlowchartDiagram.tsx` |
+| Partner logos | `partners` in `src/components/TrustedPartners.tsx` (image files in `public/`) |
+| Page title and link-preview text | `index.html` |
+| Colours and font | `tailwind.config.ts` |
 
-### Functionality
-- ✅ Working navigation between pages
-- ✅ Smooth scrolling to sections
-- ✅ Animated number counters
-- ✅ Contact form with validation
-- ✅ WhatsApp chat integration
-- ✅ Back-to-top button
-- ✅ Mobile hamburger menu
-
-### Pages
-- ✅ Homepage with complete sections
-- ✅ About page with timeline and team
-- ✅ Contact page with working form
-- ✅ 404 error page
-
-### SEO & Performance
-- ✅ Complete meta tags
-- ✅ Structured data
-- ✅ Optimized images
-- ✅ Font preloading
-- ✅ Minified CSS/JS in production
-- ✅ Gzip compression ready
-
-### Animations
-- ✅ Fade-in animations on scroll
-- ✅ Card hover effects
-- ✅ Button interactions
-- ✅ Loading states
-- ✅ Smooth transitions
-- ✅ Floating elements
-
-## Browser Support
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers
-
-## Final Notes
-The website is now production-ready with:
-- Premium, professional design
-- Full functionality
-- Optimized performance
-- Mobile responsiveness
-- SEO optimization
-- Interactive features
-
-Ready for immediate deployment to Hostinger or any web hosting platform.
+After any change, build again and re-upload `dist`.

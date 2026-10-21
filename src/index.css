@@ -3,32 +3,39 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------
-   Bloomly design tokens
-   Brand: forest #0F4C32 · leaf #8BB55E · cream #F6F3EA
-   shadcn variables are kept so components/ui/* keep working.
+   Bloomly — the brand's own greens on white.
+   Wordmark green #0F4C32, leaf green #7FC141, one sans-serif family.
+   The shadcn variables are kept so components/ui/* keep working.
 ------------------------------------------------------------------- */
 @layer base {
   :root {
-    --background: 45 38% 94%;
-    --foreground: 150 38% 9%;
-    --card: 45 50% 98%;
-    --card-foreground: 150 38% 9%;
-    --popover: 153 67% 9%;
-    --popover-foreground: 45 38% 94%;
-    --primary: 155 67% 18%;
-    --primary-foreground: 45 38% 96%;
-    --secondary: 88 50% 51%;
-    --secondary-foreground: 155 67% 12%;
-    --accent: 36 90% 55%;
-    --accent-foreground: 150 38% 9%;
-    --muted: 44 30% 88%;
-    --muted-foreground: 146 7% 45%;
-    --destructive: 4 62% 53%;
-    --destructive-foreground: 45 38% 96%;
-    --border: 44 25% 84%;
-    --input: 44 25% 80%;
-    --ring: 88 50% 51%;
-    --radius: 1rem;
+    --background: 0 0% 100%;
+    --foreground: 150 35% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 35% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 35% 9%;
+    --primary: 155 67% 18%; /* forest #0F4C32 */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 154 65% 23%;
+    --primary-light: 144 27% 89%;
+    --secondary: 144 27% 95%;
+    --secondary-foreground: 155 67% 18%;
+    --secondary-light: 144 27% 97%;
+    --accent: 144 27% 95%;
+    --accent-foreground: 155 67% 18%;
+    --accent-hover: 144 27% 90%;
+    --muted: 120 18% 96%;
+    --muted-foreground: 143 6% 46%;
+    --subtle: 120 18% 97%;
+    --success: 153 64% 29%;
+    --warning: 31 85% 47%;
+    --destructive: 4 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 137 14% 90%; /* line #E2E9E4 */
+    --input: 137 14% 86%;
+    --ring: 155 67% 18%;
+    --radius: 0.75rem;
 
     --header-h: 76px;
   }
@@ -38,157 +45,94 @@
   }
 
   html {
-    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
     scroll-padding-top: var(--header-h);
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-cream font-sans text-ink antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: clip;
+    @apply bg-white font-sans text-ink antialiased;
+    line-height: 1.65;
+    word-spacing: 0.08em;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
-    background: #8bb55e;
-    color: #041a11;
+    background: #0f4c32;
+    color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid #8bb55e;
+    outline: 2px solid #1b7a50;
     outline-offset: 3px;
     border-radius: 6px;
   }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-/* Lenis smooth scroll */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
 }
 
 @layer components {
-  .font-display {
-    letter-spacing: -0.012em;
+  /* Vertical rhythm shared by every homepage section */
+  .section {
+    @apply py-20 md:py-28;
   }
 
-  /* Display type scale — editorial but restrained: presence without shouting */
-  .display-xl {
-    @apply font-display font-normal;
-    font-size: clamp(2.75rem, 5.4vw, 5.1rem);
-    line-height: 1.01;
-    letter-spacing: -0.018em;
-  }
-  .display-lg {
-    @apply font-display font-normal;
-    font-size: clamp(2.25rem, 4.1vw, 3.9rem);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
-  }
-  .display-md {
-    @apply font-display font-normal;
-    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
-    line-height: 1.12;
-    letter-spacing: -0.012em;
-  }
-
-  .accent-italic {
-    @apply font-display italic;
-  }
-
-  /* Chapter label: "01 — The problem" */
+  /* Small green label above a heading */
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[0.6875rem] font-medium uppercase tracking-[0.2em];
+    @apply text-[0.8125rem] font-bold uppercase tracking-[0.14em] text-leaf-700;
+  }
+
+  .h-section {
+    @apply font-extrabold text-ink;
+    font-size: clamp(1.9rem, 3.3vw, 2.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  /* The green word in a heading */
+  .hl {
+    @apply text-forest-600;
+  }
+
+  .lead {
+    @apply text-[1.0625rem] leading-relaxed text-ink-soft md:text-lg;
   }
 
   .btn {
-    @apply relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 py-3.5 text-[0.9375rem] font-medium transition-[background-color,border-color,color,transform] duration-500 ease-premium active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
-  }
-  /* Primary on dark surfaces: cream, not lime */
-  .btn-leaf {
-    @apply btn bg-cream text-forest-800 hover:bg-white;
+    @apply inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-[0.9375rem] font-semibold transition-colors duration-200;
   }
   .btn-forest {
-    @apply btn bg-forest text-cream hover:bg-forest-500;
+    @apply btn bg-forest text-white hover:bg-forest-700;
   }
-  .btn-ghost-light {
-    @apply btn border border-white/25 bg-white/5 text-cream backdrop-blur-md hover:border-white/50 hover:bg-white/10;
+  .btn-white {
+    @apply btn bg-white text-forest hover:bg-leaf-50;
   }
-  .btn-ghost-dark {
-    @apply btn border border-forest/20 text-forest hover:border-forest/50 hover:bg-forest/5;
-  }
-
-  .hairline {
-    @apply h-px w-full bg-current opacity-15;
+  .btn-outline-light {
+    @apply btn border border-white/30 text-white hover:border-white/60 hover:bg-white/10;
   }
 
-  /* Fade the edges of horizontal marquees */
+  .card {
+    @apply rounded-2xl border border-line bg-white;
+    box-shadow:
+      0 1px 2px rgba(15, 76, 50, 0.04),
+      0 14px 34px -22px rgba(15, 76, 50, 0.22);
+  }
+
+  /* Fades the left and right edges of a scrolling row */
   .mask-fade-x {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   }
-
-  /* Legal / long-form text */
-  .prose-legal h1 {
-    @apply mb-8 font-display text-4xl text-forest md:text-5xl;
-  }
-  .prose-legal h2 {
-    @apply mb-4 mt-12 font-display text-2xl text-forest md:text-3xl;
-  }
-  .prose-legal h3 {
-    @apply mb-2 mt-6 text-lg font-semibold text-ink;
-  }
-  .prose-legal p {
-    @apply mb-4 leading-relaxed text-ink-soft;
-  }
-  .prose-legal ul {
-    @apply mb-4 list-disc space-y-2 pl-6 text-ink-soft marker:text-leaf-500;
-  }
-  .prose-legal a {
-    @apply font-medium text-forest underline decoration-leaf decoration-2 underline-offset-4 hover:text-leaf-600;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  .pause-on-hover:hover > * {
-    animation-play-state: paused;
-  }
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-/* Film grain — gives flat colour fields an organic, printed feel */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 @media (prefers-reduced-motion: reduce) {
