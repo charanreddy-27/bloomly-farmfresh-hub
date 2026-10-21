@@ -1,4 +1,4 @@
-> **Outdated (pre-2026 redesign).** This describes the old site. The current site has no forms: contact and careers use email (operations@bloomly.co.in) — see `README.md`.
+> **Outdated.** This describes the previous version of the site. The current site has no forms and no careers page; contact is by email (operations@bloomly.co.in). See `DEPLOYMENT_GUIDE.md`.
 
 # Mobile Responsiveness Assessment Report
 

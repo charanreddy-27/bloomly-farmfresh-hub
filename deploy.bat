@@ -9,7 +9,7 @@ echo Next steps:
 echo 1. Go to your Hostinger File Manager
 echo 2. Navigate to public_html folder
 echo 3. Delete old files (if any)
-echo 4. Upload all contents from the 'dist' folder
+echo 4. Upload all contents from the 'dist' folder ^(including the hidden .htaccess file^)
 echo 5. Your website will be live!
 echo.
 echo Files ready for upload are in the 'dist' folder
