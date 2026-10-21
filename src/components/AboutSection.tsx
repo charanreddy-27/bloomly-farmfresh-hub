@@ -57,8 +57,8 @@ function Mission() {
               transition={{ duration: 1.1, ease: EASE, delay: 0.7 }}
             >
               private mandi network
-            </motion.span>
-            : one accountable alternative to the APMC mandi, in every metro.
+            </motion.span>{" "}
+            in all the major cities.
           </motion.h2>
         </div>
 
