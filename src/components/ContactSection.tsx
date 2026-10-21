@@ -75,9 +75,6 @@ const ContactSection = () => {
                   WhatsApp us
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <a href={CONTACT_MAP_HREF} target="_blank" rel="noopener noreferrer" className="btn-outline-light">
-                  View on map
-                </a>
                 <button type="button" onClick={copyEmail} aria-live="polite" className="btn-outline-light">
                   {copied ? <Check className="h-4 w-4 text-leaf-300" /> : <Copy className="h-4 w-4" />}
                   {copied ? "Copied" : "Copy email"}
