@@ -127,9 +127,9 @@ const FlowchartDiagram = () => {
       <div className="container">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="h-section">
-            India's Private Mandi for <span className="hl">Fruits</span>
+            How the private <span className="hl">mandi</span> works
           </h2>
-          <p className="lead mt-4">From the farm gate to the private mandi, and out to every channel.</p>
+          <p className="lead mt-4">Farmers and aggregators bring fruit in. Every grade goes out to a buyer.</p>
         </Reveal>
 
         <div

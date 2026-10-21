@@ -93,7 +93,7 @@ const Metrics = () => {
           <h2 className="h-section">
             Bloomly's <span className="hl">Journey</span>
           </h2>
-          <p className="lead mt-4">Our growing network of partners proves that direct sourcing works for businesses of all sizes.</p>
+          <p className="lead mt-4">Proof that a private mandi works, for farmers and for businesses of every size.</p>
         </Reveal>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-14 md:gap-5 lg:grid-cols-6">

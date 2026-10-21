@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
-import { CONTACT_EMAIL } from "./ContactSection";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_MAP_HREF, CONTACT_PHONE, CONTACT_PHONE_HREF } from "./ContactSection";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Footer = () => {
               <BloomlyLogo tone="light" />
             </Link>
             <p className="mt-5 max-w-xs text-[0.9375rem] leading-relaxed text-white/60">
-              Building India's most reliable fresh fruit B2B supply chain.
+              India's private mandi for fruit.
             </p>
           </div>
 
@@ -64,7 +64,12 @@ const Footer = () => {
             <a href={`mailto:${CONTACT_EMAIL}`} className={`${link} mt-4 block break-all text-[0.9375rem]`}>
               {CONTACT_EMAIL}
             </a>
-            <p className="mt-2.5 text-[0.9375rem] text-white/60">Bengaluru, India</p>
+            <a href={CONTACT_PHONE_HREF} className={`${link} mt-2.5 block text-[0.9375rem]`}>
+              {CONTACT_PHONE}
+            </a>
+            <a href={CONTACT_MAP_HREF} target="_blank" rel="noopener noreferrer" className={`${link} mt-2.5 block text-[0.9375rem] leading-relaxed`}>
+              {CONTACT_ADDRESS.join(" ")}
+            </a>
           </div>
         </div>
 

@@ -37,19 +37,19 @@ const Hero = () => {
       <div className="container flex min-h-[100svh] flex-col justify-center pb-24 pt-[calc(var(--header-h)+2rem)]">
         <div className="max-w-[44rem]">
           <motion.p {...rise(0.05)} className="text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-leaf-300 sm:text-[0.8125rem] sm:tracking-[0.14em]">
-            The private mandi for fruit · Bengaluru
+            India's private mandi for fruit
           </motion.p>
 
           <motion.h1
             {...rise(0.14)}
             className="mt-6 text-[clamp(2.5rem,5vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-white"
           >
-            Transforming how <span className="text-leaf-300">farmers sell fruits</span> and how{" "}
-            <span className="text-leaf-300">businesses buy</span>
+            One mandi. <span className="text-leaf-300">Every grade.</span> Paid on the spot.
           </motion.h1>
 
-          <motion.p {...rise(0.24)} className="mt-6 max-w-md text-lg leading-relaxed text-white/80 md:text-xl">
-            Bloomly is building a strong ecosystem for both.
+          <motion.p {...rise(0.24)} className="mt-6 max-w-xl text-lg leading-relaxed text-white/80 md:text-xl">
+            Farmers and aggregators bring their fruit in. Businesses get exactly the grade they need, every day, from one
+            accountable partner.
           </motion.p>
 
           <motion.div {...rise(0.34)} className="mt-9 flex flex-wrap gap-3">

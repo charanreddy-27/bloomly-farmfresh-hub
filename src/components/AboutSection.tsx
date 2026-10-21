@@ -11,14 +11,14 @@ const farmerPains = [
   "No say on grade or price",
 ];
 
-const businessPains = [
-  "Too small for any single agent to commit to reliably",
-  "Daily supply gaps at the store",
-  "A-grade sold with B-grade mixed in",
+const buyers = [
+  { name: "Modern trade & quick commerce", need: "Heavy tonnage, the exact grade, daily, from someone who owns the outcome." },
+  { name: "Neighbourhood stores", need: "One mandi at the edge of the city, 2 a.m. trips, buying for three days with no storage." },
+  { name: "Juice & cut-fruit sellers", need: "They travel just as far for low-value fruit that spoils faster." },
 ];
 
 const benefits = [
-  { title: "India's Private Mandi", body: "Farmers can sell at the farm gate or at our private mandi." },
+  { title: "One accountable institution", body: "Not a cluster of agents: one company that owns the fruit and the outcome." },
   { title: "Fair & Transparent", body: "Market access with transparent pricing and reliable payments." },
   { title: "Reliable Distribution", body: "Consistent supply to all types of retail partners." },
 ];
@@ -49,16 +49,16 @@ function Mission() {
             animate={seen ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.9, ease: EASE, delay: 0.08 }}
           >
-            Bloomly is on a mission to build the strongest{" "}
+            Bloomly is on a mission to build India's largest{" "}
             <motion.span
               className="bg-[linear-gradient(#7FC141,#7FC141)] bg-left-bottom bg-no-repeat pb-1 text-leaf-300 [-webkit-box-decoration-break:clone] [box-decoration-break:clone]"
               initial={{ backgroundSize: "0% 3px" }}
               animate={seen ? { backgroundSize: "100% 3px" } : undefined}
               transition={{ duration: 1.1, ease: EASE, delay: 0.7 }}
             >
-              fruit sourcing ecosystem
-            </motion.span>{" "}
-            in India.
+              private mandi network
+            </motion.span>
+            : one accountable alternative to the APMC mandi, in every metro.
           </motion.h2>
         </div>
 
@@ -83,12 +83,8 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  We observed a core challenge in the market: even the largest retail chains and general trade players struggle
-                  to source fruits consistently and at the right quality.
-                </p>
-                <p>
-                  While businesses excel at selling to end customers, sourcing remains their biggest bottleneck. Reliable,
-                  consistent supply is the true backbone of the fresh produce value chain.
+                  Every fruit business in India still runs on the mandi. But a mandi isn't one partner; it's dozens of commission
+                  agents, and no one of them is accountable for grade, consistency or supply.
                 </p>
               </div>
             </Reveal>
@@ -112,13 +108,13 @@ const AboutSection = () => {
               {/* The business */}
               <Reveal delay={0.08} className="card flex flex-col p-7 md:p-8">
                 <p className={cardLabel}>The business</p>
-                <p className={cardFigure}>~50 kg</p>
-                <p className="mt-3 text-lg font-bold leading-snug text-ink">a day is all one modern-trade store needs</p>
+                <p className="mt-6 text-lg font-bold leading-snug text-ink">Different buyers, one problem: no single accountable supplier</p>
 
                 <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
-                  {businessPains.map((pain) => (
-                    <li key={pain} className="py-3 text-ink-soft last:pb-0">
-                      {pain}
+                  {buyers.map((b) => (
+                    <li key={b.name} className="py-3 last:pb-0">
+                      <p className="font-bold text-ink">{b.name}</p>
+                      <p className="mt-1 text-ink-soft">{b.need}</p>
                     </li>
                   ))}
                 </ul>
@@ -134,14 +130,10 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  Bloomly set out to solve this as the private mandi: owned and transparent. Through India's private mandi,
-                  we source quality produce and ensure efficient distribution. This gives farmers fair market access,
-                  transparent pricing, and reliable payments.
-                </p>
-                <p>
-                  For businesses, Bloomly bridges the sourcing gap, ensuring general trade and both online and offline
-                  businesses receive fresh, reliable, and dependable fruits, consistently. We take care of sourcing with trust
-                  and efficiency, so businesses can focus on their customers.
+                  Bloomly is a private mandi: it works like a mandi, as one accountable company. Farmers and aggregators bring
+                  their fruit in, it's graded openly, and they're paid on the spot. Because every grade has its own buyer,
+                  nothing gets mixed: supermarkets, quick commerce and neighbourhood stores get exactly the grade they pay for,
+                  and misfits go to juice, cut-fruit and pulp businesses.
                 </p>
               </div>
             </Reveal>
