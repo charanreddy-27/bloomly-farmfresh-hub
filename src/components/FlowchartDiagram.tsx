@@ -1,33 +1,33 @@
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useLayoutEffect, useRef, useState } from "react";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
 import { Reveal } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Node = { title: string; note: string };
+type Node = { title: string; note: string; share?: string };
 
-const sources: Node[] = [
-  { title: "Bloomly purchases at farm gate", note: "We buy directly at the farm" },
-  { title: "Farmer harvests & brings to DC", note: "Weighed and graded on arrival" },
+const middle: Node[] = [
+  { title: "Farm-gate", note: "aggregator" },
+  { title: "Production Mandi", note: "(APMC)" },
 ];
 const hubPoints = ["Open weighing", "A / B / C grading", "Spot payment"];
 const channels: Node[] = [
-  { title: "Modern Trade", note: "Supermarket chains" },
-  { title: "Wholesale", note: "Bulk buyers" },
-  { title: "General Trade & Retailers", note: "Neighbourhood stores" },
-  { title: "Quick Commerce", note: "Instant-delivery apps" },
+  { title: "General Trade / Retailers", note: "Neighbourhood stores", share: "40%" },
+  { title: "Wholesalers", note: "Bulk buyers", share: "25–30%" },
+  { title: "Modern Trade", note: "Supermarket chains", share: "20–30%" },
+  { title: "Quick Commerce", note: "Instant-delivery apps", share: "5%" },
 ];
 
 const steps = [
-  { name: "Enter", detail: "A farmer or aggregator arrives at our distribution centre." },
+  { name: "Enter", detail: "A farmer or aggregator arrives at India's private mandi." },
   { name: "Weigh & grade", detail: "Open weighing and transparent A / B / C grades." },
   { name: "Slip", detail: "An instant receipt: the grade attaches to the price, on paper." },
   { name: "Pay", detail: "Spot payment by RTGS or UPI, with zero commission." },
   { name: "Clear", detail: "Every grade is routed to a channel. Nothing is left behind." },
 ];
 
-type Geometry = { w: number; h: number; inPaths: string[]; outPaths: string[] };
+type Geometry = { w: number; h: number; paths: { d: string; out: boolean }[] };
 
 /* Layout position of an element inside the diagram box (offsets ignore entrance/hover transforms). */
 const box = (el: HTMLElement) => ({
@@ -38,34 +38,46 @@ const box = (el: HTMLElement) => ({
   cx: el.offsetLeft + el.offsetWidth / 2,
   cy: el.offsetTop + el.offsetHeight / 2,
 });
-const across = (x1: number, y1: number, x2: number, y2: number) => `M${x1} ${y1} C${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`;
-const down = (x1: number, y1: number, x2: number, y2: number) => `M${x1} ${y1} C${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`;
+type Box = ReturnType<typeof box>;
+const across = (a: Box, b: Box) => {
+  const x1 = a.r, y1 = a.cy, x2 = b.l, y2 = b.cy;
+  return `M${x1} ${y1} C${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`;
+};
+const down = (a: Box, b: Box) => {
+  const x1 = a.cx, y1 = a.b, x2 = b.cx, y2 = b.t;
+  return `M${x1} ${y1} C${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`;
+};
 
 const ColumnLabel = ({ column, children }: { column: string; children: string }) => (
   <p className={`hidden text-center text-xs font-bold uppercase tracking-[0.14em] text-ink-muted lg:row-start-1 lg:block ${column}`}>{children}</p>
 );
 
-function NodeCard({ node, show, delay, compact = false, innerRef }: { node: Node; show: boolean; delay: number; compact?: boolean; innerRef: (el: HTMLDivElement | null) => void }) {
+type Ref = (el: HTMLDivElement | null) => void;
+
+function NodeCard({ node, show, delay, compact = false, innerRef }: { node: Node; show: boolean; delay: number; compact?: boolean; innerRef: Ref }) {
   return (
     <motion.div
       ref={innerRef}
-      className={`card relative z-10 ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "p-4 lg:px-6 lg:py-5"}`}
+      className={`card relative z-10 ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "p-4 lg:px-5 lg:py-5"}`}
       initial={{ opacity: 0, y: 14 }}
       animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.7, ease: EASE, delay }}
     >
-      <p className="font-bold leading-snug text-ink">{node.title}</p>
+      <p className="font-bold leading-snug text-ink">
+        {node.title}
+        {node.share && <span className="ml-2 text-sm font-semibold text-[#D9694F]">{node.share}</span>}
+      </p>
       <p className="mt-1 text-sm leading-snug text-ink-muted">{node.note}</p>
     </motion.div>
   );
 }
 
 const FlowchartDiagram = () => {
-  const reduce = useReducedMotion();
   const boxRef = useRef<HTMLDivElement>(null);
+  const producerRef = useRef<HTMLDivElement>(null);
   const hubRef = useRef<HTMLDivElement>(null);
   const channelGroupRef = useRef<HTMLDivElement>(null);
-  const sourceRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const middleRefs = useRef<(HTMLDivElement | null)[]>([]);
   const channelRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [geo, setGeo] = useState<Geometry | null>(null);
   const seen = useInView(boxRef, { once: true, amount: 0.25 });
@@ -74,23 +86,32 @@ const FlowchartDiagram = () => {
   useLayoutEffect(() => {
     const measure = () => {
       const root = boxRef.current;
+      const prodEl = producerRef.current;
       const hubEl = hubRef.current;
       const groupEl = channelGroupRef.current;
-      if (!root || !hubEl || !groupEl) return;
+      if (!root || !prodEl || !hubEl || !groupEl) return;
+      const prod = box(prodEl);
       const hub = box(hubEl);
-      const src = sourceRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
-      const out = channelRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
-      if (!src.length || !out.length) return;
-
-      const sideBySide = src[0].r <= hub.l; // desktop: three columns
       const group = box(groupEl);
-      setGeo({
-        w: root.offsetWidth,
-        h: root.offsetHeight,
-        inPaths: sideBySide ? src.map((s) => across(s.r, s.cy, hub.l, hub.cy)) : src.map((s) => down(s.cx, s.b, hub.cx, hub.t)),
-        // stacked layout: one trunk from the hub into the group of channels
-        outPaths: sideBySide ? out.map((c) => across(hub.r, hub.cy, c.l, c.cy)) : [down(hub.cx, hub.b, group.cx, group.t)],
-      });
+      const mid = middleRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
+      const out = channelRefs.current.filter((el): el is HTMLDivElement => !!el).map(box);
+      if (mid.length < 2 || !out.length) return;
+
+      const wide = prod.r <= mid[0].l; // desktop: producers, middle stack, hub, channels in a row
+      const paths: Geometry["paths"] = wide
+        ? [
+            ...mid.map((m) => ({ d: across(prod, m), out: false })),
+            { d: down(mid[0], mid[1]), out: false },
+            ...mid.map((m) => ({ d: across(m, hub), out: false })),
+            ...out.map((c) => ({ d: across(hub, c), out: true })),
+          ]
+        : [
+            ...mid.map((m) => ({ d: down(prod, m), out: false })),
+            ...mid.map((m) => ({ d: down(m, hub), out: false })),
+            // stacked layout: one trunk from the hub into the group of channels
+            { d: down(hub, group), out: true },
+          ];
+      setGeo({ w: root.offsetWidth, h: root.offsetHeight, paths });
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -99,28 +120,26 @@ const FlowchartDiagram = () => {
     return () => observer.disconnect();
   }, []);
 
-  const lines = geo
-    ? [...geo.inPaths.map((d, i) => ({ id: `in-${i}`, d, out: false })), ...geo.outPaths.map((d, i) => ({ id: `out-${i}`, d, out: true }))]
-    : [];
+  const lines = geo ? geo.paths.map((p, i) => ({ id: `line-${i}`, d: p.d, out: p.out })) : [];
 
   return (
     <section id="how-it-works" className="section border-y border-line bg-surface">
       <div className="container">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="h-section">
-            Hybrid Purchase Model for <span className="hl">Fruits</span>
+            India's Private Mandi for <span className="hl">Fruits</span>
           </h2>
-          <p className="lead mt-4">Two ways in, one Dispatch Center, and every channel out.</p>
+          <p className="lead mt-4">From the farm gate to the private mandi, and out to every channel.</p>
         </Reveal>
 
         <div
           ref={boxRef}
-          className="relative mx-auto mt-12 grid max-w-xl gap-y-14 md:mt-16 lg:max-w-none lg:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)_minmax(0,1fr)] lg:grid-rows-[auto_1fr] lg:gap-x-24 lg:gap-y-5 xl:gap-x-28"
+          className="relative mx-auto mt-12 grid max-w-xl gap-y-14 md:mt-16 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
         >
-          {/* connectors + fruit moving along them */}
+          {/* connectors */}
           {geo && (
             <svg className="pointer-events-none absolute inset-0" width={geo.w} height={geo.h} viewBox={`0 0 ${geo.w} ${geo.h}`} fill="none" aria-hidden>
-              {lines.map((line) => (
+              {lines.map((line, i) => (
                 <motion.path
                   key={line.id}
                   d={line.d}
@@ -129,77 +148,82 @@ const FlowchartDiagram = () => {
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={seen ? { pathLength: 1, opacity: 0.55 } : undefined}
-                  transition={{ duration: 1.1, ease: EASE, delay: line.out ? 1.05 : 0.35 }}
+                  transition={{ duration: 1.1, ease: EASE, delay: line.out ? 1.45 : 0.35 + (i % 2) * 0.15 }}
                 />
               ))}
-              {!reduce && seen && (
-                <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 2 }}>
-                  {lines.map((line, i) =>
-                    [0, 1].map((k) => (
-                      <circle key={`${line.id}-${k}`} r="4.5" fill={line.out ? "#7FC141" : "#1B7A50"}>
-                        <animateMotion dur="2.6s" repeatCount="indefinite" begin={`-${k * 1.3 + i * 0.37}s`} path={line.d} />
-                      </circle>
-                    )),
-                  )}
-                </motion.g>
-              )}
             </svg>
           )}
 
-          {/* 1. two ways in */}
-          <div className="lg:contents">
-            <ColumnLabel column="lg:col-start-1">Sourcing</ColumnLabel>
-            <div className="grid grid-cols-2 gap-3 lg:col-start-1 lg:row-start-2 lg:grid-cols-1 lg:gap-6 lg:self-center">
-              {sources.map((s, i) => (
-                <NodeCard key={s.title} node={s} show={seen} delay={i * 0.08} innerRef={(el) => (sourceRefs.current[i] = el)} />
-              ))}
-            </div>
+          <ColumnLabel column="lg:col-span-2 lg:col-start-1">Production regions</ColumnLabel>
+          <ColumnLabel column="lg:col-start-4">Consumption regions</ColumnLabel>
+
+          {/* 1. producers */}
+          <motion.div
+            ref={producerRef}
+            className="relative z-10 mx-auto w-full max-w-[16rem] rounded-2xl bg-forest-900 px-6 py-8 text-center text-white shadow-[0_24px_50px_-28px_rgba(6,36,24,0.85)] lg:col-start-1 lg:row-start-2 lg:max-w-none lg:self-center"
+            initial={{ opacity: 0, y: 14 }}
+            animate={seen ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <p className="text-lg font-extrabold">Producers</p>
+            <p className="mt-1 font-semibold text-white/70">Farmers</p>
+          </motion.div>
+
+          {/* 2. farm-gate aggregator and production mandi */}
+          <div className="grid grid-cols-2 gap-3 lg:col-start-2 lg:row-start-2 lg:grid-cols-1 lg:gap-12 lg:self-center">
+            {middle.map((m, i) => (
+              <NodeCard key={m.title} node={m} show={seen} delay={0.15 + i * 0.1} innerRef={(el) => (middleRefs.current[i] = el)} />
+            ))}
           </div>
 
-          {/* 2. the hub */}
-          <div className="lg:contents">
-            <ColumnLabel column="lg:col-start-2">Bloomly</ColumnLabel>
-            <motion.div
-              ref={hubRef}
-              className="relative z-10 mx-auto w-full max-w-[19rem] lg:col-start-2 lg:row-start-2 lg:self-center rounded-3xl bg-forest-900 px-6 py-8 text-center text-white shadow-[0_30px_60px_-30px_rgba(6,36,24,0.85)] lg:max-w-none"
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={seen ? { opacity: 1, scale: 1 } : undefined}
-              transition={{ duration: 0.8, ease: EASE, delay: 0.55 }}
-            >
-              <BloomlyLogo mark play={seen} className="mx-auto w-11" />
-              <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-leaf-300">Bloomly's</p>
-              <p className="mt-1 text-[1.6rem] font-extrabold leading-tight tracking-[-0.02em]">Dispatch Center</p>
-              <ul className="mt-6 divide-y divide-white/10 border-t border-white/10 text-[0.9375rem] text-white/85">
-                {hubPoints.map((point) => (
-                  <li key={point} className="py-2.5 last:pb-0">
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+          {/* 3. the hub */}
+          <motion.div
+            ref={hubRef}
+            className="relative z-10 mx-auto w-full max-w-[19rem] rounded-3xl bg-forest-900 px-6 py-8 text-center text-white shadow-[0_30px_60px_-30px_rgba(6,36,24,0.85)] lg:col-start-3 lg:row-start-2 lg:max-w-none lg:self-center"
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={seen ? { opacity: 1, scale: 1 } : undefined}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
+          >
+            <BloomlyLogo mark play={seen} className="mx-auto w-11" />
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-leaf-300">Bloomly's</p>
+            <p className="mt-1 text-[1.6rem] font-extrabold leading-tight tracking-[-0.02em]">Private Mandi</p>
+            <ul className="mt-6 divide-y divide-white/10 border-t border-white/10 text-[0.9375rem] text-white/85">
+              {hubPoints.map((point) => (
+                <li key={point} className="py-2.5 last:pb-0">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* 4. every channel out */}
+          <div ref={channelGroupRef} className="grid grid-cols-2 gap-3 lg:col-start-4 lg:row-start-2 lg:grid-cols-1 lg:gap-4 lg:self-center">
+            {channels.map((c, i) => (
+              <NodeCard key={c.title} node={c} show={seen} delay={1.2 + i * 0.08} compact innerRef={(el) => (channelRefs.current[i] = el)} />
+            ))}
           </div>
 
-          {/* 3. every channel out */}
-          <div className="lg:contents">
-            <ColumnLabel column="lg:col-start-3">Distribution</ColumnLabel>
-            <div ref={channelGroupRef} className="grid grid-cols-2 gap-3 lg:col-start-3 lg:row-start-2 lg:grid-cols-1 lg:gap-4 lg:self-center">
-              {channels.map((c, i) => (
-                <NodeCard key={c.title} node={c} show={seen} delay={0.9 + i * 0.08} compact innerRef={(el) => (channelRefs.current[i] = el)} />
-              ))}
-            </div>
-          </div>
+          {/* 5. consumers */}
+          <p className="text-center text-lg font-extrabold text-ink lg:col-start-5 lg:row-start-2 lg:self-center lg:text-left">
+            <span aria-hidden>→ </span>Consumers
+          </p>
         </div>
+
+        <Reveal className="mx-auto mt-10 max-w-3xl text-center text-sm italic leading-relaxed text-ink-muted">
+          What one consumption node absorbs: Azadpur, Delhi — 14,000 tonnes cleared daily across 78 acres, most of it before
+          sunrise · Koyambedu, Chennai — ~1,500 lorries a day, peaking above 12,000 tonnes
+        </Reveal>
 
         <Reveal className="mx-auto mt-10 max-w-2xl text-center text-[0.9375rem] leading-relaxed text-ink-soft md:mt-12">
           B-grade fruit and misfits go to <span className="font-bold text-forest">Value+</span>, as cut fruit, juices and pulp, so the
           whole harvest clears at fair value.
         </Reveal>
 
-        {/* Inside the Dispatch Center */}
+        {/* Inside the Private Mandi */}
         <Reveal className="card mt-14 p-7 md:mt-20 md:p-10">
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
             <h3 className="text-xl font-extrabold text-ink md:text-2xl">The Bloomly difference</h3>
-            <p className="text-sm font-semibold text-ink-muted">What happens inside the Dispatch Center</p>
+            <p className="text-sm font-semibold text-ink-muted">What happens inside the Private Mandi</p>
           </div>
 
           <ol className="relative mt-8 grid gap-7 md:mt-10 lg:grid-cols-5 lg:gap-6">

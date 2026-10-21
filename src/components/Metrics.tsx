@@ -55,7 +55,7 @@ function MonthlyVolume({ delay }: { delay: number }) {
   const MAX = 150;
   const ticks = [0, 50, 100, 150];
   return (
-    <Reveal delay={delay} className="card flex flex-col p-7 md:p-8 lg:col-span-3">
+    <Reveal delay={delay} className="card flex flex-col p-7 sm:col-span-2 md:p-8 lg:col-span-6">
       <p className={`${figure} text-forest`}>
         <CountUp to={80} />–<CountUp to={120} />
         <span className="ml-2 text-xl font-bold tracking-normal text-ink-muted md:text-2xl">MT</span>
@@ -85,39 +85,6 @@ function MonthlyVolume({ delay }: { delay: number }) {
   );
 }
 
-/** Wastage: Bloomly's 1–2% against roughly 22% in the mandi chain. */
-function Wastage({ delay }: { delay: number }) {
-  const rows = [
-    { name: "Mandi chain", value: "~22%", width: 100, bar: "bg-white/30" },
-    { name: "Bloomly", value: "1–2%", width: (1.5 / 22) * 100, bar: "bg-leaf" },
-  ];
-  return (
-    <Reveal delay={delay} className="flex flex-col rounded-2xl bg-forest-900 p-7 text-white sm:col-span-2 md:p-8 lg:col-span-3">
-      <p className={figure}>1–2%</p>
-      <p className="mt-3 font-medium text-white/75">Wastage at Bloomly, against about 22% in the mandi chain</p>
-
-      <div className="mt-auto space-y-3 pt-8">
-        {rows.map((r, i) => (
-          <div key={r.name} className="grid grid-cols-[6.5rem_1fr_3rem] items-center gap-3 text-sm">
-            <span className="font-medium text-white/75">{r.name}</span>
-            <div className="h-2 rounded-full bg-white/10">
-              <motion.div
-                className={`h-full origin-left rounded-full ${r.bar}`}
-                style={{ width: `${r.width}%` }}
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={inView}
-                transition={{ duration: 1.4, ease: EASE, delay: 0.2 + i * 0.15 }}
-              />
-            </div>
-            <span className="text-right font-bold">{r.value}</span>
-          </div>
-        ))}
-      </div>
-    </Reveal>
-  );
-}
-
 const Metrics = () => {
   return (
     <section id="metrics" className="section">
@@ -130,15 +97,14 @@ const Metrics = () => {
         </Reveal>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-14 md:gap-5 lg:grid-cols-6">
-          <Stat value={1800} suffix="+" delay={0}>
+          <Stat value={3100} suffix="+" delay={0}>
             Metric tonnes delivered
           </Stat>
-          <Stat value={2400} suffix="+" delay={0.06}>
-            Farmer connects
+          <Stat value={2800} suffix="+" delay={0.06}>
+            Farmers connected
           </Stat>
           <RepeatRate delay={0.12} />
           <MonthlyVolume delay={0.06} />
-          <Wastage delay={0.12} />
         </div>
       </div>
     </section>
