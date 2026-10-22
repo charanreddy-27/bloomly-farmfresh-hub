@@ -15,7 +15,7 @@ const hubPoints = ["Open weighing", "A / B / C grading", "Spot payment"];
 const channels: Node[] = [
   { title: "General Trade / Retailers", note: "Neighbourhood stores" },
   { title: "Wholesalers", note: "Bulk buyers" },
-  { title: "Large Retail Chains", note: "Supermarket chains" },
+  { title: "Modern trade", note: "Large Retail Chains" },
   { title: "Quick Commerce", note: "Instant-delivery apps" },
 ];
 

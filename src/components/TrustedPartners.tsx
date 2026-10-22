@@ -10,6 +10,7 @@ const partners = [
   { name: "KPN Fresh", logo: "/KPN-Logo.svg", h: 22 },
   { name: "Superplum", logo: "/big-logo.png", h: 26 },
   { name: "More", logo: "/more.webp", h: 46 },
+  { name: "FirstClub", logo: "/firstclub_private_limited_logo.jpg", h: 64, rounded: true },
 ];
 
 // Four copies: the row moves by exactly half its width, so the loop never shows a gap, even on very wide screens.
