@@ -13,10 +13,10 @@ const middle: Node[] = [
 ];
 const hubPoints = ["Open weighing", "A / B / C grading", "Spot payment"];
 const channels: Node[] = [
-  { title: "General Trade / Retailers", note: "Neighbourhood stores", share: "40%" },
-  { title: "Wholesalers", note: "Bulk buyers", share: "25–30%" },
-  { title: "Modern Trade", note: "Supermarket chains", share: "20–30%" },
-  { title: "Quick Commerce", note: "Instant-delivery apps", share: "5%" },
+  { title: "General Trade / Retailers", note: "Neighbourhood stores" },
+  { title: "Wholesalers", note: "Bulk buyers" },
+  { title: "Large Retail Chains", note: "Supermarket chains" },
+  { title: "Quick Commerce", note: "Instant-delivery apps" },
 ];
 
 const steps = [
@@ -224,23 +224,12 @@ const FlowchartDiagram = () => {
           </p>
         </div>
 
-        <p className="mt-8 text-sm italic leading-relaxed text-ink-muted">
-          What one consumption node absorbs: Azadpur, Delhi — 14,000 tonnes cleared daily across 78 acres, most of it before
-          sunrise · Koyambedu, Chennai — ~1,500 lorries a day, peaking above 12,000 tonnes
-        </p>
         </div>
-
-        <Reveal className="mx-auto mt-10 max-w-2xl text-center text-[0.9375rem] leading-relaxed text-ink-soft md:mt-12">
-          B-grade fruit and misfits go to <span className="font-bold text-forest">Value+</span>, as cut fruit, juices and pulp, so the
-          whole harvest clears at fair value.
-        </Reveal>
 
         {/* Inside the Private Mandi */}
         <Reveal className="card mt-14 p-7 md:mt-20 md:p-10">
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-            <h3 className="text-xl font-extrabold text-ink md:text-2xl">The Bloomly difference</h3>
-            <p className="text-sm font-semibold text-ink-muted">What happens inside the Private Mandi</p>
-          </div>
+            <h3 className="text-xl font-extrabold text-ink md:text-2xl">The Farmers Journey at private mandi</h3>          </div>
 
           <ol className="relative mt-8 grid gap-7 md:mt-10 lg:grid-cols-5 lg:gap-6">
             {/* the line the steps sit on */}

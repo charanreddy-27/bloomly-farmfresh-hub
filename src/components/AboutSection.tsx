@@ -130,13 +130,10 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  Bloomly is a private mandi, built to grow farmers' income. Farmers and aggregators bring their fruit in, it's
-                  graded accurately and in the open, and every grade is matched to the buyer who values it most. Farmers are
-                  paid on the spot.
+                  Bloomly is a private mandi built to raise what farmers earn. Produce is graded in the farmer's presence, and every lot comes with a machine-generated grading slip showing its grade, quantity and price, so nothing is left to guesswork or anyone's discretion. Farmers are paid on the spot and in full, and they know exactly what their harvest is worth.
                 </p>
                 <p>
-                  That sets off a virtuous cycle: fair prices draw more farmers, and steady quality and pricing draw more buyers,
-                  from supermarkets and quick commerce to neighbourhood stores and juice and cut-fruit businesses.
+                  Every grade then reaches the buyer who values it most, whether they sell it on the shelf, deliver it to the doorstep, or turn it into something new. Businesses deal with one accountable operator and get consistent quality, dependable supply and quick response. Fair pay keeps farmers coming back and reliable supply keeps buyers with us, which makes Bloomly a trusted operator for both
                 </p>
               </div>
             </Reveal>
