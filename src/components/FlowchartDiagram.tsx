@@ -227,11 +227,15 @@ const FlowchartDiagram = () => {
         </div>
 
         {/* Inside the Private Mandi */}
-        <Reveal className="card mt-14 p-7 md:mt-20 md:p-10">
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-            <h3 className="text-xl font-extrabold text-ink md:text-2xl">The Farmers Journey at private mandi</h3>          </div>
+        <Reveal className="mx-auto mt-20 max-w-2xl text-center md:mt-28">
+          <h2 className="h-section">
+            The farmer's <span className="hl">journey</span> at the private mandi
+          </h2>
+          <p className="lead mt-4">Five steps from the farm gate to money in the bank.</p>
+        </Reveal>
 
-          <ol className="relative mt-8 grid gap-7 md:mt-10 lg:grid-cols-5 lg:gap-6">
+        <Reveal className="card mt-12 p-7 md:mt-16 md:p-10">
+          <ol className="relative grid gap-7 lg:grid-cols-5 lg:gap-6">
             {/* the line the steps sit on */}
             <span className="absolute left-5 top-5 hidden h-0.5 w-[calc(80%+1.2rem)] bg-forest-100 lg:block" aria-hidden />
             <motion.span
