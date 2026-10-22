@@ -58,7 +58,7 @@ function Mission() {
             >
               private mandi network
             </motion.span>
-            , one accountable alternative in every metro city.
+            , one accountable alternative in every major city.
           </motion.h2>
         </div>
 

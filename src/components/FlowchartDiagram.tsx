@@ -5,15 +5,18 @@ import { Reveal } from "./Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type Node = { title: string; note: string };
+type Node = { title: string; note: string; share?: string };
 
-const middle: Node[] = [{ title: "Farm-gate aggregators", note: "Collect and bring fruit in" }];
+const middle: Node[] = [
+  { title: "Farm-gate", note: "aggregator" },
+  { title: "Production Mandi", note: "(APMC)" },
+];
 const hubPoints = ["Open weighing", "A / B / C grading", "Spot payment"];
 const channels: Node[] = [
-  { title: "General Trade / Retailers", note: "Neighbourhood stores" },
-  { title: "Wholesalers", note: "Bulk buyers" },
-  { title: "Modern Trade", note: "Supermarket chains" },
-  { title: "Quick Commerce", note: "Instant-delivery apps" },
+  { title: "General Trade / Retailers", note: "Neighbourhood stores", share: "40%" },
+  { title: "Wholesalers", note: "Bulk buyers", share: "25–30%" },
+  { title: "Modern Trade", note: "Supermarket chains", share: "20–30%" },
+  { title: "Quick Commerce", note: "Instant-delivery apps", share: "5%" },
 ];
 
 const steps = [
@@ -25,6 +28,9 @@ const steps = [
 ];
 
 type Geometry = { w: number; h: number; paths: { d: string; out: boolean }[] };
+
+const IN_COLOR = "#2F5E43";
+const OUT_COLOR = "#D9694F";
 
 /* Layout position of an element inside the diagram box (offsets ignore entrance/hover transforms). */
 const box = (el: HTMLElement) => ({
@@ -51,16 +57,19 @@ const ColumnLabel = ({ column, children }: { column: string; children: string })
 
 type Ref = (el: HTMLDivElement | null) => void;
 
-function NodeCard({ node, show, delay, compact = false, innerRef }: { node: Node; show: boolean; delay: number; compact?: boolean; innerRef: Ref }) {
+function NodeCard({ node, show, delay, compact = false, center = false, innerRef }: { node: Node; show: boolean; delay: number; compact?: boolean; center?: boolean; innerRef: Ref }) {
   return (
     <motion.div
       ref={innerRef}
-      className={`card relative z-10 ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "p-4 lg:px-5 lg:py-5"}`}
+      className={`card relative z-10 ${center ? "text-center" : ""} ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "p-4 lg:px-5 lg:py-5"}`}
       initial={{ opacity: 0, y: 14 }}
       animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.7, ease: EASE, delay }}
     >
-      <p className="font-bold leading-snug text-ink">{node.title}</p>
+      <p className="font-bold leading-snug text-ink">
+        {node.title}
+        {node.share && <span className="ml-2 text-sm font-semibold text-[#D9694F]">{node.share}</span>}
+      </p>
       <p className="mt-1 text-sm leading-snug text-ink-muted">{node.note}</p>
     </motion.div>
   );
@@ -95,6 +104,7 @@ const FlowchartDiagram = () => {
       const paths: Geometry["paths"] = wide
         ? [
             ...mid.map((m) => ({ d: across(prod, m), out: false })),
+            ...(mid.length > 1 ? [{ d: down(mid[0], mid[1]), out: false }] : []),
             ...mid.map((m) => ({ d: across(m, hub), out: false })),
             ...out.map((c) => ({ d: across(hub, c), out: true })),
           ]
@@ -125,22 +135,34 @@ const FlowchartDiagram = () => {
           <p className="lead mt-4">Farmers and aggregators bring fruit in. Every grade goes out to a buyer.</p>
         </Reveal>
 
+        <div className="card mt-12 p-5 sm:p-7 md:mt-16 md:p-10">
         <div
           ref={boxRef}
-          className="relative mx-auto mt-12 grid max-w-xl gap-y-14 md:mt-16 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
+          className="relative mx-auto grid max-w-xl gap-y-14 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
         >
           {/* connectors */}
           {geo && (
             <svg className="pointer-events-none absolute inset-0" width={geo.w} height={geo.h} viewBox={`0 0 ${geo.w} ${geo.h}`} fill="none" aria-hidden>
+              <defs>
+                {[
+                  { id: "arrow-in", color: IN_COLOR },
+                  { id: "arrow-out", color: OUT_COLOR },
+                ].map((m) => (
+                  <marker key={m.id} id={m.id} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto">
+                    <path d="M0 0.5 L10 5 L0 9.5 Z" fill={m.color} />
+                  </marker>
+                ))}
+              </defs>
               {lines.map((line, i) => (
                 <motion.path
                   key={line.id}
                   d={line.d}
-                  stroke={line.out ? "#7FC141" : "#1B7A50"}
+                  stroke={line.out ? OUT_COLOR : IN_COLOR}
                   strokeWidth="2"
                   strokeLinecap="round"
+                  markerEnd={`url(#${line.out ? "arrow-out" : "arrow-in"})`}
                   initial={{ pathLength: 0, opacity: 0 }}
-                  animate={seen ? { pathLength: 1, opacity: 0.55 } : undefined}
+                  animate={seen ? { pathLength: 1, opacity: 0.9 } : undefined}
                   transition={{ duration: 1.1, ease: EASE, delay: line.out ? 1.45 : 0.35 + (i % 2) * 0.15 }}
                 />
               ))}
@@ -163,9 +185,9 @@ const FlowchartDiagram = () => {
           </motion.div>
 
           {/* 2. farm-gate aggregator and production mandi */}
-          <div className="mx-auto grid w-full max-w-[16rem] gap-3 lg:col-start-2 lg:row-start-2 lg:max-w-none lg:self-center">
+          <div className="mx-auto grid w-full max-w-[16rem] gap-3 lg:col-start-2 lg:row-start-2 lg:max-w-none lg:gap-12 lg:self-center">
             {middle.map((m, i) => (
-              <NodeCard key={m.title} node={m} show={seen} delay={0.15 + i * 0.1} innerRef={(el) => (middleRefs.current[i] = el)} />
+              <NodeCard key={m.title} node={m} show={seen} delay={0.15 + i * 0.1} center innerRef={(el) => (middleRefs.current[i] = el)} />
             ))}
           </div>
 
@@ -202,10 +224,11 @@ const FlowchartDiagram = () => {
           </p>
         </div>
 
-        <Reveal className="mx-auto mt-10 max-w-3xl text-center text-sm italic leading-relaxed text-ink-muted">
-          Azadpur, Delhi alone clears over 10,000 tonnes a day, and Koyambedu, Chennai sees well over 1,000 lorries daily. That
-          is the scale a single city mandi handles every day. Bloomly is building the private alternative, one metro at a time.
-        </Reveal>
+        <p className="mt-8 text-sm italic leading-relaxed text-ink-muted">
+          What one consumption node absorbs: Azadpur, Delhi — 14,000 tonnes cleared daily across 78 acres, most of it before
+          sunrise · Koyambedu, Chennai — ~1,500 lorries a day, peaking above 12,000 tonnes
+        </p>
+        </div>
 
         <Reveal className="mx-auto mt-10 max-w-2xl text-center text-[0.9375rem] leading-relaxed text-ink-soft md:mt-12">
           B-grade fruit and misfits go to <span className="font-bold text-forest">Value+</span>, as cut fruit, juices and pulp, so the
