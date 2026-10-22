@@ -12,15 +12,15 @@ const farmerPains = [
 ];
 
 const buyers = [
-  { name: "Modern trade & quick commerce", need: "Heavy tonnage, the exact grade, daily, from someone who owns the outcome." },
-  { name: "Neighbourhood stores", need: "One mandi at the edge of the city, 2 a.m. trips, buying for three days with no storage." },
-  { name: "Juice & cut-fruit sellers", need: "They travel just as far for low-value fruit that spoils faster." },
+  { name: "Modern trade & quick commerce", need: "Heavy tonnage, the exact grade, daily deliveries, and sourcing from someone who owns the outcome require green-channel-level scale." },
+  { name: "Retailer", need: "One mandi at the edge of the city, 2 a.m. trips, buying for three days with no storage lead to wastage." },
+  { name: "Misfit Sellers", need: "They travel just as far for low-value fruit that spoils faster." },
 ];
 
 const benefits = [
   { title: "One accountable institution", body: "Not a cluster of agents: one company that owns the fruit and the outcome." },
-  { title: "Accurate grading, better income", body: "You see the weight, the grade and the price, and each grade goes to the buyer who values it most. Money reaches your account the same day." },
-  { title: "A buyer for every grade", body: "Consistent quality at a steady price: A-grade to supermarkets, quick commerce and neighbourhood stores; misfits to juice and cut-fruit businesses." },
+  { title: "Accurate grading, better income", body: "You see the weight, the machine grade/slip, price, and each grade goes to the buyer who values it most. Money reaches your account the same day." },
+  { title: "A buyer for every grade", body: "A-grade goes to retail chains, supermarkets, quick commerce and local stores. Misfits go to pulp and processing partners, so less is wasted and farmers earn more. No mandi can match this, as it isn't a single institution." },
 ];
 
 const cardLabel = "text-[0.8125rem] font-bold uppercase tracking-[0.12em] text-ink-muted";
