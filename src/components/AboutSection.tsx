@@ -19,8 +19,8 @@ const buyers = [
 
 const benefits = [
   { title: "One accountable institution", body: "Not a cluster of agents: one company that owns the fruit and the outcome." },
-  { title: "Open grading, paid on the spot", body: "You see the weight, the grade and the price. Money reaches your account the same day." },
-  { title: "A buyer for every grade", body: "A-grade to supermarkets, quick commerce and neighbourhood stores; misfits to juice and cut-fruit businesses." },
+  { title: "Accurate grading, better income", body: "You see the weight, the grade and the price, and each grade goes to the buyer who values it most. Money reaches your account the same day." },
+  { title: "A buyer for every grade", body: "Consistent quality at a steady price: A-grade to supermarkets, quick commerce and neighbourhood stores; misfits to juice and cut-fruit businesses." },
 ];
 
 const cardLabel = "text-[0.8125rem] font-bold uppercase tracking-[0.12em] text-ink-muted";
@@ -57,8 +57,8 @@ function Mission() {
               transition={{ duration: 1.1, ease: EASE, delay: 0.7 }}
             >
               private mandi network
-            </motion.span>{" "}
-            in all the major cities.
+            </motion.span>
+            , one accountable alternative in every metro city.
           </motion.h2>
         </div>
 
@@ -83,7 +83,7 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  Every fruit business in India still runs on the mandi. But a mandi isn't one partner; it's dozens of commission
+                  Majority of the fruit business in India still runs on the mandi. But a mandi isn't one partner it's dozens of commission
                   agents, and no one of them is accountable for grade, consistency or supply.
                 </p>
               </div>
@@ -130,10 +130,13 @@ const AboutSection = () => {
               </h3>
               <div className="mt-6 space-y-5 text-ink-soft">
                 <p>
-                  Bloomly is a private mandi: it works like a mandi, as one accountable company. Farmers and aggregators bring
-                  their fruit in, it's graded openly, and they're paid on the spot. Because every grade has its own buyer,
-                  nothing gets mixed: supermarkets, quick commerce and neighbourhood stores get exactly the grade they pay for,
-                  and misfits go to juice, cut-fruit and pulp businesses.
+                  Bloomly is a private mandi, built to grow farmers' income. Farmers and aggregators bring their fruit in, it's
+                  graded accurately and in the open, and every grade is matched to the buyer who values it most. Farmers are
+                  paid on the spot.
+                </p>
+                <p>
+                  That sets off a virtuous cycle: fair prices draw more farmers, and steady quality and pricing draw more buyers,
+                  from supermarkets and quick commerce to neighbourhood stores and juice and cut-fruit businesses.
                 </p>
               </div>
             </Reveal>
