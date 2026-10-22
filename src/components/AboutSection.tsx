@@ -23,7 +23,7 @@ const benefits = [
   { title: "A buyer for every grade", body: "A-grade goes to retail chains, supermarkets, quick commerce and local stores. Misfits go to pulp and processing partners, so less is wasted and farmers earn more. No mandi can match this, as it isn't a single institution." },
 ];
 
-const cardLabel = "text-[0.8125rem] font-bold uppercase tracking-[0.12em] text-ink-muted";
+const cardLabel = "text-base font-extrabold uppercase tracking-[0.12em] text-ink";
 const cardFigure = "mt-6 text-[2.75rem] font-extrabold leading-none tracking-[-0.04em] text-ink md:text-5xl";
 
 /** The mission statement on a deep-green band, with the leaf mark building itself beside it. */
