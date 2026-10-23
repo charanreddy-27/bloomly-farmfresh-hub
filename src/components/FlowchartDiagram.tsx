@@ -50,9 +50,20 @@ const down = (a: Box, b: Box) => {
   const x1 = a.cx, y1 = a.b, x2 = b.cx, y2 = b.t;
   return `M${x1} ${y1} C${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`;
 };
+/* Stacked layout: drop from the hub, turn onto a bus at x, then branch right into channel c. */
+const branch = (hub: Box, turn: number, x: number, c: Box) => {
+  const r = 12;
+  return `M${hub.cx} ${hub.b} V${turn - r} Q${hub.cx} ${turn}, ${hub.cx - r} ${turn} H${x + r} Q${x} ${turn}, ${x} ${turn + r} V${c.cy - r} Q${x} ${c.cy}, ${x + r} ${c.cy} H${c.l}`;
+};
+
+// Stacked layout: the channels sit to the right of the bus their arrows branch off.
+const STACK = "mx-auto w-full max-w-[20rem] pl-11 lg:max-w-none lg:pl-0";
+
+// Stacked layout: tuck the block under a column label up to it (the grid gap is sized for arrows).
+const UNDER_LABEL = "-mt-9 lg:mt-0";
 
 const ColumnLabel = ({ column, children }: { column: string; children: string }) => (
-  <p className={`hidden text-center text-xs font-bold uppercase tracking-[0.14em] text-ink-muted lg:row-start-1 lg:block ${column}`}>{children}</p>
+  <p className={`text-xs font-bold uppercase tracking-[0.14em] text-ink-muted lg:row-start-1 lg:text-center ${column}`}>{children}</p>
 );
 
 type Ref = (el: HTMLDivElement | null) => void;
@@ -61,7 +72,7 @@ function NodeCard({ node, show, delay, compact = false, center = false, innerRef
   return (
     <motion.div
       ref={innerRef}
-      className={`card relative z-10 ${center ? "text-center" : ""} ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "p-4 lg:px-5 lg:py-5"}`}
+      className={`card relative z-10 ${center ? "flex flex-col justify-center text-center" : ""} ${compact ? "px-4 py-3.5 lg:px-6 lg:py-4" : "px-2 py-4 min-[360px]:px-4 lg:px-5 lg:py-5"}`}
       initial={{ opacity: 0, y: 14 }}
       animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.7, ease: EASE, delay }}
@@ -101,6 +112,9 @@ const FlowchartDiagram = () => {
       if (!mid.length || !out.length) return;
 
       const wide = prod.r <= mid[0].l; // desktop: producers, middle stack, hub, channels in a row
+      // stacked layout (the desktop flow turned on its side): middle pair side by side, channels branch off a bus
+      const turn = hub.b + parseFloat(getComputedStyle(root).rowGap) / 2;
+      const bus = group.l + 12;
       const paths: Geometry["paths"] = wide
         ? [
             ...mid.map((m) => ({ d: across(prod, m), out: false })),
@@ -110,9 +124,9 @@ const FlowchartDiagram = () => {
           ]
         : [
             ...mid.map((m) => ({ d: down(prod, m), out: false })),
+            ...(mid.length > 1 ? [{ d: across(mid[0], mid[1]), out: false }] : []),
             ...mid.map((m) => ({ d: down(m, hub), out: false })),
-            // stacked layout: one trunk from the hub into the group of channels
-            { d: down(hub, group), out: true },
+            ...out.map((c) => ({ d: branch(hub, turn, bus, c), out: true })),
           ];
       setGeo({ w: root.offsetWidth, h: root.offsetHeight, paths });
     };
@@ -169,13 +183,12 @@ const FlowchartDiagram = () => {
             </svg>
           )}
 
-          <ColumnLabel column="lg:col-span-2 lg:col-start-1">Production regions</ColumnLabel>
-          <ColumnLabel column="lg:col-start-4">Consumption regions</ColumnLabel>
+          <ColumnLabel column="text-center lg:col-span-2 lg:col-start-1">Production regions</ColumnLabel>
 
           {/* 1. producers */}
           <motion.div
             ref={producerRef}
-            className="relative z-10 mx-auto w-full max-w-[16rem] rounded-2xl bg-forest-900 px-6 py-8 text-center text-white shadow-[0_24px_50px_-28px_rgba(6,36,24,0.85)] lg:col-start-1 lg:row-start-2 lg:max-w-none lg:self-center"
+            className={`relative z-10 mx-auto w-full max-w-[16rem] rounded-2xl bg-forest-900 px-6 py-8 text-center text-white shadow-[0_24px_50px_-28px_rgba(6,36,24,0.85)] lg:col-start-1 lg:row-start-2 lg:max-w-none lg:self-center ${UNDER_LABEL}`}
             initial={{ opacity: 0, y: 14 }}
             animate={seen ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.7, ease: EASE }}
@@ -184,8 +197,8 @@ const FlowchartDiagram = () => {
             <p className="mt-1 font-semibold text-white/70">Farmers</p>
           </motion.div>
 
-          {/* 2. farm-gate aggregator and production mandi */}
-          <div className="mx-auto grid w-full max-w-[16rem] gap-3 lg:col-start-2 lg:row-start-2 lg:max-w-none lg:gap-12 lg:self-center">
+          {/* 2. farm-gate aggregator and production mandi (side by side when stacked, squeezed on the narrowest phones) */}
+          <div className="mx-auto grid w-full max-w-[24rem] grid-cols-2 gap-6 min-[360px]:gap-8 lg:col-start-2 lg:row-start-2 lg:max-w-none lg:grid-cols-1 lg:gap-12 lg:self-center">
             {middle.map((m, i) => (
               <NodeCard key={m.title} node={m} show={seen} delay={0.15 + i * 0.1} center innerRef={(el) => (middleRefs.current[i] = el)} />
             ))}
@@ -212,15 +225,18 @@ const FlowchartDiagram = () => {
           </motion.div>
 
           {/* 4. every channel out */}
-          <div ref={channelGroupRef} className="grid grid-cols-2 gap-3 lg:col-start-4 lg:row-start-2 lg:grid-cols-1 lg:gap-4 lg:self-center">
+          <ColumnLabel column={`${STACK} lg:col-start-4`}>Consumption regions</ColumnLabel>
+          <div ref={channelGroupRef} className={`grid gap-3 lg:col-start-4 lg:row-start-2 lg:gap-4 lg:self-center ${STACK} ${UNDER_LABEL}`}>
             {channels.map((c, i) => (
               <NodeCard key={c.title} node={c} show={seen} delay={1.2 + i * 0.08} compact innerRef={(el) => (channelRefs.current[i] = el)} />
             ))}
           </div>
 
           {/* 5. consumers */}
-          <p className="text-center text-lg font-extrabold text-ink lg:col-start-5 lg:row-start-2 lg:self-center lg:text-left">
-            <span aria-hidden>→ </span>Consumers
+          <p className={`text-center text-lg font-extrabold text-ink lg:col-start-5 lg:row-start-2 lg:self-center lg:text-left ${STACK}`}>
+            <span aria-hidden className="lg:hidden">↓ </span>
+            <span aria-hidden className="hidden lg:inline">→ </span>
+            Consumers
           </p>
         </div>
 
