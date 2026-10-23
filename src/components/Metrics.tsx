@@ -5,12 +5,13 @@ import { Reveal } from "./Reveal";
 const EASE = [0.16, 1, 0.3, 1] as const;
 const inView = { once: true, amount: 0.6 } as const;
 
-const figure = "text-[2.75rem] font-extrabold leading-none tracking-[-0.04em] md:text-[3.25rem]";
-const label = "mt-3 font-medium text-ink-soft";
+const figure = "text-[1.75rem] font-extrabold leading-none tracking-[-0.04em] sm:text-[2.75rem] md:text-[3.25rem]";
+const label = "mt-1.5 text-[0.8125rem] font-medium leading-snug text-ink-soft sm:mt-3 sm:text-[1rem] sm:leading-[inherit]";
+const pad = "p-3 sm:p-7 md:p-8";
 
 function Stat({ value, suffix, children, delay }: { value: number; suffix: string; children: string; delay: number }) {
   return (
-    <Reveal delay={delay} className="card flex flex-col justify-center p-7 md:p-8 lg:col-span-2">
+    <Reveal delay={delay} className={`card col-span-2 flex flex-col justify-center ${pad}`}>
       <p className={`${figure} text-forest`}>
         <CountUp to={value} />
         {suffix}
@@ -23,14 +24,15 @@ function Stat({ value, suffix, children, delay }: { value: number; suffix: strin
 /** 95%, with a ring that fills when it comes into view. */
 function RepeatRate({ delay }: { delay: number }) {
   return (
-    <Reveal delay={delay} className="card flex items-center justify-between gap-4 p-7 md:p-8 lg:col-span-2">
+    <Reveal delay={delay} className={`card relative col-span-2 flex items-center justify-between gap-4 ${pad}`}>
       <div>
         <p className={`${figure} text-forest`}>
           <CountUp to={95} />%
         </p>
         <p className={label}>Customers repeat orders</p>
       </div>
-      <svg viewBox="0 0 100 100" className="h-20 w-20 shrink-0 -rotate-90 md:h-[5.5rem] md:w-[5.5rem]" aria-hidden>
+      {/* tucked into the corner on phones, where the card is a third of the screen wide */}
+      <svg viewBox="0 0 100 100" className="absolute right-3 top-3 h-6 w-6 shrink-0 -rotate-90 sm:static sm:h-20 sm:w-20 md:h-[5.5rem] md:w-[5.5rem]" aria-hidden>
         <circle cx="50" cy="50" r="42" fill="none" stroke="#E2E9E4" strokeWidth="9" />
         <motion.circle
           cx="50"
@@ -55,14 +57,14 @@ function MonthlyVolume({ delay }: { delay: number }) {
   const MAX = 150;
   const ticks = [0, 50, 100, 150];
   return (
-    <Reveal delay={delay} className="card flex flex-col p-7 sm:col-span-2 md:p-8 lg:col-span-6">
+    <Reveal delay={delay} className={`card col-span-6 flex flex-col ${pad}`}>
       <p className={`${figure} text-forest`}>
         <CountUp to={80} />–<CountUp to={120} />
-        <span className="ml-2 text-xl font-bold tracking-normal text-ink-muted md:text-2xl">MT</span>
+        <span className="ml-2 text-[0.875rem] font-bold tracking-normal text-ink-muted sm:text-xl md:text-2xl">MT</span>
       </p>
       <p className={label}>Metric tonnes moved every month, consistent and repeatable</p>
 
-      <div className="mt-auto pt-8" aria-hidden>
+      <div className="mt-auto pt-4 sm:pt-8" aria-hidden>
         <div className="relative h-2 rounded-full bg-line">
           <motion.div
             className="absolute inset-y-0 origin-left rounded-full bg-forest"
@@ -96,7 +98,7 @@ const Metrics = () => {
           <p className="lead mt-4">Proof that a private mandi works, for farmers and for businesses of every size.</p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 md:mt-14 md:gap-5 lg:grid-cols-6">
+        <div className="mt-12 grid grid-cols-6 gap-2.5 sm:gap-4 md:mt-14 md:gap-5">
           <Stat value={3100} suffix="+" delay={0}>
             Metric tonnes handled
           </Stat>
