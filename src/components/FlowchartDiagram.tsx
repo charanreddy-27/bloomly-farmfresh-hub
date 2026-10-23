@@ -70,16 +70,16 @@ function NodeCard({ node, show, delay, compact = false, innerRef }: { node: Node
   return (
     <motion.div
       ref={innerRef}
-      className={`card relative z-10 flex flex-col justify-center text-center break-words ${compact ? "px-1.5 py-2.5 min-[360px]:px-2.5 lg:px-6 lg:py-4 lg:text-left" : "px-2 py-3 min-[360px]:px-3 lg:px-5 lg:py-5"}`}
+      className={`card relative z-10 flex flex-col justify-center text-center break-words ${compact ? "px-1 py-3 min-[360px]:px-1.5 lg:px-6 lg:py-4 lg:text-left" : "px-2 py-3.5 min-[360px]:px-3 lg:px-5 lg:py-5"}`}
       initial={{ opacity: 0, y: 14 }}
       animate={show ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.7, ease: EASE, delay }}
     >
-      <p className="text-[0.875rem] font-bold leading-snug text-ink lg:text-[1rem]">
+      <p className="text-[0.9375rem] font-bold leading-snug text-ink lg:text-[1rem]">
         {node.title}
         {node.share && <span className="ml-2 text-sm font-semibold text-[#D9694F]">{node.share}</span>}
       </p>
-      <p className={`mt-0.5 leading-snug text-ink-muted lg:mt-1 lg:text-[0.875rem] ${compact ? "text-[0.75rem]" : "text-[0.8125rem]"}`}>{node.note}</p>
+      <p className={`mt-0.5 leading-snug text-ink-muted lg:mt-1 lg:text-[0.875rem] ${compact ? "text-[0.8125rem] tracking-[-0.01em] lg:tracking-normal" : "text-[0.875rem]"}`}>{node.note}</p>
     </motion.div>
   );
 }
@@ -145,10 +145,10 @@ const FlowchartDiagram = () => {
           <p className="lead mt-4">Farmers and aggregators bring fruit in. Every grade goes out to a buyer.</p>
         </Reveal>
 
-        <div className="card mt-8 p-3 sm:mt-12 sm:p-7 md:mt-16 md:p-10">
+        <div className="card mt-8 p-4 sm:mt-12 sm:p-7 md:mt-16 md:p-10">
         <div
           ref={boxRef}
-          className="relative mx-auto grid max-w-[24rem] gap-y-7 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
+          className="relative mx-auto grid max-w-[24rem] gap-y-8 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
         >
           {/* connectors */}
           {geo && (
@@ -184,13 +184,13 @@ const FlowchartDiagram = () => {
           {/* 1. producers */}
           <motion.div
             ref={producerRef}
-            className={`relative z-10 flex items-baseline justify-center gap-2 rounded-2xl bg-forest-900 px-6 py-3 text-center text-white shadow-[0_24px_50px_-28px_rgba(6,36,24,0.85)] lg:col-start-1 lg:row-start-2 lg:block lg:self-center lg:py-8 ${UNDER_LABEL}`}
+            className={`relative z-10 flex items-baseline justify-center gap-2 rounded-2xl bg-forest-900 px-6 py-4 text-center text-white shadow-[0_24px_50px_-28px_rgba(6,36,24,0.85)] lg:col-start-1 lg:row-start-2 lg:block lg:self-center lg:py-8 ${UNDER_LABEL}`}
             initial={{ opacity: 0, y: 14 }}
             animate={seen ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.7, ease: EASE }}
           >
             {/* one line on phones, two on desktop */}
-            <p className="text-base font-extrabold lg:text-lg">Producers</p>
+            <p className="text-lg font-extrabold">Producers</p>
             <span aria-hidden className="text-white/40 lg:hidden">·</span>
             <p className="font-semibold text-white/70 lg:mt-1">Farmers</p>
           </motion.div>
@@ -205,18 +205,18 @@ const FlowchartDiagram = () => {
           {/* 3. the hub */}
           <motion.div
             ref={hubRef}
-            className="relative z-10 flex items-center justify-between gap-3 rounded-3xl bg-forest-900 px-4 py-4 text-left text-white shadow-[0_30px_60px_-30px_rgba(6,36,24,0.85)] lg:col-start-3 lg:row-start-2 lg:block lg:self-center lg:px-6 lg:py-8 lg:text-center"
+            className="relative z-10 flex items-center justify-between gap-3 rounded-3xl bg-forest-900 px-4 py-5 text-left text-white shadow-[0_30px_60px_-30px_rgba(6,36,24,0.85)] lg:col-start-3 lg:row-start-2 lg:block lg:self-center lg:px-6 lg:py-8 lg:text-center"
             initial={{ opacity: 0, scale: 0.94 }}
             animate={seen ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
           >
             <div>
-              <BloomlyLogo mark play={seen} className="w-7 lg:mx-auto lg:w-11" />
+              <BloomlyLogo mark play={seen} className="w-8 lg:mx-auto lg:w-11" />
               <p className="mt-2 text-xs font-bold uppercase tracking-[0.14em] text-leaf-300 lg:mt-4">Bloomly's</p>
-              <p className="mt-0.5 text-xl font-extrabold leading-tight tracking-[-0.02em] lg:mt-1 lg:text-[1.6rem]">Private Mandi</p>
+              <p className="mt-0.5 whitespace-nowrap text-[1.375rem] font-extrabold leading-tight tracking-[-0.02em] lg:mt-1 lg:whitespace-normal lg:text-[1.6rem]">Private Mandi</p>
             </div>
             {/* beside the name on phones, a ruled list under it on desktop */}
-            <ul className="shrink-0 space-y-1.5 border-l border-white/15 pl-3 text-[0.8125rem] text-white/85 lg:mt-6 lg:space-y-0 lg:divide-y lg:divide-white/10 lg:border-l-0 lg:border-t lg:border-white/10 lg:pl-0 lg:text-[0.9375rem]">
+            <ul className="shrink-0 space-y-2 border-l border-white/15 pl-3 text-[0.875rem] text-white/85 lg:mt-6 lg:space-y-0 lg:divide-y lg:divide-white/10 lg:border-l-0 lg:border-t lg:border-white/10 lg:pl-0 lg:text-[0.9375rem]">
               {hubPoints.map((point) => (
                 <li key={point} className="whitespace-nowrap lg:whitespace-normal lg:py-2.5 lg:last:pb-0">
                   {point}
@@ -229,14 +229,14 @@ const FlowchartDiagram = () => {
           <ColumnLabel column="-mt-2 text-center lg:col-start-4 lg:mt-0" innerRef={consumptionRef}>
             Consumption regions
           </ColumnLabel>
-          <div className={`grid grid-cols-2 gap-x-8 gap-y-2.5 lg:col-start-4 lg:row-start-2 lg:grid-cols-1 lg:gap-4 lg:self-center ${UNDER_LABEL}`}>
+          <div className={`grid grid-cols-2 gap-x-7 gap-y-2.5 lg:col-start-4 lg:row-start-2 lg:grid-cols-1 lg:gap-4 lg:self-center ${UNDER_LABEL}`}>
             {channels.map((c, i) => (
               <NodeCard key={c.title} node={c} show={seen} delay={1.2 + i * 0.08} compact innerRef={(el) => (channelRefs.current[i] = el)} />
             ))}
           </div>
 
           {/* 5. consumers */}
-          <p className="-mt-2 text-center text-base font-extrabold text-ink lg:col-start-5 lg:mt-0 lg:text-lg lg:row-start-2 lg:self-center lg:text-left">
+          <p className="-mt-2 text-center text-lg font-extrabold text-ink lg:col-start-5 lg:mt-0 lg:row-start-2 lg:self-center lg:text-left">
             <span aria-hidden className="lg:hidden">↓ </span>
             <span aria-hidden className="hidden lg:inline">→ </span>
             Consumers
