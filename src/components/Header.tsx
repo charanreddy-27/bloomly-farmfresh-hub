@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
 import { useIntro } from "@/components/brand/LogoIntro";
@@ -11,6 +12,7 @@ const LINKS = [
 ];
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,8 +25,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => setIsMenuOpen(false), [location.pathname]);
+
   // Only the homepage opens on a dark hero; everywhere else the bar is solid from the start.
-  const solid = scrolled || location.pathname !== "/";
+  const solid = scrolled || isMenuOpen || location.pathname !== "/";
 
   const scrollToSection = (id: string) => {
     if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
@@ -32,6 +36,7 @@ const Header = () => {
   };
 
   const goTo = (id: string) => {
+    setIsMenuOpen(false);
     if (location.pathname !== "/") {
       navigate("/");
       window.setTimeout(() => scrollToSection(id), 120);
@@ -41,7 +46,7 @@ const Header = () => {
   };
 
   const linkClass = cn(
-    "relative whitespace-nowrap py-2 text-[0.9375rem] font-semibold transition-colors duration-200",
+    "relative py-2 text-[0.9375rem] font-semibold transition-colors duration-200",
     "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-leaf after:transition-transform after:duration-300 hover:after:scale-x-100",
     solid ? "text-ink-soft hover:text-forest" : "text-white/85 hover:text-white",
   );
@@ -57,6 +62,7 @@ const Header = () => {
         <Link
           to="/"
           onClick={() => {
+            setIsMenuOpen(false);
             if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" });
           }}
           aria-label="Bloomly home"
@@ -66,16 +72,15 @@ const Header = () => {
           <span
             data-brand-logo
             data-tone={solid ? "dark" : "light"}
-            className={cn("block w-[6rem] md:w-[146px]", docked ? "opacity-100" : "opacity-0")}
+            className={cn("block w-[128px] md:w-[146px]", docked ? "opacity-100" : "opacity-0")}
           >
             <BloomlyLogo tone={solid ? "dark" : "light"} />
           </span>
         </Link>
 
-        {/* The full menu on every screen, as on desktop; it shrinks with the page on phones (the logo stands in for Home on the narrowest) */}
-        <nav className="flex items-center gap-4 sm:gap-6 md:gap-9" aria-label="Main">
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Main">
           {LINKS.map((item) => (
-            <button key={item.label} type="button" onClick={() => goTo(item.section)} className={cn(linkClass, item.section === "top" && "max-[359px]:hidden")}>
+            <button key={item.label} type="button" onClick={() => goTo(item.section)} className={linkClass}>
               {item.label}
             </button>
           ))}
@@ -83,14 +88,41 @@ const Header = () => {
             type="button"
             onClick={() => goTo("contact")}
             className={cn(
-              "inline-flex h-10 items-center whitespace-nowrap rounded-full px-5 text-[0.9375rem] font-semibold transition-colors duration-200",
+              "inline-flex h-10 items-center rounded-full px-5 text-[0.9375rem] font-semibold transition-colors duration-200",
               solid ? "bg-forest text-white hover:bg-forest-700" : "bg-white text-forest hover:bg-leaf-50",
             )}
           >
             Contact
           </button>
         </nav>
+
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((o) => !o)}
+          className={cn("-mr-2 grid h-11 w-11 place-items-center rounded-lg md:hidden", solid ? "text-forest" : "text-white")}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <nav className="border-t border-line bg-white md:hidden" aria-label="Mobile">
+          <div className="container flex flex-col py-2">
+            {[...LINKS, { label: "Contact", section: "contact" }].map((item) => (
+              <button
+                key={item.label}
+                type="button"
+                onClick={() => goTo(item.section)}
+                className="border-b border-line py-4 text-left text-lg font-semibold text-ink last:border-b-0"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </nav>
+      )}
     </header>
   );
 };

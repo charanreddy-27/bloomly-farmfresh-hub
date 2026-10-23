@@ -29,29 +29,30 @@ const Hero = () => {
         transition={{ duration: 2.6, ease: EASE }}
       />
 
-      {/* Veil: solid behind the text on the left, opening onto the fruit on the right (the desktop look on every screen) */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-forest-950 via-forest-950/85 to-forest-950/25" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-950/80 via-transparent to-forest-950/55" />
+      {/* Veil: even on phones and tablets, where text sits over the photo; left-to-right on desktop */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-forest-950/90 via-forest-950/80 to-forest-950/80 lg:hidden" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-forest-950 via-forest-950/85 to-forest-950/25 lg:block" />
+      <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-forest-950/80 via-transparent to-forest-950/55 lg:block" />
 
       <div className="container flex min-h-[100svh] flex-col justify-center pb-24 pt-[calc(var(--header-h)+2rem)]">
-        <div className="max-w-[72%] sm:max-w-[44rem]">
-          <motion.p {...rise(0.05)} className="text-[0.8125rem] font-bold uppercase tracking-[0.14em] text-leaf-300">
+        <div className="max-w-[44rem]">
+          <motion.p {...rise(0.05)} className="text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-leaf-300 sm:text-[0.8125rem] sm:tracking-[0.14em]">
             India's private mandi for fruit
           </motion.p>
 
           <motion.h1
             {...rise(0.14)}
-            className="mt-6 text-[clamp(2rem,5vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-white"
+            className="mt-6 text-[clamp(2.5rem,5vw,4.25rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-white"
           >
             One mandi. <span className="text-leaf-300">Every grade.</span> Paid on the spot.
           </motion.h1>
 
-          <motion.p {...rise(0.24)} className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed text-white/80 sm:text-lg md:text-xl">
+          <motion.p {...rise(0.24)} className="mt-6 max-w-xl text-lg leading-relaxed text-white/80 md:text-xl">
             Farmers and aggregators bring their fruit in. Businesses get exactly the grade they need, every day, from one
             accountable partner.
           </motion.p>
 
-          <motion.div {...rise(0.34)} className="mt-9 flex w-max max-w-[calc(100vw-2.5rem)] flex-wrap gap-3">
+          <motion.div {...rise(0.34)} className="mt-9 flex flex-wrap gap-3">
             <a href="#contact" className="btn-white group">
               Get in touch
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />

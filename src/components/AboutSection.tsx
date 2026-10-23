@@ -23,13 +23,8 @@ const benefits = [
   { title: "A buyer for every grade", body: "A-grade goes to retail chains, supermarkets, quick commerce and local stores. Misfits go to pulp and processing partners, so less is wasted and farmers earn more. No mandi can match this, as it isn't a single institution." },
 ];
 
-const cardLabel = "text-[0.8125rem] font-extrabold uppercase tracking-[0.12em] text-ink sm:text-base";
-const cardFigure = "mt-3 text-[2rem] font-extrabold leading-none tracking-[-0.04em] text-ink sm:mt-6 sm:text-[2.75rem] md:text-5xl";
-// The two challenge cards sit side by side on every screen, so they tighten up on phones.
-const cardPad = "p-3.5 sm:p-7 md:p-8";
-const cardLead = "text-[0.9375rem] font-bold leading-snug text-ink sm:text-[1.125rem]";
-const cardList = "mt-4 divide-y divide-line border-t border-line text-[0.8125rem] sm:mt-6 sm:text-[0.9375rem]";
-const cardItem = "py-2 last:pb-0 sm:py-3";
+const cardLabel = "text-base font-extrabold uppercase tracking-[0.12em] text-ink";
+const cardFigure = "mt-6 text-[2.75rem] font-extrabold leading-none tracking-[-0.04em] text-ink md:text-5xl";
 
 /** The mission statement on a deep-green band, with the leaf mark building itself beside it. */
 function Mission() {
@@ -38,7 +33,7 @@ function Mission() {
 
   return (
     <section id="about" className="bg-forest-900 text-white">
-      <div ref={ref} className="container grid grid-cols-[2fr_1fr] items-center gap-6 py-16 sm:gap-12 sm:py-24 md:py-32">
+      <div ref={ref} className="container grid items-center gap-12 py-24 md:py-32 lg:grid-cols-[2fr_1fr] lg:gap-12">
         <div>
           <motion.p
             className="text-[0.8125rem] font-bold uppercase tracking-[0.14em] text-leaf-300"
@@ -49,7 +44,7 @@ function Mission() {
             Our mission
           </motion.p>
           <motion.h2
-            className="mt-6 text-[clamp(1.375rem,3.7vw,3.1rem)] font-extrabold leading-[1.14] tracking-[-0.03em]"
+            className="mt-6 text-[clamp(2rem,3.7vw,3.1rem)] font-extrabold leading-[1.14] tracking-[-0.03em]"
             initial={{ opacity: 0, y: 18 }}
             animate={seen ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.9, ease: EASE, delay: 0.08 }}
@@ -67,7 +62,7 @@ function Mission() {
           </motion.h2>
         </div>
 
-        <BloomlyLogo mark play={seen} className="mx-auto w-3/5 lg:w-44" title="" />
+        <BloomlyLogo mark play={seen} className="mx-auto hidden w-44 lg:block" title="" />
       </div>
     </section>
   );
@@ -81,7 +76,7 @@ const AboutSection = () => {
       <section className="section">
         <div className="container">
           {/* The Challenge */}
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
               <h3 className="h-section">
                 The <span className="hl">Challenge</span>
@@ -94,16 +89,16 @@ const AboutSection = () => {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:gap-5 lg:col-span-7">
+            <div className="grid gap-4 sm:grid-cols-2 md:gap-5 lg:col-span-7">
               {/* The farmer */}
-              <Reveal className={`card flex flex-col ${cardPad}`}>
+              <Reveal className="card flex flex-col p-7 md:p-8">
                 <p className={cardLabel}>The farmer</p>
                 <p className={cardFigure}>10%</p>
-                <p className={`mt-2 sm:mt-3 ${cardLead}`}>goes to commission before the farmer is paid</p>
+                <p className="mt-3 text-lg font-bold leading-snug text-ink">goes to commission before the farmer is paid</p>
 
-                <ul className={cardList}>
+                <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
                   {farmerPains.map((pain) => (
-                    <li key={pain} className={`text-ink-soft ${cardItem}`}>
+                    <li key={pain} className="py-3 text-ink-soft last:pb-0">
                       {pain}
                     </li>
                   ))}
@@ -111,13 +106,13 @@ const AboutSection = () => {
               </Reveal>
 
               {/* The business */}
-              <Reveal delay={0.08} className={`card flex flex-col ${cardPad}`}>
+              <Reveal delay={0.08} className="card flex flex-col p-7 md:p-8">
                 <p className={cardLabel}>The business</p>
-                <p className={`mt-3 sm:mt-6 ${cardLead}`}>Different buyers, one problem: no single accountable supplier</p>
+                <p className="mt-6 text-lg font-bold leading-snug text-ink">Different buyers, one problem: no single accountable supplier</p>
 
-                <ul className={cardList}>
+                <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
                   {buyers.map((b) => (
-                    <li key={b.name} className={cardItem}>
+                    <li key={b.name} className="py-3 last:pb-0">
                       <p className="font-bold text-ink">{b.name}</p>
                       <p className="mt-1 text-ink-soft">{b.need}</p>
                     </li>
@@ -128,8 +123,8 @@ const AboutSection = () => {
           </div>
 
           {/* Our Solution */}
-          <div className="mt-16 grid gap-8 md:mt-28 md:grid-cols-12 md:items-center md:gap-8 lg:gap-14">
-            <Reveal className="md:order-2 md:col-span-5">
+          <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-12 lg:items-center lg:gap-14">
+            <Reveal className="lg:order-2 lg:col-span-5">
               <h3 className="h-section">
                 Our <span className="hl">Solution</span>
               </h3>
@@ -143,10 +138,10 @@ const AboutSection = () => {
               </div>
             </Reveal>
 
-            <Reveal delay={0.08} className="card md:order-1 md:col-span-7">
+            <Reveal delay={0.08} className="card lg:order-1 lg:col-span-7">
               <ul className="divide-y divide-line">
                 {benefits.map((b) => (
-                  <li key={b.title} className="px-4 py-4 sm:px-7 sm:py-6 md:px-9 md:py-7">
+                  <li key={b.title} className="px-7 py-6 md:px-9 md:py-7">
                     <h4 className="text-lg font-bold text-ink md:text-xl">{b.title}</h4>
                     <p className="mt-1.5 text-ink-soft">{b.body}</p>
                   </li>

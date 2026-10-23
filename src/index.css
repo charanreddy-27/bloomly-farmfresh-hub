@@ -37,7 +37,7 @@
     --ring: 155 67% 18%;
     --radius: 0.75rem;
 
-    --header-h: 4.75rem;
+    --header-h: 76px;
   }
 
   * {
@@ -45,9 +45,6 @@
   }
 
   html {
-    /* Every screen gets the desktop layout, scaled down below 1024px: everything sized in rem shrinks together
-       (about 12px on a phone, 14.5px on a tablet, 16px on desktop). */
-    font-size: clamp(11px, calc(9.9px + 0.6vw), 16px);
     scroll-behavior: smooth;
     scroll-padding-top: var(--header-h);
     -webkit-text-size-adjust: 100%;
