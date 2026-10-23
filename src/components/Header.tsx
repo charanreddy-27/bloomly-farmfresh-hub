@@ -108,18 +108,21 @@ const Header = () => {
       </div>
 
       {isMenuOpen && (
-        <nav className="border-t border-line bg-white md:hidden" aria-label="Mobile">
-          <div className="container flex flex-col py-2">
-            {[...LINKS, { label: "Contact", section: "contact" }].map((item) => (
+        <nav className="border-t border-line bg-white shadow-[0_24px_40px_-24px_rgba(15,76,50,0.35)] md:hidden" aria-label="Mobile">
+          <div className="container flex flex-col pb-5 pt-1">
+            {LINKS.map((item) => (
               <button
                 key={item.label}
                 type="button"
                 onClick={() => goTo(item.section)}
-                className="border-b border-line py-4 text-left text-lg font-semibold text-ink last:border-b-0"
+                className="border-b border-line py-3.5 text-left text-base font-semibold text-ink"
               >
                 {item.label}
               </button>
             ))}
+            <button type="button" onClick={() => goTo("contact")} className="btn-forest mt-4 w-full">
+              Contact us
+            </button>
           </div>
         </nav>
       )}

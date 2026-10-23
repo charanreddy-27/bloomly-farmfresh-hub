@@ -28,20 +28,21 @@ const TrustedPartners = () => {
         </Reveal>
       </div>
 
-      <Reveal delay={0.1} className="mask-fade-x group mt-12 flex overflow-hidden py-4 md:mt-14">
-        <ul className="flex w-max shrink-0 animate-marquee group-hover:[animation-play-state:paused]">
+      <Reveal delay={0.1} className="mask-fade-x group mt-8 flex overflow-hidden py-4 sm:mt-12 md:mt-14">
+        {/* Smaller tiles and logos on phones, so the row shows three or four partners at once */}
+        <ul className="flex w-max shrink-0 animate-marquee [--logo-scale:0.72] group-hover:[animation-play-state:paused] sm:[--logo-scale:1]">
           {Array.from({ length: COPIES }).flatMap((_, copy) =>
             partners.map((p) => (
               <li
                 key={`${copy}-${p.name}`}
                 aria-hidden={copy > 0}
-                className="card mr-4 grid h-28 w-52 shrink-0 place-items-center px-6 md:mr-5 md:h-32 md:w-60"
+                className="card mr-3 grid h-20 w-36 shrink-0 place-items-center px-4 sm:mr-4 sm:h-28 sm:w-52 sm:px-6 md:mr-5 md:h-32 md:w-60"
               >
                 <img
                   src={p.logo}
                   alt={copy === 0 ? p.name : ""}
                   decoding="async"
-                  style={{ height: p.h }}
+                  style={{ height: `calc(${p.h}px * var(--logo-scale))` }}
                   className={`w-auto max-w-full object-contain ${p.rounded ? "rounded-lg" : ""}`}
                 />
               </li>

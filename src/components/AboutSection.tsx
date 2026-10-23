@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { ChevronDown } from "lucide-react";
+import { type ReactNode, useRef, useState } from "react";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
 import { Reveal } from "./Reveal";
 
@@ -23,8 +24,43 @@ const benefits = [
   { title: "A buyer for every grade", body: "A-grade goes to retail chains, supermarkets, quick commerce and local stores. Misfits go to pulp and processing partners, so less is wasted and farmers earn more. No mandi can match this, as it isn't a single institution." },
 ];
 
-const cardLabel = "text-base font-extrabold uppercase tracking-[0.12em] text-ink";
-const cardFigure = "mt-6 text-[2.75rem] font-extrabold leading-none tracking-[-0.04em] text-ink md:text-5xl";
+const cardLabel = "text-[0.8125rem] font-extrabold uppercase tracking-[0.12em] text-ink sm:text-base";
+const cardFigure = "mt-4 text-[2.5rem] font-extrabold leading-none tracking-[-0.04em] text-ink sm:mt-6 sm:text-[2.75rem] md:text-5xl";
+const cardLead = "text-[1.0625rem] font-bold leading-snug text-ink sm:text-[1.125rem]";
+// On phones each challenge card is most of the screen wide, so the next one peeks in from the side.
+const swipeCard = "card flex w-[85%] shrink-0 snap-start flex-col p-5 sm:w-auto sm:p-7 md:p-8";
+// Body copy: a touch smaller on phones.
+const copy = "mt-4 space-y-4 text-[0.9375rem] text-ink-soft sm:mt-6 sm:space-y-5 sm:text-[1rem]";
+
+/** Cards that swipe sideways on phones, with dots for where you are; a two-column grid from sm up. */
+function SwipeCards({ children }: { children: ReactNode[] }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const onScroll = () => {
+    const el = ref.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setActive(max > 0 ? Math.round((el.scrollLeft / max) * (children.length - 1)) : 0);
+  };
+
+  return (
+    <div className="min-w-0 lg:col-span-7">
+      <div
+        ref={ref}
+        onScroll={onScroll}
+        className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-5 pt-1 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:p-0 md:gap-5 [&::-webkit-scrollbar]:hidden"
+      >
+        {children}
+      </div>
+      <div className="flex justify-center gap-1.5 sm:hidden" aria-hidden>
+        {children.map((_, i) => (
+          <span key={i} className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-5 bg-forest" : "w-1.5 bg-forest-100"}`} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 /** The mission statement on a deep-green band, with the leaf mark building itself beside it. */
 function Mission() {
@@ -33,7 +69,7 @@ function Mission() {
 
   return (
     <section id="about" className="bg-forest-900 text-white">
-      <div ref={ref} className="container grid items-center gap-12 py-24 md:py-32 lg:grid-cols-[2fr_1fr] lg:gap-12">
+      <div ref={ref} className="container grid items-center gap-6 py-16 sm:gap-12 sm:py-24 md:py-32 lg:grid-cols-[2fr_1fr] lg:gap-12">
         <div>
           <motion.p
             className="text-[0.8125rem] font-bold uppercase tracking-[0.14em] text-leaf-300"
@@ -44,7 +80,7 @@ function Mission() {
             Our mission
           </motion.p>
           <motion.h2
-            className="mt-6 text-[clamp(2rem,3.7vw,3.1rem)] font-extrabold leading-[1.14] tracking-[-0.03em]"
+            className="mt-5 text-[clamp(1.75rem,3.7vw,3.1rem)] font-extrabold sm:mt-6 leading-[1.14] tracking-[-0.03em]"
             initial={{ opacity: 0, y: 18 }}
             animate={seen ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.9, ease: EASE, delay: 0.08 }}
@@ -62,13 +98,15 @@ function Mission() {
           </motion.h2>
         </div>
 
-        <BloomlyLogo mark play={seen} className="mx-auto hidden w-44 lg:block" title="" />
+        <BloomlyLogo mark play={seen} className="order-first w-12 lg:order-none lg:mx-auto lg:w-44" title="" />
       </div>
     </section>
   );
 }
 
 const AboutSection = () => {
+  const [readMore, setReadMore] = useState(false);
+
   return (
     <>
       <Mission />
@@ -76,12 +114,12 @@ const AboutSection = () => {
       <section className="section">
         <div className="container">
           {/* The Challenge */}
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-14">
             <Reveal className="lg:col-span-5">
               <h3 className="h-section">
                 The <span className="hl">Challenge</span>
               </h3>
-              <div className="mt-6 space-y-5 text-ink-soft">
+              <div className={copy}>
                 <p>
                   Majority of the fruit business in India still runs on the mandi. But a mandi isn't one partner it's dozens of commission
                   agents, and no one of them is accountable for grade, consistency or supply.
@@ -89,12 +127,12 @@ const AboutSection = () => {
               </div>
             </Reveal>
 
-            <div className="grid gap-4 sm:grid-cols-2 md:gap-5 lg:col-span-7">
-              {/* The farmer */}
-              <Reveal className="card flex flex-col p-7 md:p-8">
+            <SwipeCards>
+              {/* The farmer (revealed as soon as any of it shows, so the peeking card is never blank) */}
+              <Reveal viewport={{ once: true, amount: 0 }} className={swipeCard}>
                 <p className={cardLabel}>The farmer</p>
                 <p className={cardFigure}>10%</p>
-                <p className="mt-3 text-lg font-bold leading-snug text-ink">goes to commission before the farmer is paid</p>
+                <p className={`mt-3 ${cardLead}`}>goes to commission before the farmer is paid</p>
 
                 <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
                   {farmerPains.map((pain) => (
@@ -106,9 +144,9 @@ const AboutSection = () => {
               </Reveal>
 
               {/* The business */}
-              <Reveal delay={0.08} className="card flex flex-col p-7 md:p-8">
+              <Reveal delay={0.08} viewport={{ once: true, amount: 0 }} className={swipeCard}>
                 <p className={cardLabel}>The business</p>
-                <p className="mt-6 text-lg font-bold leading-snug text-ink">Different buyers, one problem: no single accountable supplier</p>
+                <p className={`mt-4 sm:mt-6 ${cardLead}`}>Different buyers, one problem: no single accountable supplier</p>
 
                 <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
                   {buyers.map((b) => (
@@ -119,31 +157,38 @@ const AboutSection = () => {
                   ))}
                 </ul>
               </Reveal>
-            </div>
+            </SwipeCards>
           </div>
 
           {/* Our Solution */}
-          <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-12 lg:items-center lg:gap-14">
+          <div className="mt-14 grid gap-6 sm:mt-20 md:mt-28 lg:grid-cols-12 lg:items-center lg:gap-14">
             <Reveal className="lg:order-2 lg:col-span-5">
               <h3 className="h-section">
                 Our <span className="hl">Solution</span>
               </h3>
-              <div className="mt-6 space-y-5 text-ink-soft">
+              <div className={copy}>
                 <p>
                   Bloomly is a private mandi built to raise what farmers earn. Produce is graded in the farmer's presence, and every lot comes with a machine-generated grading slip showing its grade, quantity and price, so nothing is left to guesswork or anyone's discretion. Farmers are paid on the spot and in full, and they know exactly what their harvest is worth.
                 </p>
-                <p>
+                {/* On phones the second paragraph waits behind "Read more" */}
+                <p className={readMore ? undefined : "hidden sm:block"}>
                   Every grade then reaches the buyer who values it most, whether they sell it on the shelf, deliver it to the doorstep, or turn it into something new. Businesses deal with one accountable operator and get consistent quality, dependable supply and quick response. Fair pay keeps farmers coming back and reliable supply keeps buyers with us, which makes Bloomly a trusted operator for both
                 </p>
               </div>
+              {!readMore && (
+                <button type="button" onClick={() => setReadMore(true)} className="mt-3 inline-flex items-center gap-1 text-[0.9375rem] font-semibold text-forest sm:hidden">
+                  Read more
+                  <ChevronDown className="h-4 w-4" aria-hidden />
+                </button>
+              )}
             </Reveal>
 
             <Reveal delay={0.08} className="card lg:order-1 lg:col-span-7">
               <ul className="divide-y divide-line">
                 {benefits.map((b) => (
-                  <li key={b.title} className="px-7 py-6 md:px-9 md:py-7">
-                    <h4 className="text-lg font-bold text-ink md:text-xl">{b.title}</h4>
-                    <p className="mt-1.5 text-ink-soft">{b.body}</p>
+                  <li key={b.title} className="px-5 py-5 sm:px-7 sm:py-6 md:px-9 md:py-7">
+                    <h4 className="text-[1.0625rem] font-bold leading-snug text-ink sm:text-lg sm:leading-7 md:text-xl">{b.title}</h4>
+                    <p className="mt-1.5 text-[0.9375rem] text-ink-soft sm:text-[1rem]">{b.body}</p>
                   </li>
                 ))}
               </ul>

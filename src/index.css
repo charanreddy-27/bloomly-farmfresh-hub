@@ -37,7 +37,13 @@
     --ring: 155 67% 18%;
     --radius: 0.75rem;
 
-    --header-h: 76px;
+    --header-h: 64px;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --header-h: 76px;
+    }
   }
 
   * {
@@ -84,7 +90,7 @@
 @layer components {
   /* Vertical rhythm shared by every homepage section */
   .section {
-    @apply py-20 md:py-28;
+    @apply py-14 sm:py-20 md:py-28;
   }
 
   /* Small green label above a heading */
@@ -94,7 +100,7 @@
 
   .h-section {
     @apply font-extrabold text-ink;
-    font-size: clamp(1.9rem, 3.3vw, 2.75rem);
+    font-size: clamp(1.75rem, 3.3vw, 2.75rem);
     line-height: 1.12;
     letter-spacing: -0.03em;
   }
@@ -105,7 +111,7 @@
   }
 
   .lead {
-    @apply text-[1.0625rem] leading-relaxed text-ink-soft md:text-lg;
+    @apply text-[1rem] leading-relaxed text-ink-soft sm:text-[1.0625rem] md:text-lg;
   }
 
   .btn {

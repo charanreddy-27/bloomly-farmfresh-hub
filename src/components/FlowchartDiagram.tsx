@@ -145,7 +145,7 @@ const FlowchartDiagram = () => {
           <p className="lead mt-4">Farmers and aggregators bring fruit in. Every grade goes out to a buyer.</p>
         </Reveal>
 
-        <div className="card mt-12 p-4 sm:p-7 md:mt-16 md:p-10">
+        <div className="card mt-8 p-4 sm:mt-12 sm:p-7 md:mt-16 md:p-10">
         <div
           ref={boxRef}
           className="relative mx-auto grid max-w-[24rem] gap-y-10 lg:max-w-none lg:grid-cols-[minmax(0,0.75fr)_minmax(0,0.95fr)_minmax(0,0.9fr)_minmax(0,1.05fr)_auto] lg:grid-rows-[auto_1fr] lg:gap-x-14 lg:gap-y-5 xl:gap-x-20"
@@ -242,15 +242,15 @@ const FlowchartDiagram = () => {
         </div>
 
         {/* Inside the Private Mandi */}
-        <Reveal className="mx-auto mt-20 max-w-2xl text-center md:mt-28">
+        <Reveal className="mx-auto mt-14 max-w-2xl text-center sm:mt-20 md:mt-28">
           <h2 className="h-section">
             The farmer's <span className="hl">journey</span> at the private mandi
           </h2>
           <p className="lead mt-4">Five steps from the farm gate to money in the bank.</p>
         </Reveal>
 
-        <Reveal className="card mt-12 p-7 md:mt-16 md:p-10">
-          <ol className="relative grid gap-7 lg:grid-cols-5 lg:gap-6">
+        <Reveal className="card mt-8 p-5 sm:mt-12 sm:p-7 md:mt-16 md:p-10">
+          <ol className="relative grid gap-6 sm:gap-7 lg:grid-cols-5 lg:gap-6">
             {/* the line the steps sit on */}
             <span className="absolute left-5 top-5 hidden h-0.5 w-[calc(80%+1.2rem)] bg-forest-100 lg:block" aria-hidden />
             <motion.span
@@ -263,12 +263,13 @@ const FlowchartDiagram = () => {
             />
             {steps.map((s, i) => (
               <li key={s.name} className="relative grid grid-cols-[2.5rem_1fr] gap-x-4 lg:block">
-                {i < steps.length - 1 && <span className="absolute -bottom-7 left-[1.1875rem] top-10 w-0.5 bg-forest-100 lg:hidden" aria-hidden />}
+                {i < steps.length - 1 && <span className="absolute -bottom-6 left-[1.1875rem] top-10 w-0.5 bg-forest-100 sm:-bottom-7 lg:hidden" aria-hidden />}
                 <span className="relative z-10 grid h-10 w-10 place-items-center rounded-full bg-forest text-sm font-extrabold text-white ring-4 ring-white">
                   {i + 1}
                 </span>
-                <div className="lg:mt-5">
-                  <p className="text-lg font-bold text-ink">{s.name}</p>
+                {/* on phones the step name lines up with the middle of its number */}
+                <div className="pt-2 lg:mt-5 lg:pt-0">
+                  <p className="text-[1.0625rem] font-bold leading-snug text-ink sm:text-lg sm:leading-7">{s.name}</p>
                   <p className="mt-1 text-[0.9375rem] leading-relaxed text-ink-soft">{s.detail}</p>
                 </div>
               </li>
