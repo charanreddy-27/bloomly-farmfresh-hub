@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { type ReactNode, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { BloomlyLogo } from "@/components/brand/BloomlyLogo";
 import { Reveal } from "./Reveal";
 
@@ -25,42 +25,13 @@ const benefits = [
 ];
 
 const cardLabel = "text-[0.8125rem] font-extrabold uppercase tracking-[0.12em] text-ink sm:text-base";
-const cardFigure = "mt-4 text-[2.5rem] font-extrabold leading-none tracking-[-0.04em] text-ink sm:mt-6 sm:text-[2.75rem] md:text-5xl";
+const cardFigure = "shrink-0 text-[2.5rem] font-extrabold leading-none tracking-[-0.04em] text-ink sm:text-[2.75rem] md:text-5xl";
 const cardLead = "text-[1.0625rem] font-bold leading-snug text-ink sm:text-[1.125rem]";
-// On phones each challenge card is most of the screen wide, so the next one peeks in from the side.
-const swipeCard = "card flex w-[85%] shrink-0 snap-start flex-col p-5 sm:w-auto sm:p-7 md:p-8";
+const challengeCard = "card flex flex-col p-5 sm:p-7 md:p-8";
+const cardList = "mt-4 divide-y divide-line border-t border-line text-[0.9375rem] sm:mt-6";
+const cardItem = "py-2.5 last:pb-0 sm:py-3";
 // Body copy: a touch smaller on phones.
 const copy = "mt-4 space-y-4 text-[0.9375rem] text-ink-soft sm:mt-6 sm:space-y-5 sm:text-[1rem]";
-
-/** Cards that swipe sideways on phones, with dots for where you are; a two-column grid from sm up. */
-function SwipeCards({ children }: { children: ReactNode[] }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-
-  const onScroll = () => {
-    const el = ref.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    setActive(max > 0 ? Math.round((el.scrollLeft / max) * (children.length - 1)) : 0);
-  };
-
-  return (
-    <div className="min-w-0 lg:col-span-7">
-      <div
-        ref={ref}
-        onScroll={onScroll}
-        className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-5 pt-1 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:p-0 md:gap-5 [&::-webkit-scrollbar]:hidden"
-      >
-        {children}
-      </div>
-      <div className="flex justify-center gap-1.5 sm:hidden" aria-hidden>
-        {children.map((_, i) => (
-          <span key={i} className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-5 bg-forest" : "w-1.5 bg-forest-100"}`} />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 /** The mission statement on a deep-green band, with the leaf mark building itself beside it. */
 function Mission() {
@@ -127,16 +98,19 @@ const AboutSection = () => {
               </div>
             </Reveal>
 
-            <SwipeCards>
-              {/* The farmer (revealed as soon as any of it shows, so the peeking card is never blank) */}
-              <Reveal viewport={{ once: true, amount: 0 }} className={swipeCard}>
+            {/* Stacked on phones, side by side from sm up */}
+            <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 md:gap-5 lg:col-span-7">
+              {/* The farmer: on phones the figure sits beside its caption */}
+              <Reveal className={challengeCard}>
                 <p className={cardLabel}>The farmer</p>
-                <p className={cardFigure}>10%</p>
-                <p className={`mt-3 ${cardLead}`}>goes to commission before the farmer is paid</p>
+                <div className="mt-3 flex items-center gap-4 sm:mt-6 sm:block">
+                  <p className={cardFigure}>10%</p>
+                  <p className={`sm:mt-3 ${cardLead}`}>goes to commission before the farmer is paid</p>
+                </div>
 
-                <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
+                <ul className={cardList}>
                   {farmerPains.map((pain) => (
-                    <li key={pain} className="py-3 text-ink-soft last:pb-0">
+                    <li key={pain} className={`text-ink-soft ${cardItem}`}>
                       {pain}
                     </li>
                   ))}
@@ -144,20 +118,20 @@ const AboutSection = () => {
               </Reveal>
 
               {/* The business */}
-              <Reveal delay={0.08} viewport={{ once: true, amount: 0 }} className={swipeCard}>
+              <Reveal delay={0.08} className={challengeCard}>
                 <p className={cardLabel}>The business</p>
-                <p className={`mt-4 sm:mt-6 ${cardLead}`}>Different buyers, one problem: no single accountable supplier</p>
+                <p className={`mt-3 sm:mt-6 ${cardLead}`}>Different buyers, one problem: no single accountable supplier</p>
 
-                <ul className="mt-6 divide-y divide-line border-t border-line text-[0.9375rem]">
+                <ul className={cardList}>
                   {buyers.map((b) => (
-                    <li key={b.name} className="py-3 last:pb-0">
+                    <li key={b.name} className={cardItem}>
                       <p className="font-bold text-ink">{b.name}</p>
                       <p className="mt-1 text-ink-soft">{b.need}</p>
                     </li>
                   ))}
                 </ul>
               </Reveal>
-            </SwipeCards>
+            </div>
           </div>
 
           {/* Our Solution */}
