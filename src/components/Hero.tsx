@@ -29,12 +29,12 @@ const Hero = () => {
         transition={{ duration: 2.6, ease: EASE }}
       />
 
-      {/* Veil: on phones and tablets the fruit shows through at the top and the text sits on solid green below; left-to-right on desktop */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-950 from-30% via-forest-950/80 via-60% to-forest-950/45 lg:hidden" />
+      {/* Veil: on phones and tablets the fruit shows through around the text and deepens towards the bottom; left-to-right on desktop */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-950 from-15% via-forest-950/80 via-55% to-forest-950/50 lg:hidden" />
       <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-forest-950 via-forest-950/85 to-forest-950/25 lg:block" />
       <div className="absolute inset-0 -z-10 hidden bg-gradient-to-t from-forest-950/80 via-transparent to-forest-950/55 lg:block" />
 
-      <div className="container flex min-h-[100svh] flex-col justify-end pb-12 pt-[calc(var(--header-h)+2rem)] sm:pb-16 lg:justify-center lg:pb-24">
+      <div className="container flex min-h-[86svh] flex-col justify-center pb-14 pt-[calc(var(--header-h)+2rem)] sm:min-h-[100svh] sm:pb-16 lg:pb-24">
         <div className="max-w-[44rem]">
           <motion.p {...rise(0.05)} className="text-[0.6875rem] font-bold uppercase tracking-[0.1em] text-leaf-300 sm:text-[0.8125rem] sm:tracking-[0.14em]">
             India's private mandi for fruit
